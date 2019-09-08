@@ -84,10 +84,12 @@ public class HomePage {
 			choice = input.next();
 			
 			if(choice.equals("1")) {
-				//Manage booking page
+				
+				manageBook();
 				end = true;
 			}else if(choice.equals("2")) {
-				//Search hall page
+				
+				SearchHall();
 				end = true;
 			}else if(choice.equals("3")) {
 				requestQuotation();
@@ -123,11 +125,12 @@ public class HomePage {
 			choice = input.next();
 			
 			if(choice.equals("1")) {
-				//Manage booking page
+				
+				tick();
 				break;
 			}else if(choice.equals("2")) {
-				//Manage hall page
-				break;
+				manageHall();
+				end = true;
 			}else if(choice.equals("3")) {
 				//Manage discount
 				break;
@@ -272,6 +275,121 @@ public class HomePage {
 	}
 	
 	//Search
+	
+	//Manage Hall
+	public void manageHall() {
+		int ch = 0;
+		System.out.println();
+		for(int i = 0; i < 30; i ++)
+			System.out.print("=");
+		System.out.println("\nManage Hall\n");
+		
+		do {
+			try {
+				System.out.println("Choose to continue");
+				System.out.println("1. Create Hall");
+				System.out.println("2. Edit Hall");
+				System.out.print("Your choice [1/2]? ");
+				ch = input.nextInt();
+				System.out.println(ch);
+			} catch (Exception e) {
+				System.out.print("Invalid input. Please choose again.");
+			}
+		}while(ch != 1 && ch != 2);
+		
+		System.out.println("Name: ");
+		input.nextLine();
+		input.nextLine();
+		System.out.println("Address: ");
+		input.nextLine();
+		System.out.println("Email: ");
+		input.nextLine();
+		System.out.println("Phone Number:");
+		input.nextLine();
+		System.out.println("Description");
+		input.nextLine();
+		System.out.println("Event: ");
+		input.nextLine();
+		System.out.println("Size: ");
+		input.nextLine();
+		System.out.println("Price: ");
+		input.nextLine();
+		
+		System.out.println("Manage successful.");
+		System.out.println("\nRedirecting to home page\n");
+		System.out.println();
+		
+		//display based on user
+		String st = "";
+		hallOwnerHome(st);
+	}
+	
+	//search hall
+	public void SearchHall() {
+		String search = "";
+		int ran = 0;
+		System.out.println("Name: ");
+		input.nextLine();
+		input.nextLine();
+		System.out.println("Size: ");
+		input.nextLine();
+		System.out.println("Price: ");
+		input.nextLine();
+		
+		ran = (int)(2*Math.random());
+		if(ran == 1) {
+			System.out.println("There is no availible Halls, please try again");
+			customerHome(search);
+		}else if(ran == 0) {
+			createBook();
+		}
+		
+	}
+	
+	public void manageBook() {
+		String book = "";
+		System.out.println("Edit Booking");
+		System.out.println("Start Date: ");
+		input.nextLine();
+		input.nextLine();
+		System.out.println("Duration: ");
+		input.nextLine();
+		System.out.println("Propose: ");
+		input.nextLine();
+		System.out.println("Name:");
+		input.nextLine();
+		System.out.println("Email:");
+		input.nextLine();
+		System.out.println("Phone Number: ");
+		input.nextLine();
+		customerHome(book);
+	}
+	public void createBook() {
+		String create = "";
+		System.out.println("Please select one of the given results to book:");
+		System.out.println("[Fake1,Fake2,Fake3,Fake4,Fake5]");
+		input.nextLine();
+		
+		System.out.println("Start Date: ");
+		input.nextLine();
+		input.nextLine();
+		System.out.println("Duration: ");
+		input.nextLine();
+		System.out.println("Propose: ");
+		input.nextLine();
+		System.out.println("Name:");
+		input.nextLine();
+		System.out.println("Email:");
+		input.nextLine();
+		System.out.println("Phone Number: ");
+		input.nextLine();
+		
+		customerHome(create);
+	}
+	
+	public void tick() {
+		System.out.println("There is no booking ");
+	}
 	
 	//Quotation page
 	public void requestQuotation() {
