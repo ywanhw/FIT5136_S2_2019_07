@@ -262,10 +262,14 @@ public class HomePage {
 		System.out.println("Password: ");
 		input.nextLine();
 		
+		if(type == 1) {
+			System.out.println("Do you have concession [y/n]?");
+			input.nextLine();
+		}
 		//create the corresponding user object
 		
 		//return to home
-		System.out.println("Register successful.");
+		System.out.println("\nRegister successful.");
 		System.out.println("\nRedirecting to home page\n");
 		System.out.println();
 		
@@ -297,7 +301,8 @@ public class HomePage {
 			}
 		}while(ch != 1 && ch != 2);
 		
-		System.out.println("Name: ");
+		
+		System.out.println("Hall Name: ");
 		input.nextLine();
 		input.nextLine();
 		System.out.println("Address: ");
@@ -315,23 +320,24 @@ public class HomePage {
 		System.out.println("Price: ");
 		input.nextLine();
 		
-		System.out.println("Manage successful.");
+		System.out.println("\nChange saved.");
 		System.out.println("\nRedirecting to home page\n");
 		System.out.println();
 		
 		//display based on user
-		String st = "";
-		hallOwnerHome(st);
+		allHome(2);
 	}
 	
 	//search hall
 	public void SearchHall() {
 		String search = "";
 		int ran = 0;
-		System.out.println("Name: ");
+		System.out.println();
+		for(int i = 0; i < 30; i ++)
+			System.out.print("=");
+		System.out.println("\nSearch Hall\n");
+		System.out.println("Size (metre^2): ");
 		input.nextLine();
-		input.nextLine();
-		System.out.println("Size: ");
 		input.nextLine();
 		System.out.println("Price: ");
 		input.nextLine();
@@ -339,7 +345,7 @@ public class HomePage {
 		ran = (int)(2*Math.random());
 		if(ran == 1) {
 			System.out.println("There is no availible Halls, please try again");
-			customerHome(search);
+			allHome(1);
 		}else if(ran == 0) {
 			createBook();
 		}
@@ -347,10 +353,15 @@ public class HomePage {
 	}
 	
 	public void manageBook() {
-		String book = "";
-		System.out.println("Edit Booking");
-		System.out.println("Start Date: ");
+		System.out.println();
+		for(int i = 0; i < 30; i ++)
+			System.out.print("=");
+		System.out.println("\nEdit Booking\n");
+		
+		System.out.println("Booking number: ");
 		input.nextLine();
+		input.nextLine();
+		System.out.println("Start Date: ");
 		input.nextLine();
 		System.out.println("Duration: ");
 		input.nextLine();
@@ -362,16 +373,21 @@ public class HomePage {
 		input.nextLine();
 		System.out.println("Phone Number: ");
 		input.nextLine();
-		customerHome(book);
+		
+		System.out.println("\nBooking changed.");
+		System.out.println("\nRedirecting to home page");
+		System.out.println();
+		
+		allHome(1);
 	}
 	public void createBook() {
 		String create = "";
 		System.out.println("Please select one of the given results to book:");
-		System.out.println("[Fake1,Fake2,Fake3,Fake4,Fake5]");
+		System.out.println("[1. Fake1, 2. Fake2, 3. Fake3, 4. Fake4, 5. Fake5]");
+		System.out.println("Your choice?");
 		input.nextLine();
 		
 		System.out.println("Start Date: ");
-		input.nextLine();
 		input.nextLine();
 		System.out.println("Duration: ");
 		input.nextLine();
@@ -384,11 +400,21 @@ public class HomePage {
 		System.out.println("Phone Number: ");
 		input.nextLine();
 		
-		customerHome(create);
+		System.out.println("\nHall Booking successful.");
+		System.out.println("\nRedirecting to home page");
+		System.out.println();
+		
+		allHome(1);
 	}
 	
 	public void tick() {
+		System.out.println();
+		for(int i = 0; i < 30; i ++)
+			System.out.print("=");
+		System.out.println("\nManage Booking\n");
 		System.out.println("There is no booking ");
+		System.out.println("\nRedirecting to home page");
+		allHome(2);
 	}
 	
 	//Quotation page
