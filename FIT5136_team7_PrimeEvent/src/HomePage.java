@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class HomePage {
 	
+	Hall hallarr[] = new Hall[100];
+	
 	Scanner input;
 	
 	public HomePage() {
@@ -301,24 +303,83 @@ public class HomePage {
 			}
 		}while(ch != 1 && ch != 2);
 		
+		Hall p0 = new Hall();
+		Hall p1 = new Hall();
+		Hall p2 = new Hall();
 		
-		System.out.println("Hall Name: ");
-		input.nextLine();
-		input.nextLine();
-		System.out.println("Address: ");
-		input.nextLine();
-		System.out.println("Email: ");
-		input.nextLine();
-		System.out.println("Phone Number:");
-		input.nextLine();
-		System.out.println("Description");
-		input.nextLine();
-		System.out.println("Event: ");
-		input.nextLine();
-		System.out.println("Size: ");
-		input.nextLine();
-		System.out.println("Price: ");
-		input.nextLine();
+		if(hallarr[0] == null) {
+			System.out.println("Hall Name: ");
+			input.nextLine();
+			p0.setName(input.nextLine());
+			System.out.println("Address: ");
+			p0.setAddress(input.nextLine());
+			System.out.println("Email: ");
+			p0.setEmail(input.nextLine());
+			System.out.println("Phone Number:");
+			p0.setNumber(input.nextLine());
+			System.out.println("Description");
+			p0.setDescription(input.nextLine());
+			System.out.println("Event: ");
+			p0.setEvent(input.nextLine());
+			System.out.println("Size: ");
+			p0.setSize(input.nextLine());
+			System.out.println("Price: ");
+			p0.setPrice(input.nextLine());
+			
+		};
+		
+		if(hallarr[0] != null && hallarr[1] == null) {
+			System.out.println("Hall Name: ");
+			input.nextLine();
+			p1.setName(input.nextLine());
+			System.out.println("Address: ");
+			p1.setAddress(input.nextLine());
+			System.out.println("Email: ");
+			p1.setEmail(input.nextLine());
+			System.out.println("Phone Number:");
+			p1.setNumber(input.nextLine());
+			System.out.println("Description");
+			p1.setDescription(input.nextLine());
+			System.out.println("Event: ");
+			p1.setEvent(input.nextLine());
+			System.out.println("Size: ");
+			p1.setSize(input.nextLine());
+			System.out.println("Price: ");
+			p1.setPrice(input.nextLine());
+		};
+		
+		if(hallarr[1] != null && hallarr[2] == null) {
+			System.out.println("Hall Name: ");
+			input.nextLine();
+			p2.setName(input.nextLine());
+			System.out.println("Address: ");
+			p2.setAddress(input.nextLine());
+			System.out.println("Email: ");
+			p2.setEmail(input.nextLine());
+			System.out.println("Phone Number:");
+			p2.setNumber(input.nextLine());
+			System.out.println("Description");
+			p2.setDescription(input.nextLine());
+			System.out.println("Event: ");
+			p2.setEvent(input.nextLine());
+			System.out.println("Size: ");
+			p2.setSize(input.nextLine());
+			System.out.println("Price: ");
+			p2.setPrice(input.nextLine());
+		};
+		
+		hallarr[0] = p0;
+		if(p1.getName() != null) {
+			hallarr[1] = p1;
+		}
+		if(p2.getName() != null) {
+			hallarr[2] = p2;
+		}
+		
+//		if(p1.getName() != null) {
+//			System.out.println("name: "+ hallarr[1].getName());
+//		}
+		
 		
 		System.out.println("\nChange saved.");
 		System.out.println("\nRedirecting to home page\n");
@@ -457,7 +518,21 @@ public class HomePage {
 		
 		HomePage homePage = new HomePage();
 		homePage.allHome(0);
+	
 
 	}
 
 }
+
+
+//String arr[] = {"p0","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10"};
+//
+//check: for (int i=0; i<hallarr.length;i++) {
+//	if(hallarr[i] != null) {
+//		i = i+1;
+//	}
+//	else {
+//		Hall arr[i] = new Hall();
+//		break check;
+//	}
+//}
