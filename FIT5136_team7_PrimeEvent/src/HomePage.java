@@ -1,4 +1,3 @@
-package search;
 import java.util.Scanner;
 
 public class HomePage {
@@ -304,6 +303,14 @@ public class HomePage {
 			}
 		}while(ch != 1 && ch != 2);
 		
+		if(ch == 1) {
+			createHall();
+		}
+		else if(ch == 2) {
+			editHall();
+		}
+	}
+	public void createHall() {
 		Hall p0 = new Hall();
 		Hall p1 = new Hall();
 		Hall p2 = new Hall();
@@ -369,25 +376,38 @@ public class HomePage {
 			p2.setPrice(input.nextLine());
 		};
 		
-		hallarr[0] = p0;
+		if(p0.getName() != null) {
+			hallarr[0] = p0;
+		}
 		if(p1.getName() != null) {
 			hallarr[1] = p1;
 		}
 		if(p2.getName() != null) {
 			hallarr[2] = p2;
 		}
-		
-//		if(p1.getName() != null) {
-//			System.out.println("name: "+ hallarr[1].getName());
-//		}
-		
-		
+
 		System.out.println("\nChange saved.");
 		System.out.println("\nRedirecting to home page\n");
 		System.out.println();
 		
 		//display based on user
 		allHome(2);
+	}
+	
+	public void editHall() {
+		System.out.println("Please choose Hall number");
+		int x = 0;
+		index: for(int j=0; j<hallarr.length;j++) {
+			if(hallarr[j] != null) {
+				x = j;
+			}
+			else {
+				break index;
+			}
+		}
+		for(int i=0; i<=x;i++) {
+			System.out.println(i+1 + "."+ hallarr[i].getName());
+		}
 	}
 	
 	//search hall
