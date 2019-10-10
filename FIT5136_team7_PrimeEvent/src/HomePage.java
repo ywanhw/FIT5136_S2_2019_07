@@ -5,6 +5,7 @@ public class HomePage {
 	Hall hallarr[] = new Hall[100];
 	
 	Scanner input;
+	Scanner sc = new Scanner(System.in);
 	
 	public HomePage() {
 		input = new Scanner(System.in);
@@ -385,17 +386,19 @@ public class HomePage {
 		if(p2.getName() != null) {
 			hallarr[2] = p2;
 		}
-
 		System.out.println("\nChange saved.");
 		System.out.println("\nRedirecting to home page\n");
 		System.out.println();
+		
+		sc.nextLine();
 		
 		//display based on user
 		allHome(2);
 	}
 	
 	public void editHall() {
-		System.out.println("Please choose Hall number");
+		int ed =0;
+		System.out.println("Please choose Hall number:");
 		int x = 0;
 		index: for(int j=0; j<hallarr.length;j++) {
 			if(hallarr[j] != null) {
@@ -408,6 +411,86 @@ public class HomePage {
 		for(int i=0; i<=x;i++) {
 			System.out.println(i+1 + "."+ hallarr[i].getName());
 		}
+		ed = input.nextInt();
+		// modify name
+		System.out.println("Name: "+ hallarr[ed-1].getName());
+		System.out.println("change: ");
+		String edname = input.nextLine();
+		edname = input.nextLine();
+		if (edname != null) {
+			hallarr[ed-1].setName(edname);
+		}
+		sc.nextLine();
+		
+		// modify address;
+		System.out.println("Address: "+ hallarr[ed-1].getAddress());
+		System.out.println("change: ");
+		String edaddress = input.nextLine();
+		if (edaddress != null) {
+			hallarr[ed-1].setAddress(edaddress);
+		}
+
+		// modify phoneNumber
+		System.out.println("Phone Number: "+ hallarr[ed-1].getNumber());
+		System.out.println("change: ");
+		String ednumber = input.nextLine();
+		if (ednumber != null) {
+			hallarr[ed-1].setNumber(ednumber);
+		}
+
+		// modify Email
+		System.out.println("Email: "+ hallarr[ed-1].getEmail());
+		System.out.println("change: ");
+		String edemail = input.nextLine();
+		if (edemail != null) {
+			hallarr[ed-1].setEmail(edemail);
+		}
+
+		// modify description
+		System.out.println("Description: "+ hallarr[ed-1].getDescription());
+		System.out.println("change: ");
+		String eddes = input.nextLine();
+		if (eddes != null) {
+			hallarr[ed-1].setDescription(eddes);
+		}
+
+		// modify Event
+		System.out.println("Event: "+ hallarr[ed-1].getEvent());
+		System.out.println("change: ");
+		String edevent = input.nextLine();
+		if (edevent != null) {
+			hallarr[ed-1].setEvent(edevent);
+		};
+
+		// modify Size
+		System.out.println("Size: "+ hallarr[ed-1].getSize());
+		System.out.println("change: ");
+		String edsize = input.nextLine();
+		if (edsize != null) {
+			hallarr[ed-1].setSize(edsize);
+		};
+		
+		// modify price
+		System.out.println("Price: "+ hallarr[ed-1].getPrice());
+		System.out.println("change: ");
+		String edprice = input.nextLine();
+		if (edprice != null) {
+			hallarr[ed-1].setPrice(edprice);
+		};
+		
+		
+
+		
+		System.out.println("\nChange saved.");
+		System.out.println("\nRedirecting to home page\n");
+		System.out.println();
+		
+		sc.nextLine();
+		
+		//display based on user
+		allHome(2);
+		
+		
 	}
 	
 	//search hall
