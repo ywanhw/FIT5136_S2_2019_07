@@ -1,9 +1,16 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class HomePage {
 	
 	Hall hallarr[] = new Hall[100];
-	
+	private ArrayList<booking> listOfBooking;
+	private ArrayList<Hall> listOfHall;
+	private ArrayList<User> listOfUser;
+	int bookIDCount = 20000;
 	Scanner input;
 	Scanner sc = new Scanner(System.in);
 	
@@ -741,16 +748,37 @@ public class HomePage {
 		allHome(1);
 	}
 	public void createBook() {
-		String create = "";
+		booking newBook = new booking();
+		Date stratTime;
+		Date endTime;
+		//String create = "";
 		System.out.println("Please select one of the given results to book:");
 		System.out.println("[1. Fake1, 2. Fake2, 3. Fake3, 4. Fake4, 5. Fake5]");
 		System.out.println("Your choice?");
 		input.nextLine();
 		
 		System.out.println("Start Date: ");
+		System.out.println("In format:dd-mm-yyyy");
+		String startTime=input.nextLine();
+		SimpleDateFormat format=new SimpleDateFormat("dd-mm-yyyy");
+		try {
+			stratTime = format.parse(startTime);
+			newBook.setStratTime(stratTime);
+		} catch (ParseException e) {
+
+		}
+
+		System.out.println("End Date: ");
+		System.out.println("In format:dd-mm-yyyy");
 		input.nextLine();
-		System.out.println("Duration: ");
-		input.nextLine();
+		String EndTime=input.nextLine();
+		try {
+			endTime = format.parse(EndTime);
+			newBook.setEndTime(endTime);
+		} catch (ParseException e) {
+
+		}
+
 		System.out.println("Propose: ");
 		input.nextLine();
 		System.out.println("Name:");
@@ -763,7 +791,7 @@ public class HomePage {
 		System.out.println("\nHall Booking successful.");
 		System.out.println("\nRedirecting to home page");
 		System.out.println();
-		
+		listOfBooking.add(newBook);
 		allHome(1);
 	}
 	
@@ -777,6 +805,7 @@ public class HomePage {
 		allHome(2);
 	}
 	
+
 	//Quotation page
 	public void requestQuotation() {
 		String name = "";
