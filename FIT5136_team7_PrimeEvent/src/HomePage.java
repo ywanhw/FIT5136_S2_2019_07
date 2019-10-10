@@ -1,3 +1,4 @@
+package search;
 import java.util.Scanner;
 
 public class HomePage {
@@ -91,7 +92,7 @@ public class HomePage {
 				end = true;
 			}else if(choice.equals("2")) {
 				
-				SearchHall();
+				searchHall();
 				end = true;
 			}else if(choice.equals("3")) {
 				requestQuotation();
@@ -390,25 +391,34 @@ public class HomePage {
 	}
 	
 	//search hall
-	public void SearchHall() {
+	public void searchHall() {
 		String search = "";
-		int ran = 0;
+
 		System.out.println();
 		for(int i = 0; i < 30; i ++)
 			System.out.print("=");
 		System.out.println("\nSearch Hall\n");
+		
 		System.out.println("Size (metre^2): ");
 		input.nextLine();
-		input.nextLine();
+		String size = input.nextLine();
+		System.out.println("Name: ");
+		String name = input.nextLine();
 		System.out.println("Price: ");
-		input.nextLine();
-		
-		ran = (int)(2*Math.random());
-		if(ran == 1) {
+		String price = input.nextLine();
+		if(hallarr[0] == null) {
 			System.out.println("There is no availible Halls, please try again");
 			allHome(1);
-		}else if(ran == 0) {
+		}
+		for(int i=0;i<30;i++)
+			
+		if(hallarr[i].getName().equals(name) && hallarr[i].getSize().equals(size) && hallarr[i].getPrice().equals(price)) {
+			System.out.println(hallarr[i]);
 			createBook();
+
+		}else{
+			System.out.println("There is no availible Halls, please try again");
+			allHome(1);
 		}
 		
 	}
@@ -507,6 +517,8 @@ public class HomePage {
 		
 	}
 	
+	
+	
 	public void header() {
 		for(int i = 0; i < 30; i ++)
 			System.out.print("=");
@@ -521,8 +533,15 @@ public class HomePage {
 	
 
 	}
+	
+	
+	
+	
 
 }
+
+
+
 
 
 //String arr[] = {"p0","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10"};
