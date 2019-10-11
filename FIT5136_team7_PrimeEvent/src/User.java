@@ -7,9 +7,15 @@ public class User {
 	private String username;
 	private String password;
 	
-	public User()
+	public User(String name, String adress, String phone, String email, String username, String password)
     {
         // initialise instance variables
+		this.name = name;
+		this.adress = adress;
+		this.phone = phone;
+		this.email = email;
+		this.username = username;
+		this.password = password;
     }
 	public String getName() {
 		return name;

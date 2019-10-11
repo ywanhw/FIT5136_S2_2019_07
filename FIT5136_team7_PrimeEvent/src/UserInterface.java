@@ -41,7 +41,7 @@ public class UserInterface {
 					}
 					else if(choice == 2) {
 						header("Register");
-						String [] userData = new String[7];
+						String [] userData = new String[8];
 						System.out.println("Are you a 1.Customer or a 2.Hall owner? [1/2]");
 						userData[0] = input.nextLine();
 						System.out.println("Name:");
@@ -56,7 +56,11 @@ public class UserInterface {
 						userData[5] = input.nextLine();
 						System.out.println("Password:");
 						userData[6] = input.nextLine();
-						if(controller.createUser(userData)) {
+						if (userData[0] == "1"){
+							System.out.println("Do you have concession?");
+							userData[7] = input.nextLine();
+						}
+						if(controller.register(userData)) {
 							exit = true;
 						}
 					}
@@ -214,14 +218,14 @@ public class UserInterface {
 						controller.createBooking();
 						exit = true;
 					}	
-					else if(choice == 2) {
-						controller.editBooking();
-						exit = true;
-					}
-					else if (choice == 3) {
-						controller.cancelBooking();
-						exit = true;
-					}
+//					else if(choice == 2) {
+//						controller.editBooking();
+//						exit = true;
+//					}
+//					else if (choice == 3) {
+//						controller.cancelBooking();
+//						exit = true;
+//					}
 					else {
 						System.out.println("Invalid input. Please enter number between 1-4.\n");
 					}
