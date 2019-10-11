@@ -8,7 +8,7 @@ public class Customer extends User{
 
 	public Customer(String name, String adress, String phone, String email, String username, String password, boolean concession) {
 		// TODO Auto-generated constructor stub
-		super(name, adress, phone, email, username, password);
+		super(type, name, adress, phone, email, username, password);
 		this.concession = concession;
 	}
 	
