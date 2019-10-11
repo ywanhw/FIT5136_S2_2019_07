@@ -31,7 +31,7 @@ public class PrimeEvent {
 					System.out.println("\nLogin successful." + "\nWelcome " + userName);
 					System.out.println("\nRedirecting to home page\n");
 					System.out.println();
-					ui.displayHomePage(thisUser.getClass());
+					ui.displayHomePage(thisUser.getType());
 				}
 			}
 		}
@@ -53,9 +53,14 @@ public class PrimeEvent {
 	}
 	
 	//Register
-	public boolean register(String[] userData) {			
+	public void register(String[] userData) {			
 		//create the corresponding user object
-		
+		User newUser;
+		if(userData[0] == "1") {
+			newUser = new Customer(userData[1], userData[2], userData[3], userData[4], userData[5], userData[6], Boolean.parseBoolean(userData[7]));
+		}else {
+			newUser = new Owner(userData[1], userData[2], userData[3], userData[4], userData[5], userData[6]);
+		}
 		
 		//return to home
 		System.out.println("\nRegister successful.");
@@ -63,7 +68,7 @@ public class PrimeEvent {
 		System.out.println();
 		
 		//display based on user
-		allHome(type);
+		ui.displayHomePage(newUser.getType());
 		
 	}
 	
@@ -97,7 +102,7 @@ public class PrimeEvent {
 			editHall();
 		}
 	}
-	public void createHall() {
+	public void createHall(String[] hallData) {
 		Hall p0 = new Hall();
 		Hall p1 = new Hall();
 		Hall p2 = new Hall();
@@ -121,7 +126,7 @@ public class PrimeEvent {
 			System.out.println("Price: ");
 			p0.setPrice(input.nextLine());
 			
-		};
+		}
 		
 		if(hallarr[0] != null && hallarr[1] == null) {
 			System.out.println("Hall Name: ");
@@ -179,7 +184,7 @@ public class PrimeEvent {
 		sc.nextLine();
 		
 		//display based on user
-		allHome(2);
+		ui.displayHomePage("owner");
 	}
 	
 	public void editHall() {
@@ -274,7 +279,7 @@ public class PrimeEvent {
 		sc.nextLine();
 		
 		//display based on user
-		allHome(2);
+		ui.displayHomePage("owner");
 		
 		
 	}
@@ -624,11 +629,9 @@ public class PrimeEvent {
 		System.out.println("A request has been sent.");
 		System.out.println("\nRedirecting to home page\n");
 		System.out.println();
-		allHome(1);
+		ui.displayHomePage("customer");
 		
 	}
-	
-	
 	
 	public void header() {
 		for(int i = 0; i < 30; i ++)
@@ -637,11 +640,15 @@ public class PrimeEvent {
 		for(int i = 0; i < 30; i ++)
 			System.out.print("=");
 	}
+	
+	public void start() {
+		ui.displayHomePage("home");
+	}
+	
 	public static void main(String[] args) {
 		
-		PrimeEvent homePage = new PrimeEvent();
-		homePage.allHome(0);
-	
+		PrimeEvent primeEvent = new PrimeEvent();
+					
 
 	}
 	

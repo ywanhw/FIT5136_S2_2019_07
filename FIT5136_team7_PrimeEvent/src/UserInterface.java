@@ -33,11 +33,8 @@ public class UserInterface {
 						System.out.println("UserID:");
 						String userName = input.nextLine();
 						System.out.println("Password:");
-						String password = input.nextLine();
-						if(controller.login(userName, password)) {
-							exit = true;							
-						}
-						
+						String password = input.nextLine();	
+						exit = true;
 					}
 					else if(choice == 2) {
 						header("Register");
@@ -58,11 +55,16 @@ public class UserInterface {
 						userData[6] = input.nextLine();
 						if (userData[0] == "1"){
 							System.out.println("Do you have concession? [y/n]");
-							userData[7] = input.nextLine();
+							if(input.nextLine().equals("y")) {
+								userData[7] = "true";
+							}else {
+								userData[7] = "false";
+							}
 						}
-						if(controller.register(userData)) {
-							exit = true;
-						}
+						exit = true;
+//						if(controller.register(userData)) {
+//							exit = true;
+//						}
 					}
 					else if(choice == 3) {
 						System.out.println("You sure you want to exit? [y/n]");
@@ -294,7 +296,58 @@ public class UserInterface {
 		}
 		
 		//manage hall
+		exit = false;
 		if(page.toLowerCase().trim().equals("managehall")) {
+			while(!exit) {
+				System.out.println("1. Add Hall");
+				System.out.println("2. Edit Hall");
+				System.out.println("3. Delete Hall");
+				System.out.println("Your choice? [1/2/3]");
+				
+				try {
+					choice = input.nextInt();
+					if(choice == 1) {
+						String[] hallData = new String[8];
+						System.out.println("Hall Name: ");
+						hallData[0] = input.nextLine();
+						System.out.println("Address: ");
+						hallData[1] = input.nextLine();
+						System.out.println("Email: ");
+						hallData[2] = input.nextLine();
+						System.out.println("Phone Number:");
+						hallData[3] = input.nextLine();
+						System.out.println("Description");
+						hallData[4] = input.nextLine();
+						System.out.println("Event: ");
+						hallData[5] = input.nextLine();
+						System.out.println("Size: ");
+						hallData[6] = input.nextLine();
+						System.out.println("Price: ");
+						hallData[7] = input.nextLine();
+						
+						controller.createHall(hallData);
+						exit = true;
+					}	
+					else if(choice == 2) {
+						controller.editHall();
+						exit = true;
+					}
+//					else if (choice == 3) {
+//						controller.cancelBooking();
+//						exit = true;
+//					}
+					else {
+						System.out.println("Invalid input. Please enter number between 1-4.\n");
+					}
+						
+					
+				}catch(Exception e) {
+					System.out.println("Invalid input. Please enter number only.\n");					
+				}
+				
+				
+			}//end while
+			
 			
 		}
 		

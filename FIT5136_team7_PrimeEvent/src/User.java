@@ -6,10 +6,12 @@ public class User {
 	private String email;
 	private String username;
 	private String password;
+	private String type;
 	
-	public User(String name, String adress, String phone, String email, String username, String password)
+	public User(String type, String name, String adress, String phone, String email, String username, String password)
     {
         // initialise instance variables
+		this.type = type;
 		this.name = name;
 		this.adress = adress;
 		this.phone = phone;
@@ -17,6 +19,11 @@ public class User {
 		this.username = username;
 		this.password = password;
     }
+	
+	public String getType() {
+		return type;
+	}
+	
 	public String getName() {
 		return name;
 	}
