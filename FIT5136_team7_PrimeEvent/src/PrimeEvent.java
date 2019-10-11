@@ -98,191 +98,214 @@ public class PrimeEvent {
 		if(ch == 1) {
 			createHall();
 		}
-		else if(ch == 2) {
-			editHall();
-		}
+//		else if(ch == 2) {
+//			editHall();
+//		}
 	}
-	public void createHall(String[] hallData) {
-		Hall p0 = new Hall();
-		Hall p1 = new Hall();
-		Hall p2 = new Hall();
-		
-		if(hallarr[0] == null) {
-			System.out.println("Hall Name: ");
-			input.nextLine();
-			p0.setName(input.nextLine());
-			System.out.println("Address: ");
-			p0.setAddress(input.nextLine());
-			System.out.println("Email: ");
-			p0.setEmail(input.nextLine());
-			System.out.println("Phone Number:");
-			p0.setNumber(input.nextLine());
-			System.out.println("Description");
-			p0.setDescription(input.nextLine());
-			System.out.println("Event: ");
-			p0.setEvent(input.nextLine());
-			System.out.println("Size: ");
-			p0.setSize(input.nextLine());
-			System.out.println("Price: ");
-			p0.setPrice(input.nextLine());
-			
-		}
-		
-		if(hallarr[0] != null && hallarr[1] == null) {
-			System.out.println("Hall Name: ");
-			input.nextLine();
-			p1.setName(input.nextLine());
-			System.out.println("Address: ");
-			p1.setAddress(input.nextLine());
-			System.out.println("Email: ");
-			p1.setEmail(input.nextLine());
-			System.out.println("Phone Number:");
-			p1.setNumber(input.nextLine());
-			System.out.println("Description");
-			p1.setDescription(input.nextLine());
-			System.out.println("Event: ");
-			p1.setEvent(input.nextLine());
-			System.out.println("Size: ");
-			p1.setSize(input.nextLine());
-			System.out.println("Price: ");
-			p1.setPrice(input.nextLine());
-		};
-		
-		if(hallarr[1] != null && hallarr[2] == null) {
-			System.out.println("Hall Name: ");
-			input.nextLine();
-			p2.setName(input.nextLine());
-			System.out.println("Address: ");
-			p2.setAddress(input.nextLine());
-			System.out.println("Email: ");
-			p2.setEmail(input.nextLine());
-			System.out.println("Phone Number:");
-			p2.setNumber(input.nextLine());
-			System.out.println("Description");
-			p2.setDescription(input.nextLine());
-			System.out.println("Event: ");
-			p2.setEvent(input.nextLine());
-			System.out.println("Size: ");
-			p2.setSize(input.nextLine());
-			System.out.println("Price: ");
-			p2.setPrice(input.nextLine());
-		};
-		
-		if(p0.getName() != null) {
-			hallarr[0] = p0;
-		}
-		if(p1.getName() != null) {
-			hallarr[1] = p1;
-		}
-		if(p2.getName() != null) {
-			hallarr[2] = p2;
-		}
-		System.out.println("\nChange saved.");
-		System.out.println("\nRedirecting to home page\n");
-		System.out.println();
-		
-		sc.nextLine();
-		
-		//display based on user
-		ui.displayHomePage("owner");
-	}
+//	public void createHall(String[] hallData) {
+//		Hall p0 = new Hall();
+//		Hall p1 = new Hall();
+//		Hall p2 = new Hall();
+//		
+//		if(hallarr[0] == null) {
+//			System.out.println("Hall Name: ");
+//			input.nextLine();
+//			p0.setName(input.nextLine());
+//			System.out.println("Address: ");
+//			p0.setAddress(input.nextLine());
+//			System.out.println("Email: ");
+//			p0.setEmail(input.nextLine());
+//			System.out.println("Phone Number:");
+//			p0.setNumber(input.nextLine());
+//			System.out.println("Description");
+//			p0.setDescription(input.nextLine());
+//			System.out.println("Event: ");
+//			p0.setEvent(input.nextLine());
+//			System.out.println("Size: ");
+//			p0.setSize(input.nextLine());
+//			System.out.println("Price: ");
+//			p0.setPrice(input.nextLine());
+//			
+//		}
+//		
+//		if(hallarr[0] != null && hallarr[1] == null) {
+//			System.out.println("Hall Name: ");
+//			input.nextLine();
+//			p1.setName(input.nextLine());
+//			System.out.println("Address: ");
+//			p1.setAddress(input.nextLine());
+//			System.out.println("Email: ");
+//			p1.setEmail(input.nextLine());
+//			System.out.println("Phone Number:");
+//			p1.setNumber(input.nextLine());
+//			System.out.println("Description");
+//			p1.setDescription(input.nextLine());
+//			System.out.println("Event: ");
+//			p1.setEvent(input.nextLine());
+//			System.out.println("Size: ");
+//			p1.setSize(input.nextLine());
+//			System.out.println("Price: ");
+//			p1.setPrice(input.nextLine());
+//		};
+//		
+//		if(hallarr[1] != null && hallarr[2] == null) {
+//			System.out.println("Hall Name: ");
+//			input.nextLine();
+//			p2.setName(input.nextLine());
+//			System.out.println("Address: ");
+//			p2.setAddress(input.nextLine());
+//			System.out.println("Email: ");
+//			p2.setEmail(input.nextLine());
+//			System.out.println("Phone Number:");
+//			p2.setNumber(input.nextLine());
+//			System.out.println("Description");
+//			p2.setDescription(input.nextLine());
+//			System.out.println("Event: ");
+//			p2.setEvent(input.nextLine());
+//			System.out.println("Size: ");
+//			p2.setSize(input.nextLine());
+//			System.out.println("Price: ");
+//			p2.setPrice(input.nextLine());
+//		};
+//		
+//		if(p0.getName() != null) {
+//			hallarr[0] = p0;
+//		}
+//		if(p1.getName() != null) {
+//			hallarr[1] = p1;
+//		}
+//		if(p2.getName() != null) {
+//			hallarr[2] = p2;
+//		}
+//		System.out.println("\nChange saved.");
+//		System.out.println("\nRedirecting to home page\n");
+//		System.out.println();
+//		
+//		sc.nextLine();
+//		
+//		//display based on user
+//		ui.displayHomePage("owner");
+//	}
 	
-	public void editHall() {
-		int ed =0;
-		System.out.println("Please choose Hall number:");
-		int x = 0;
-		index: for(int j=0; j<hallarr.length;j++) {
-			if(hallarr[j] != null) {
-				x = j;
-			}
-			else {
-				break index;
-			}
-		}
-		for(int i=0; i<=x;i++) {
-			System.out.println(i+1 + "."+ hallarr[i].getName());
-		}
-		ed = input.nextInt();
-		// modify name
-		System.out.println("Name: "+ hallarr[ed-1].getName());
-		System.out.println("change: ");
-		String edname = input.nextLine();
-		edname = input.nextLine();
-		if (edname != null) {
-			hallarr[ed-1].setName(edname);
-		}
-		sc.nextLine();
+     public void createHall() {
+    	
+    	Hall h = new Hall();
+    	System.out.println("Hall Name: ");
+		input.nextLine();
+		h.setName(input.nextLine());
+		System.out.println("Address: ");
+		h.setAddress(input.nextLine());
+		System.out.println("Email: ");
+		h.setEmail(input.nextLine());
+		System.out.println("Phone Number:");
+		h.setNumber(input.nextLine());
+		System.out.println("Description");
+		h.setDescription(input.nextLine());
+		System.out.println("Event: ");
+		h.setEvent(input.nextLine());
+		System.out.println("Size: ");
+		h.setSize(input.nextLine());
+		System.out.println("Price: ");
+		h.setPrice(input.nextLine());
 		
-		// modify address;
-		System.out.println("Address: "+ hallarr[ed-1].getAddress());
-		System.out.println("change: ");
-		String edaddress = input.nextLine();
-		if (edaddress != null) {
-			hallarr[ed-1].setAddress(edaddress);
-		}
-
-		// modify phoneNumber
-		System.out.println("Phone Number: "+ hallarr[ed-1].getNumber());
-		System.out.println("change: ");
-		String ednumber = input.nextLine();
-		if (ednumber != null) {
-			hallarr[ed-1].setNumber(ednumber);
-		}
-
-		// modify Email
-		System.out.println("Email: "+ hallarr[ed-1].getEmail());
-		System.out.println("change: ");
-		String edemail = input.nextLine();
-		if (edemail != null) {
-			hallarr[ed-1].setEmail(edemail);
-		}
-
-		// modify description
-		System.out.println("Description: "+ hallarr[ed-1].getDescription());
-		System.out.println("change: ");
-		String eddes = input.nextLine();
-		if (eddes != null) {
-			hallarr[ed-1].setDescription(eddes);
-		}
-
-		// modify Event
-		System.out.println("Event: "+ hallarr[ed-1].getEvent());
-		System.out.println("change: ");
-		String edevent = input.nextLine();
-		if (edevent != null) {
-			hallarr[ed-1].setEvent(edevent);
-		};
-
-		// modify Size
-		System.out.println("Size: "+ hallarr[ed-1].getSize());
-		System.out.println("change: ");
-		String edsize = input.nextLine();
-		if (edsize != null) {
-			hallarr[ed-1].setSize(edsize);
-		};
-		
-		// modify price
-		System.out.println("Price: "+ hallarr[ed-1].getPrice());
-		System.out.println("change: ");
-		String edprice = input.nextLine();
-		if (edprice != null) {
-			hallarr[ed-1].setPrice(edprice);
-		};
-		
-		
-
-		
-		System.out.println("\nChange saved.");
-		System.out.println("\nRedirecting to home page\n");
-		System.out.println();
-		
-		sc.nextLine();
-		
-		//display based on user
-		ui.displayHomePage("owner");
-		
-		
-	}
+		listOfHall.add(h);
+    }
+//	public void editHall() {
+//		int ed =0;
+//		System.out.println("Please choose Hall number:");
+//		int x = 0;
+//		index: for(int j=0; j<hallarr.length;j++) {
+//			if(hallarr[j] != null) {
+//				x = j;
+//			}
+//			else {
+//				break index;
+//			}
+//		}
+//		for(int i=0; i<=x;i++) {
+//			System.out.println(i+1 + "."+ hallarr[i].getName());
+//		}
+//		ed = input.nextInt();
+//		// modify name
+//		System.out.println("Name: "+ hallarr[ed-1].getName());
+//		System.out.println("change: ");
+//		String edname = input.nextLine();
+//		edname = input.nextLine();
+//		if (edname != null) {
+//			hallarr[ed-1].setName(edname);
+//		}
+//		sc.nextLine();
+//		
+//		// modify address;
+//		System.out.println("Address: "+ hallarr[ed-1].getAddress());
+//		System.out.println("change: ");
+//		String edaddress = input.nextLine();
+//		if (edaddress != null) {
+//			hallarr[ed-1].setAddress(edaddress);
+//		}
+//
+//		// modify phoneNumber
+//		System.out.println("Phone Number: "+ hallarr[ed-1].getNumber());
+//		System.out.println("change: ");
+//		String ednumber = input.nextLine();
+//		if (ednumber != null) {
+//			hallarr[ed-1].setNumber(ednumber);
+//		}
+//
+//		// modify Email
+//		System.out.println("Email: "+ hallarr[ed-1].getEmail());
+//		System.out.println("change: ");
+//		String edemail = input.nextLine();
+//		if (edemail != null) {
+//			hallarr[ed-1].setEmail(edemail);
+//		}
+//
+//		// modify description
+//		System.out.println("Description: "+ hallarr[ed-1].getDescription());
+//		System.out.println("change: ");
+//		String eddes = input.nextLine();
+//		if (eddes != null) {
+//			hallarr[ed-1].setDescription(eddes);
+//		}
+//
+//		// modify Event
+//		System.out.println("Event: "+ hallarr[ed-1].getEvent());
+//		System.out.println("change: ");
+//		String edevent = input.nextLine();
+//		if (edevent != null) {
+//			hallarr[ed-1].setEvent(edevent);
+//		};
+//
+//		// modify Size
+//		System.out.println("Size: "+ hallarr[ed-1].getSize());
+//		System.out.println("change: ");
+//		String edsize = input.nextLine();
+//		if (edsize != null) {
+//			hallarr[ed-1].setSize(edsize);
+//		};
+//		
+//		// modify price
+//		System.out.println("Price: "+ hallarr[ed-1].getPrice());
+//		System.out.println("change: ");
+//		String edprice = input.nextLine();
+//		if (edprice != null) {
+//			hallarr[ed-1].setPrice(edprice);
+//		};
+//		
+//		
+//
+//		
+//		System.out.println("\nChange saved.");
+//		System.out.println("\nRedirecting to home page\n");
+//		System.out.println();
+//		
+//		sc.nextLine();
+//		
+//		//display based on user
+//		ui.displayHomePage("owner");
+//		
+//		
+//	}
 	
 	//search hall
 	public void searchHall() {
