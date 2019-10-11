@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class HomePage {
 	
 	Hall hallarr[] = new Hall[100];
-	private ArrayList<booking> listOfBooking;
+	private ArrayList<Booking> listOfBooking;
 	private ArrayList<Hall> listOfHall;
 	private ArrayList<User> listOfUser;
 	int bookIDCount = 20000;
