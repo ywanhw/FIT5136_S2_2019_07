@@ -54,27 +54,8 @@ public class PrimeEvent {
 	
 	//Register
 	public boolean register(String[] userData) {			
-		System.out.println("First Name: ");
-		input.nextLine();
-		input.nextLine();
-		System.out.println("Last Name: ");
-		input.nextLine();
-		System.out.println("Email: ");
-		input.nextLine();
-		System.out.println("Phone Number:");
-		input.nextLine();
-		System.out.println("Address");
-		input.nextLine();
-		System.out.println("Username: ");
-		input.nextLine();
-		System.out.println("Password: ");
-		input.nextLine();
-		
-		if(type == 1) {
-			System.out.println("Do you have concession [y/n]?");
-			input.nextLine();
-		}
 		//create the corresponding user object
+		
 		
 		//return to home
 		System.out.println("\nRegister successful.");

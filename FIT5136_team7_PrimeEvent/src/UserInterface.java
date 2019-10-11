@@ -57,7 +57,7 @@ public class UserInterface {
 						System.out.println("Password:");
 						userData[6] = input.nextLine();
 						if (userData[0] == "1"){
-							System.out.println("Do you have concession?");
+							System.out.println("Do you have concession? [y/n]");
 							userData[7] = input.nextLine();
 						}
 						if(controller.register(userData)) {

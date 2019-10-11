@@ -1,4 +1,3 @@
-
 public class Hall {
 	public String name;
 	public String owner;
