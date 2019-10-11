@@ -1,14 +1,15 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class booking {
+public class Booking {
 	private String bookingID;
 	private boolean payDeposit;
 	private Hall hall;
 	private Date stratTime;
 	private Date endTime;
 	private double balance;
-	public booking()
+	
+	public Booking()
     {
         // initialise instance variables
     }

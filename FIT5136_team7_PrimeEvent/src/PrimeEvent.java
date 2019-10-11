@@ -1,6 +1,12 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class PrimeEvent {
+	
+	private ArrayList listOfHall = new ArrayList<Hall>();
+	private ArrayList listOfBooking = new ArrayList<Booking>();
+	private ArrayList listOfUser = new ArrayList<User>();
+	private ArrayList listOfQuotation = new ArrayList<Quotation>();	
 	
 	public PrimeEvent() {
 		
