@@ -217,6 +217,7 @@ public class UserInterface {
 				try {
 					choice = input.nextInt();
 					if(choice == 1) {
+						
 						controller.createBooking();
 						exit = true;
 					}	
@@ -242,7 +243,7 @@ public class UserInterface {
 		}// end if
 		
 		//search hall 
-		if(page.toLowerCase().trim().equals("searchhall")) {
+		else if(page.toLowerCase().trim().equals("searchhall")) {
 			boolean next = false;
 			float budget = 0;
 			int size = 0;
@@ -290,14 +291,13 @@ public class UserInterface {
 		}
 		
 		//request quotation
-		if(page.toLowerCase().trim().equals("requestquotation")) {
+		else if(page.toLowerCase().trim().equals("requestquotation")) {
 			
 			
 		}
 		
 		//manage hall
-		exit = false;
-		if(page.toLowerCase().trim().equals("managehall")) {
+		else if(page.toLowerCase().trim().equals("managehall")) {
 			while(!exit) {
 				System.out.println("1. Add Hall");
 				System.out.println("2. Edit Hall");
@@ -352,15 +352,18 @@ public class UserInterface {
 		}
 		
 		//manage discount
-		if(page.toLowerCase().trim().equals("managebooking")) {
+		else if(page.toLowerCase().trim().equals("managebooking")) {
 			
 		}
 		
 		//manage user
-		if(page.toLowerCase().trim().equals("manageuser")) {
+		else if(page.toLowerCase().trim().equals("manageuser")) {
 			
 		}
 		
+		else if(page.toLowerCase().trim().equals("manageQuotation")){
+		
+		}
 	}
 	
 	public void displayConfirmPage(String page) {
