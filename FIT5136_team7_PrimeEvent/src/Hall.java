@@ -11,7 +11,7 @@ public class Hall {
 	private ArrayList<Date> availability;
 	private int capacity;
 	private ArrayList<String> function;
-	private ArrayList<Quotation> listOfQuotation;
+	private Quotation quotation;
 	
 	public Hall(User owner) {
 		
@@ -23,7 +23,7 @@ public class Hall {
 		capacity = 0;
 		availability = new ArrayList<Date>();
 		function = new ArrayList<String>();
-		listOfQuotation = new ArrayList<Quotation>();
+		quotation = new Quotation();
 	}
 	
 	public void setName(String name) {
