@@ -1,67 +1,83 @@
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Hall {
-	public String name;
-	public String owner;
-	public String address;
-	public String phoneNumber;
-	public String email;
-	public String description;
-	public String event;
-	public String size;
-	public String price;  
-	public Hall[] halls;
+	
+	private String name;
+	private String address;
+	private User owner;
+	private String description;
+	private double price;
+	private ArrayList<Date> availability;
+	private int capacity;
+	private ArrayList<String> function;
+	private ArrayList<Quotation> listOfQuotation;
+	
+	public Hall(User owner) {
+		
+		this.owner = owner;
+		name = "";
+		address = "";
+		description = "";
+		price = 0;
+		capacity = 0;
+		availability = new ArrayList<Date>();
+		function = new ArrayList<String>();
+		listOfQuotation = new ArrayList<Quotation>();
+	}
 	
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public void setNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	
+	public void setCapacity(int capacity){
+	    this.capacity = capacity;
 	}
-	public void setSize(String size){
-	    this.size = size;
-	}
+	
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public void setEvent(String event) {
-		this.event = event;
+	
+	public void setEvent(String function) {
+		this.function.add(function);
 	}
-	public void setPrice(String price) {
+	
+	public void setPrice(double price) {
 		this.price = price;
 	}
+	
 	public String getName() {
 		return name;
 	}
-	public String getOwner() {
+	public User getOwner() {
 		return owner;
 	}
+	
 	public String getAddress() {
 		return address;
 	}
-	public String getNumber() {
-		return phoneNumber;
-	}
+	
 	public String getDescription() {
 		return description;
 	}
-	public String getEmail() {
-		return email;
+
+	public ArrayList<String> getFunction() {
+		return function;
 	}
-	public String getEvent() {
-		return event;
+	
+	public int getCapacity() {
+		return capacity;
 	}
-	public String getSize() {
-		return size;
-	}
-	public String getPrice() {
+	
+	public double getPrice() {
 		return price;
 	}
 

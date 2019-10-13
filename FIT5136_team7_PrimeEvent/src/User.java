@@ -8,6 +8,7 @@ public class User {
 	private String password;
 	private String type;
 	
+	
 	public User(String type, String name, String adress, String phone, String email, String username, String password)
     {
         // initialise instance variables

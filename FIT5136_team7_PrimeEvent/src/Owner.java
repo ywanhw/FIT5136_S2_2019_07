@@ -7,7 +7,7 @@ public class Owner extends User{
 
 	public Owner(String name, String adress, String phone, String email, String username, String password) {
 		// TODO Auto-generated constructor stub
-		super(name, adress, phone, email, username, password);
+		super(type, name, adress, phone, email, username, password);
 	}
 	
 	public void addBooking(Booking newBooking) {

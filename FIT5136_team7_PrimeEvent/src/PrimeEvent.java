@@ -21,7 +21,7 @@ public class PrimeEvent {
 
 		
 	//Login
-	public void login(String userName, String password) {		
+	public User login(String userName, String password) {		
 		//Verify details
 		boolean found = false;
 		for(User thisUser : listOfUsers) {
@@ -32,11 +32,11 @@ public class PrimeEvent {
 					System.out.println("\nRedirecting to home page\n");
 					System.out.println();
 					ui.displayHomePage(thisUser.getType());
+					return thisUser;
 				}
 			}
 		}
-		
-		
+		return null;
 	}
 	
 	//Logout
@@ -75,7 +75,7 @@ public class PrimeEvent {
 	//Search
 	
 	//Manage Hall
-	public void manageHall() {
+	public void manageHall(User user) {
 		int ch = 0;
 		System.out.println();
 		for(int i = 0; i < 30; i ++)
@@ -96,117 +96,29 @@ public class PrimeEvent {
 		}while(ch != 1 && ch != 2);
 		
 		if(ch == 1) {
-			createHall();
+			createHall(user);
 		}
 //		else if(ch == 2) {
 //			editHall();
 //		}
 	}
-//	public void createHall(String[] hallData) {
-//		Hall p0 = new Hall();
-//		Hall p1 = new Hall();
-//		Hall p2 = new Hall();
-//		
-//		if(hallarr[0] == null) {
-//			System.out.println("Hall Name: ");
-//			input.nextLine();
-//			p0.setName(input.nextLine());
-//			System.out.println("Address: ");
-//			p0.setAddress(input.nextLine());
-//			System.out.println("Email: ");
-//			p0.setEmail(input.nextLine());
-//			System.out.println("Phone Number:");
-//			p0.setNumber(input.nextLine());
-//			System.out.println("Description");
-//			p0.setDescription(input.nextLine());
-//			System.out.println("Event: ");
-//			p0.setEvent(input.nextLine());
-//			System.out.println("Size: ");
-//			p0.setSize(input.nextLine());
-//			System.out.println("Price: ");
-//			p0.setPrice(input.nextLine());
-//			
-//		}
-//		
-//		if(hallarr[0] != null && hallarr[1] == null) {
-//			System.out.println("Hall Name: ");
-//			input.nextLine();
-//			p1.setName(input.nextLine());
-//			System.out.println("Address: ");
-//			p1.setAddress(input.nextLine());
-//			System.out.println("Email: ");
-//			p1.setEmail(input.nextLine());
-//			System.out.println("Phone Number:");
-//			p1.setNumber(input.nextLine());
-//			System.out.println("Description");
-//			p1.setDescription(input.nextLine());
-//			System.out.println("Event: ");
-//			p1.setEvent(input.nextLine());
-//			System.out.println("Size: ");
-//			p1.setSize(input.nextLine());
-//			System.out.println("Price: ");
-//			p1.setPrice(input.nextLine());
-//		};
-//		
-//		if(hallarr[1] != null && hallarr[2] == null) {
-//			System.out.println("Hall Name: ");
-//			input.nextLine();
-//			p2.setName(input.nextLine());
-//			System.out.println("Address: ");
-//			p2.setAddress(input.nextLine());
-//			System.out.println("Email: ");
-//			p2.setEmail(input.nextLine());
-//			System.out.println("Phone Number:");
-//			p2.setNumber(input.nextLine());
-//			System.out.println("Description");
-//			p2.setDescription(input.nextLine());
-//			System.out.println("Event: ");
-//			p2.setEvent(input.nextLine());
-//			System.out.println("Size: ");
-//			p2.setSize(input.nextLine());
-//			System.out.println("Price: ");
-//			p2.setPrice(input.nextLine());
-//		};
-//		
-//		if(p0.getName() != null) {
-//			hallarr[0] = p0;
-//		}
-//		if(p1.getName() != null) {
-//			hallarr[1] = p1;
-//		}
-//		if(p2.getName() != null) {
-//			hallarr[2] = p2;
-//		}
-//		System.out.println("\nChange saved.");
-//		System.out.println("\nRedirecting to home page\n");
-//		System.out.println();
-//		
-//		sc.nextLine();
-//		
-//		//display based on user
-//		ui.displayHomePage("owner");
-//	}
+
 	
-     public void createHall() {
+     public void createHall(User user) {
     	
-    	Hall h = new Hall();
+    	Hall h = new Hall(user); 	
     	System.out.println("Hall Name: ");
-		input.nextLine();
 		h.setName(input.nextLine());
 		System.out.println("Address: ");
 		h.setAddress(input.nextLine());
-		System.out.println("Email: ");
-		h.setEmail(input.nextLine());
-		System.out.println("Phone Number:");
-		h.setNumber(input.nextLine());
 		System.out.println("Description");
 		h.setDescription(input.nextLine());
 		System.out.println("Event: ");
 		h.setEvent(input.nextLine());
-		System.out.println("Size: ");
-		h.setSize(input.nextLine());
+		System.out.println("Capacity: ");
+		h.setCapacity(input.nextInt());
 		System.out.println("Price: ");
-		h.setPrice(input.nextLine());
+		h.setPrice(input.nextDouble());
 		
 		listOfHall.add(h);
     }
