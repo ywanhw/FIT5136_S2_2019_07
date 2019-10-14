@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-import search.Hall;
-
 public class PrimeEvent {
 	
 	Hall hallarr[] = new Hall[100];
@@ -16,7 +14,7 @@ public class PrimeEvent {
 	Scanner input;
 	Scanner sc = new Scanner(System.in);
 	UserInterface ui = new UserInterface();
-	User currentUser = new User();
+	User currentUser;
 	
 	public PrimeEvent() {
 		input = new Scanner(System.in);
@@ -184,59 +182,111 @@ public class PrimeEvent {
 //		
 //	}
 	
- 	public Hall searchHall_Owner(ArrayList<Hall> listOfHall, String name) {
-		for(Hall thisHall : listOfHall) {
-			if(thisHall.getName().toLowerCase().trim().equals(name.toLowerCase().trim())) {
-				return thisHall;
+    public ArrayList<Hall> searchHall(){
+    	if(currentUser.getType().toLowerCase().equals("owner")) {
+    		boolean next = false;
+    		String name = "";
+    		
+    		while(!next) {
+				System.out.println("What is the name of the hall? Leave blank to find all hall.");
+				try {
+					name = input.nextLine();
+				}catch(Exception e) {
+					System.out.println("Invalid input. Please try again.");
+				}
 			}
-		}
-		
-	}
-	
-	public ArrayList<Hall> searchHall_Cust(ArrayList<Hall> listOfHall, String name, int capacity, double price, String address) {
-		ArrayList<Hall> equalHall = new ArrayList<Hall>();
-		if(listOfHall == null ) {
-			return null;
-		}else {
-			for(Hall thisHall : listOfHall) {
-				if(thisHall.getName().toLowerCase().trim().equals(name.toLowerCase().trim()) && thisHall.getCapacity() == capacity && thisHall.getPrice() == price && thisHall.getAddress().toLowerCase().trim().equals(address.toLowerCase().trim())) {
-					equalHall.add(thisHall);
+    	
+			ArrayList<Hall> equalHall = new ArrayList<Hall>();
+			if(name.trim().length() == 0 ) {
+				for(Hall thisHall : listOfHall) {
+					if(thisHall.getOwner().getName().toLowerCase().trim().equals(currentUser.getName().toLowerCase().trim())){
+						equalHall.add(thisHall);
+					}
+				}
+			}else {
+				for(Hall thisHall : listOfHall) {
+					if(thisHall.getName().toLowerCase().equals(name.trim().toLowerCase())) {
+						equalHall.add(thisHall);
+					}
+				}
+				
+			}
+			return equalHall;
+    		
+    		
+    		
+    	} else {
+    		boolean next = false;
+			float budget = 0;
+			int size = 0;
+			String address = "";
+    		
+			//budget
+			while(!next) {
+				System.out.println("What is your budget?");
+				try {
+					budget = input.nextFloat();
+					if(budget > 0) {
+						next = true;
+					}else {
+						System.out.println("Invalid number. Please try again");
+					}
+				}catch(Exception e) {
+					System.out.println("Number only. Please try again.");
 				}
 			}
 			
-		}
-		return equalHall;
-	}
+			//size
+			next = false;
+			while(!next) {
+				System.out.println("How many people do you have?");
+				try {
+					size = input.nextInt();
+					if(size > 0) {
+						next = true;
+					}else {
+						System.out.println("Invalid number. Please try again");
+					}
+				}catch(Exception e) {
+					System.out.println("Number only. Please try again.");
+				}
+				
+			}
+			
+			//Address
+			next = false;
+			while(!next) {
+				System.out.println("Where do you want to hold the event?");
+				try {
+					address = input.nextLine();
+					if(address.trim().length() != 0) {
+						next = true;
+					}else {
+						System.out.println("Can not be blank. Please try again");
+					}
+				}catch(Exception e) {
+					System.out.println("Invalid input. Please try again.");
+				}
+				
+			}
+			
+			ArrayList<Hall> equalHall = new ArrayList<Hall>();
+			if(listOfHall == null ) {
+				return null;
+			}else {
+				for(Hall thisHall : listOfHall) {
+					if(thisHall.getCapacity() >= size && thisHall.getPrice() <= budget && thisHall.getAddress().toLowerCase().trim().equals(address.toLowerCase().trim())) {
+						equalHall.add(thisHall);
+					}
+				}
+				
+			}
+			return equalHall;
+    		
+    	}// end else if
+    	
+    }
 	
-	
-	public void manageBooking() {
-		System.out.println();
-		for(int i = 0; i < 30; i ++)
-			System.out.print("=");
-		System.out.println("\nEdit Booking\n");
-		
-		System.out.println("Booking number: ");
-		input.nextLine();
-		input.nextLine();
-		System.out.println("Start Date: ");
-		input.nextLine();
-		System.out.println("Duration: ");
-		input.nextLine();
-		System.out.println("Propose: ");
-		input.nextLine();
-		System.out.println("Name:");
-		input.nextLine();
-		System.out.println("Email:");
-		input.nextLine();
-		System.out.println("Phone Number: ");
-		input.nextLine();
-		
-		System.out.println("\nBooking changed.");
-		System.out.println("\nRedirecting to home page");
-		System.out.println();
-		
-		ui.displayHomePage(currentUser.getType());
-	}
 	
 	public void createBooking(Hall hall) {
 		Booking newBook = new Booking();

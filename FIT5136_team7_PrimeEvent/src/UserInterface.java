@@ -244,48 +244,8 @@ public class UserInterface {
 		
 		//search hall 
 		else if(page.toLowerCase().trim().equals("searchhall")) {
-			boolean next = false;
-			float budget = 0;
-			int size = 0;
-			String function = "";
 			
-			//budget
-			while(!next) {
-				System.out.println("What is your budget?");
-				try {
-					budget = input.nextFloat();
-					if(budget > 0) {
-						next = true;
-					}else {
-						System.out.println("Invalid number. Please try again");
-					}
-				}catch(Exception e) {
-					System.out.println("Number only. Please try again.");
-				}
-			}
-			
-			//size
-			next = false;
-			while(!next) {
-				System.out.println("How many people do you have?");
-				try {
-					size = input.nextInt();
-					if(size > 0) {
-						next = true;
-					}else {
-						System.out.println("Invalid number. Please try again");
-					}
-				}catch(Exception e) {
-					System.out.println("Number only. Please try again.");
-				}
-				
-			}
-						
-			//function
-			System.out.println("What event are you holding?");
-			function = input.nextLine();
-			
-			controller.searchHall(budget, size, function);
+			controller.searchHall();
 			
 			
 		}
