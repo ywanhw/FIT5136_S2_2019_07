@@ -11,6 +11,7 @@ public class UserInterface {
 	
 	public void displayHomePage(String page) {
 		 Scanner input = new Scanner(System.in);
+		 Scanner sc = new Scanner(System.in);
 		 PrimeEvent controller = new PrimeEvent();
          int choice = 0;
          boolean exit = false;
@@ -40,6 +41,7 @@ public class UserInterface {
 						header("Register");
 						String [] userData = new String[8];
 						System.out.println("Are you a 1.Customer or a 2.Hall owner? [1/2]");
+						input.nextLine();
 						userData[0] = input.nextLine();
 						System.out.println("Name:");
 						userData[1] = input.nextLine();
@@ -53,13 +55,17 @@ public class UserInterface {
 						userData[5] = input.nextLine();
 						System.out.println("Password:");
 						userData[6] = input.nextLine();
-						if (userData[0] == "1"){
+						
+						if (userData[0].equals("1")){
 							System.out.println("Do you have concession? [y/n]");
 							if(input.nextLine().equals("y")) {
 								userData[7] = "true";
 							}else {
 								userData[7] = "false";
 							}
+						}
+						else if(userData[0].equals("2")) {
+							displayHomePage("owner");
 						}
 						exit = true;
 //						if(controller.register(userData)) {
