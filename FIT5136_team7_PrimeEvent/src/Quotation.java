@@ -5,9 +5,16 @@ public class Quotation {
 	private String eventType;
 	
 	public Quotation()
-    {
-        // initialise instance variables
-    }
+	{
+		
+	}
+	public Quotation(String quoteID, double cost, String eventType){
+		// initialise instance variables
+		this.quoteID = quoteID;
+		this.cost = cost;
+		this.eventType = eventType;
+	}
+
 	public String getQuoteID() {
 		return quoteID;
 	}

@@ -53,6 +53,7 @@ public class Hall {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
 	
 	public String getName() {
 		return name;

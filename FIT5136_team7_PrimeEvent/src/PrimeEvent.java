@@ -482,38 +482,43 @@ public class PrimeEvent {
 		ui.displayHomePage(currentUser.getType());
 	}
 	
-	public void createBooking() {
+	public void createBooking(Hall hall, User currentUser) {
 		Booking newBook = new Booking();
 		Date stratTime;
 		Date endTime;
 		//String create = "";
-		System.out.println("Please select one of the given results to book:");
-		System.out.println("[1. Fake1, 2. Fake2, 3. Fake3, 4. Fake4, 5. Fake5]");
-		System.out.println("Your choice?");
-		input.nextLine();
-		
+		System.out.println("Please Enter the Booking Detail.");
+		System.out.println("Please Enter:");		
 		System.out.println("Start Date: ");
 		System.out.println("In format:dd-mm-yyyy");
-		String startTime=input.nextLine();
+		String STime=input.nextLine();
 		SimpleDateFormat format=new SimpleDateFormat("dd-mm-yyyy");
+		int i = 0;
+		while (i == 0 && STime.trim() != "")
+			{
+			try {
+					STime=input.nextLine();
+					stratTime = format.parse(STime);
+					newBook.setStratTime(stratTime);
+					i = 1;
+				} catch (Exception e) {
+					System.out.println("Please Enter the Right Date Type");
+				}
+			}
+		String ETime=input.nextLine();
+		while (i == 0 && ETime.trim() != "")
+		{
 		try {
-			stratTime = format.parse(startTime);
-			newBook.setStratTime(stratTime);
-		} catch (ParseException e) {
-
+			ETime=input.nextLine();
+			endTime = format.parse(ETime);
+				newBook.setStratTime(endTime);
+				i = 1;
+			} catch (Exception e) {
+				System.out.println("Please Enter the Right Date Type");
+			}
 		}
 
-		System.out.println("End Date: ");
-		System.out.println("In format:dd-mm-yyyy");
-		input.nextLine();
-		String EndTime=input.nextLine();
-		try {
-			endTime = format.parse(EndTime);
-			newBook.setEndTime(endTime);
-		} catch (ParseException e) {
-
-		}
-
+		newBook.setHall(hall);
 		System.out.println("Propose: ");
 		input.nextLine();
 		System.out.println("Name:");
@@ -530,6 +535,7 @@ public class PrimeEvent {
 		ui.displayHomePage(currentUser.getType());
 	}
 	
+
 	//Quotation page
 	public void requestQuotation() {
 		String name = "";
