@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Booking {
-	private String bookingID;
+	private int bookingID;
 	private boolean payDeposit;
 	private Hall hall;
 	private Date stratTime;
@@ -14,7 +14,7 @@ public class Booking {
         // initialise instance variables
     }
 
-	public void setBookingID(String bookingID) {
+	public void setBookingID(int bookingID) {
 		this.bookingID = bookingID;
 	}
 	public void setPayDeposit(boolean payDeposit) {
@@ -32,7 +32,7 @@ public class Booking {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	public String getBookingID() {
+	public int getBookingID() {
 		return bookingID;
 	}
 	public boolean getPayDeposit() {

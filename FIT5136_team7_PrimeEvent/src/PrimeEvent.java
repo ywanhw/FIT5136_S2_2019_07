@@ -265,8 +265,8 @@ public class PrimeEvent {
 		while (i == 0 && ETime.trim() != "")
 		{
 		try {
-			ETime=input.nextLine();
-			endTime = format.parse(ETime);
+				ETime=input.nextLine();
+				endTime = format.parse(ETime);
 				newBook.setStratTime(endTime);
 				i = 1;
 			} catch (Exception e) {
@@ -275,20 +275,36 @@ public class PrimeEvent {
 		}
 
 		newBook.setHall(hall);
-		System.out.println("Propose: ");
+		newBook.setBookingID(bookIDCount);
+		System.out.println("Press Enter to see the Deatil of Booking");
 		input.nextLine();
-		System.out.println("Name:");
-		input.nextLine();
-		System.out.println("Email:");
-		input.nextLine();
-		System.out.println("Phone Number: ");
-		input.nextLine();
+		System.out.println("Do you want create the booking?(Y/N)");
+		int a = 0;
+		while ( a == 0) {
+			try {
+				String YorN=input.nextLine();
+				if (YorN.toString().toLowerCase() == "y") {
+					listOfBooking.add(newBook);
+					System.out.println("\nHall Booking successful.");
+					System.out.println("\nRedirecting to home page");
+					a = 1;
+					ui.displayHomePage(currentUser.getType());
+				}
+				else if(YorN.toString().toLowerCase() == "n") {
+					System.out.println("\nHall Booking canceled.");
+					System.out.println("Press enter to back to homepage.");
+					input.nextLine();
+					ui.displayHomePage(currentUser.getType());
+					a = 1;
+				}
+			}catch(Exception e) {
+				System.out.println("Please press Y or N.");
+			}
+		}
 		
-		System.out.println("\nHall Booking successful.");
-		System.out.println("\nRedirecting to home page");
-		System.out.println();
-		listOfBooking.add(newBook);
-		ui.displayHomePage(currentUser.getType());
+
+		
+		
 	}
 	
 
