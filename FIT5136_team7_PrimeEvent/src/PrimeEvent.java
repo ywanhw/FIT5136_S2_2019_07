@@ -403,6 +403,7 @@ public class PrimeEvent {
 	public static void main(String[] args) {
 		
 		PrimeEvent primeEvent = new PrimeEvent();
+		primeEvent.start();
 					
 
 	}

@@ -218,7 +218,7 @@ public class UserInterface {
 					choice = input.nextInt();
 					if(choice == 1) {
 						
-						controller.createBooking();
+						//controller.createBooking();
 						exit = true;
 					}	
 //					else if(choice == 2) {
@@ -289,7 +289,7 @@ public class UserInterface {
 						exit = true;
 					}	
 					else if(choice == 2) {
-						controller.editHall();
+						//controller.editHall();
 						exit = true;
 					}
 //					else if (choice == 3) {
@@ -334,10 +334,12 @@ public class UserInterface {
 		for(int i = 0; i < 35; i++) {
 			System.out.print("=");
 		}
+		System.out.println();
 		System.out.println(message);
 		for(int i = 0; i < 35; i++) {
 			System.out.print("=");
 		}
+		System.out.println();
 		
 	}
 
