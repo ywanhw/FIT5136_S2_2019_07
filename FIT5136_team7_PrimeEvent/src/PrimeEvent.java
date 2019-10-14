@@ -108,21 +108,12 @@ public class PrimeEvent {
 	
      public void createHall(String[] hallData) {
     	
-    	Hall h = new Hall(user); 	
-    	System.out.println("Hall Name: ");
-		h.setName(input.nextLine());
-		System.out.println("Address: ");
-		h.setAddress(input.nextLine());
-		System.out.println("Description");
-		h.setDescription(input.nextLine());
-		System.out.println("Event: ");
-		h.setEvent(input.nextLine());
-		System.out.println("Capacity: ");
-		h.setCapacity(input.nextInt());
-		System.out.println("Price: ");
-		h.setPrice(input.nextDouble());
+    	Hall h = new Hall(currentUser, hallData[0], hallData[1], hallData[3], hallData[5], hallData[4]); 	
 		
 		listOfHall.add(h);
+		System.out.println("Hall " + hallData[0] + " created.");
+		System.out.println("Redirecting to home page.\n");
+		ui.displayHomePage(currentUser.getType());
     }
 //	public void editHall() {
 //		int ed =0;
