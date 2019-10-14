@@ -14,6 +14,7 @@ public class PrimeEvent {
 	Scanner input;
 	Scanner sc = new Scanner(System.in);
 	UserInterface ui = new UserInterface();
+	User currentUser = new User();
 	
 	public PrimeEvent() {
 		input = new Scanner(System.in);
@@ -21,7 +22,7 @@ public class PrimeEvent {
 
 		
 	//Login
-	public User login(String userName, String password) {		
+	public void login(String userName, String password) {		
 		//Verify details
 		boolean found = false;
 		for(User thisUser : listOfUsers) {
@@ -32,11 +33,10 @@ public class PrimeEvent {
 					System.out.println("\nRedirecting to home page\n");
 					System.out.println();
 					ui.displayHomePage(thisUser.getType());
-					return thisUser;
+					currentUser = thisUser;
 				}
 			}
 		}
-		return null;
 	}
 	
 	//Logout
@@ -58,8 +58,10 @@ public class PrimeEvent {
 		User newUser;
 		if(userData[0] == "1") {
 			newUser = new Customer(userData[1], userData[2], userData[3], userData[4], userData[5], userData[6], Boolean.parseBoolean(userData[7]));
+			currentUser = newUser;
 		}else {
 			newUser = new Owner(userData[1], userData[2], userData[3], userData[4], userData[5], userData[6]);
+			currentUser = newUser;
 		}
 		
 		//return to home
@@ -96,7 +98,7 @@ public class PrimeEvent {
 		}while(ch != 1 && ch != 2);
 		
 		if(ch == 1) {
-			createHall(user);
+			createHall();
 		}
 //		else if(ch == 2) {
 //			editHall();
@@ -104,7 +106,7 @@ public class PrimeEvent {
 	}
 
 	
-     public void createHall(User user) {
+     public void createHall(String[] hallData) {
     	
     	Hall h = new Hall(user); 	
     	System.out.println("Hall Name: ");
@@ -237,7 +239,7 @@ public class PrimeEvent {
 		String price = input.nextLine();
 		if(hallarr[0] == null) {
 			System.out.println("There is no availible Halls, please try again");
-			allHome(1);
+			ui.displayHomePage(currentUser.getType());
 		}
 		int i = 0;
 		int count = 0;
@@ -265,7 +267,7 @@ public class PrimeEvent {
 				}else {
 					System.out.println("There is no availible Halls, please try again");
 					
-					allHome(1);
+					ui.displayHomePage(currentUser.getType());
 				}
 			}
 			else if(size.length() == 0 && name.length() == 0 && price.length() != 0) {
@@ -290,7 +292,7 @@ public class PrimeEvent {
 				}else {
 					System.out.println("There is no availible Halls, please try again");
 					
-					allHome(1);
+					ui.displayHomePage(currentUser.getType());
 				}
 			}
 			else if(size.length() == 0 && name.length() == 0 && price.length() == 0) {
@@ -337,7 +339,7 @@ public class PrimeEvent {
 				}else {
 					System.out.println("There is no availible Halls, please try again");
 					
-					allHome(1);
+					ui.displayHomePage(currentUser.getType());
 				}
 			}
 		    
@@ -363,7 +365,7 @@ public class PrimeEvent {
 				}else {
 					System.out.println("There is no availible Halls, please try again");
 					
-					allHome(1);
+					ui.displayHomePage(currentUser.getType());
 				}
 			}
 			
@@ -389,7 +391,7 @@ public class PrimeEvent {
 				}else {
 					System.out.println("There is no availible Halls, please try again");
 					
-					allHome(1);
+					ui.displayHomePage(currentUser.getType());
 				}
 			}
 			else if(size.length() != 0 && name.length() == 0 && price.length() == 0) {
@@ -414,7 +416,7 @@ public class PrimeEvent {
 				}else {
 					System.out.println("There is no availible Halls, please try again");
 					
-					allHome(1);
+					ui.displayHomePage(currentUser.getType());
 				}
 			}
 			else if(size.length() != 0 && name.length() != 0 && price.length() == 0) {
@@ -439,14 +441,14 @@ public class PrimeEvent {
 				}else {
 					System.out.println("There is no availible Halls, please try again");
 					
-					allHome(1);
+					ui.displayHomePage(currentUser.getType());
 				}
 			}
 			i++;
 		}
 		if(count == 0) {
 			System.out.println("There is no availible Halls, please try again");
-			allHome(1);
+			ui.displayHomePage(currentUser.getType());
 		}
 		
 }
@@ -477,7 +479,7 @@ public class PrimeEvent {
 		System.out.println("\nRedirecting to home page");
 		System.out.println();
 		
-		allHome(1);
+		ui.displayHomePage(currentUser.getType());
 	}
 	
 	public void createBooking() {
@@ -525,20 +527,9 @@ public class PrimeEvent {
 		System.out.println("\nRedirecting to home page");
 		System.out.println();
 		listOfBooking.add(newBook);
-		allHome(1);
+		ui.displayHomePage(currentUser.getType());
 	}
 	
-	public void tick() {
-		System.out.println();
-		for(int i = 0; i < 30; i ++)
-			System.out.print("=");
-		System.out.println("\nManage Booking\n");
-		System.out.println("There is no booking ");
-		System.out.println("\nRedirecting to home page");
-		allHome(2);
-	}
-	
-
 	//Quotation page
 	public void requestQuotation() {
 		String name = "";

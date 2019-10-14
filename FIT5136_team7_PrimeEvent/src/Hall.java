@@ -13,14 +13,14 @@ public class Hall {
 	private ArrayList<String> function;
 	private Quotation quotation;
 	
-	public Hall(User owner) {
+	public Hall(User owner, String name, String address, String description, double price, int capacity) {
 		
 		this.owner = owner;
-		name = "";
-		address = "";
-		description = "";
-		price = 0;
-		capacity = 0;
+		this.name = name;
+		this.address = address;
+		this.description = description;
+		this.price = 0;
+		this.capacity = capacity;
 		availability = new ArrayList<Date>();
 		function = new ArrayList<String>();
 		quotation = new Quotation();

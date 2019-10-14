@@ -3,6 +3,7 @@ public class Quotation {
 	private String quoteID;
 	private double cost;
 	private String eventType;
+	
 	public Quotation()
     {
         // initialise instance variables
