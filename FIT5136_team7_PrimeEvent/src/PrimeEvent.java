@@ -75,37 +75,7 @@ public class PrimeEvent {
 	}
 	
 	//Search
-	
-	//Manage Hall
-	public void manageHall(User user) {
-		int ch = 0;
-		System.out.println();
-		for(int i = 0; i < 30; i ++)
-			System.out.print("=");
-		System.out.println("\nManage Hall\n");
-		
-		do {
-			try {
-				System.out.println("Choose to continue");
-				System.out.println("1. Create Hall");
-				System.out.println("2. Edit Hall");
-				System.out.print("Your choice [1/2]? ");
-				ch = input.nextInt();
-				System.out.println(ch);
-			} catch (Exception e) {
-				System.out.print("Invalid input. Please choose again.");
-			}
-		}while(ch != 1 && ch != 2);
-		
-		if(ch == 1) {
-			createHall();
-		}
-//		else if(ch == 2) {
-//			editHall();
-//		}
-	}
 
-	
      public void createHall(String[] hallData) {
     	
     	Hall h = new Hall(currentUser, hallData[0], hallData[1], hallData[3], hallData[5], hallData[4]); 	
