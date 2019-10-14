@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+import search.Hall;
+
 public class PrimeEvent {
 	
 	Hall hallarr[] = new Hall[100];
@@ -182,237 +184,30 @@ public class PrimeEvent {
 //		
 //	}
 	
-	//search hall
-	public void searchHall() {
-		String search = "";
-
-		System.out.println();
-		for(int i = 0; i < 30; i ++)
-			System.out.print("=");
-		System.out.println("\nSearch Hall\n");
-		
-		System.out.println("Size (metre^2): ");
-		input.nextLine();
-		String size = input.nextLine();
-		System.out.println("Name: ");
-		String name = input.nextLine();
-		System.out.println("Price: ");
-		String price = input.nextLine();
-		if(hallarr[0] == null) {
-			System.out.println("There is no availible Halls, please try again");
-			ui.displayHomePage(currentUser.getType());
+ 	public Hall searchHall_Owner(ArrayList<Hall> listOfHall, String name) {
+		for(Hall thisHall : listOfHall) {
+			if(thisHall.getName().toLowerCase().trim().equals(name.toLowerCase().trim())) {
+				return thisHall;
+			}
 		}
-		int i = 0;
-		int count = 0;
-		while(hallarr[i] != null) {
-			
-			if(size.length() == 0 && name.length() != 0 && price.length() != 0) {
-				if(hallarr[i].getName().equals(name) && hallarr[i].getPrice().equals(price)) {
-					System.out.println("Display hall infomation");
-					System.out.println("Name:"+hallarr[i].getName());
-					System.out.println("Owner:"+hallarr[i].getOwner());
-					System.out.println("Address:"+hallarr[i].getAddress());
-					System.out.println("Number:"+hallarr[i].getNumber());
-					System.out.println("Description:"+hallarr[i].getDescription());
-					System.out.println("Email:"+hallarr[i].getEmail());
-					System.out.println("Event:"+hallarr[i].getEvent());
-					System.out.println("Price:"+hallarr[i].getPrice());
-					
-					System.out.println("Do you want create a booking?([y/n])");
-					String choice = input.next();
-					if(choice.toLowerCase().equals("y")) {
-						createBooking();
-						
-					}
-					count ++;
-				}else {
-					System.out.println("There is no availible Halls, please try again");
-					
-					ui.displayHomePage(currentUser.getType());
-				}
-			}
-			else if(size.length() == 0 && name.length() == 0 && price.length() != 0) {
-				if(hallarr[i].getPrice().equals(price)) {
-					System.out.println("Display hall infomation");
-					System.out.println("Name:"+hallarr[i].getName());
-					System.out.println("Owner:"+hallarr[i].getOwner());
-					System.out.println("Address:"+hallarr[i].getAddress());
-					System.out.println("Number:"+hallarr[i].getNumber());
-					System.out.println("Description:"+hallarr[i].getDescription());
-					System.out.println("Email:"+hallarr[i].getEmail());
-					System.out.println("Event:"+hallarr[i].getEvent());
-					System.out.println("Price:"+hallarr[i].getPrice());
-					
-					System.out.println("Do you want create a booking?([y/n])");
-					String choice = input.next();
-					if(choice.toLowerCase().equals("y")) {
-						createBooking();
-						
-					}
-					count ++;
-				}else {
-					System.out.println("There is no availible Halls, please try again");
-					
-					ui.displayHomePage(currentUser.getType());
-				}
-			}
-			else if(size.length() == 0 && name.length() == 0 && price.length() == 0) {
-
-					System.out.println("Display hall infomation");
-					System.out.println("Name:"+hallarr[i].getName());
-					System.out.println("Owner:"+hallarr[i].getOwner());
-					System.out.println("Address:"+hallarr[i].getAddress());
-					System.out.println("Number:"+hallarr[i].getNumber());
-					System.out.println("Description:"+hallarr[i].getDescription());
-					System.out.println("Email:"+hallarr[i].getEmail());
-					System.out.println("Event:"+hallarr[i].getEvent());
-					System.out.println("Price:"+hallarr[i].getPrice());
-					
-					System.out.println("Do you want create a booking?([y/n])");
-					String choice = input.next();
-					if(choice.toLowerCase().equals("y")) {
-						createBooking();
-						
-					}
-					count ++;
-				
-				
-			}
-			else if(size.length() == 0 && name.length() != 0 && price.length() == 0) {
-				if(hallarr[i].getName().equals(name)) {
-					System.out.println("Display hall infomation");
-					System.out.println("Name:"+hallarr[i].getName());
-					System.out.println("Owner:"+hallarr[i].getOwner());
-					System.out.println("Address:"+hallarr[i].getAddress());
-					System.out.println("Number:"+hallarr[i].getNumber());
-					System.out.println("Description:"+hallarr[i].getDescription());
-					System.out.println("Email:"+hallarr[i].getEmail());
-					System.out.println("Event:"+hallarr[i].getEvent());
-					System.out.println("Price:"+hallarr[i].getPrice());
-					
-					System.out.println("Do you want create a booking?([y/n])");
-					String choice = input.next();
-					if(choice.toLowerCase().equals("y")) {
-						createBooking();
-						
-					}
-					count ++;
-				}else {
-					System.out.println("There is no availible Halls, please try again");
-					
-					ui.displayHomePage(currentUser.getType());
-				}
-			}
-		    
-			else if(size.length() != 0 && name.length() != 0 && price.length() != 0) {
-				if(hallarr[i].getSize().equals(size) &&hallarr[i].getName().equals(name) && hallarr[i].getPrice().equals(price)) {
-					System.out.println("Display hall infomation");
-					System.out.println("Name:"+hallarr[i].getName());
-					System.out.println("Owner:"+hallarr[i].getOwner());
-					System.out.println("Address:"+hallarr[i].getAddress());
-					System.out.println("Number:"+hallarr[i].getNumber());
-					System.out.println("Description:"+hallarr[i].getDescription());
-					System.out.println("Email:"+hallarr[i].getEmail());
-					System.out.println("Event:"+hallarr[i].getEvent());
-					System.out.println("Price:"+hallarr[i].getPrice());
-					
-					System.out.println("Do you want create a booking?([y/n])");
-					String choice = input.next();
-					if(choice.toLowerCase().equals("y")) {
-						createBooking();
-						
-					}
-					count ++;
-				}else {
-					System.out.println("There is no availible Halls, please try again");
-					
-					ui.displayHomePage(currentUser.getType());
+		
+	}
+	
+	public ArrayList<Hall> searchHall_Cust(ArrayList<Hall> listOfHall, String name, int capacity, double price, String address) {
+		ArrayList<Hall> equalHall = new ArrayList<Hall>();
+		if(listOfHall == null ) {
+			return null;
+		}else {
+			for(Hall thisHall : listOfHall) {
+				if(thisHall.getName().toLowerCase().trim().equals(name.toLowerCase().trim()) && thisHall.getCapacity() == capacity && thisHall.getPrice() == price && thisHall.getAddress().toLowerCase().trim().equals(address.toLowerCase().trim())) {
+					equalHall.add(thisHall);
 				}
 			}
 			
-			else if(size.length() != 0 && name.length() == 0 && price.length() != 0) {
-				if(hallarr[i].getSize().equals(size)  && hallarr[i].getPrice().equals(price)) {
-					System.out.println("Display hall infomation");
-					System.out.println("Name:"+hallarr[i].getName());
-					System.out.println("Owner:"+hallarr[i].getOwner());
-					System.out.println("Address:"+hallarr[i].getAddress());
-					System.out.println("Number:"+hallarr[i].getNumber());
-					System.out.println("Description:"+hallarr[i].getDescription());
-					System.out.println("Email:"+hallarr[i].getEmail());
-					System.out.println("Event:"+hallarr[i].getEvent());
-					System.out.println("Price:"+hallarr[i].getPrice());
-					
-					System.out.println("Do you want create a booking?([y/n])");
-					String choice = input.next();
-					if(choice.toLowerCase().equals("y")) {
-						createBooking();
-						
-					}
-					count ++;
-				}else {
-					System.out.println("There is no availible Halls, please try again");
-					
-					ui.displayHomePage(currentUser.getType());
-				}
-			}
-			else if(size.length() != 0 && name.length() == 0 && price.length() == 0) {
-				if(hallarr[i].getSize().equals(size) ) {
-					System.out.println("Display hall infomation");
-					System.out.println("Name:"+hallarr[i].getName());
-					System.out.println("Owner:"+hallarr[i].getOwner());
-					System.out.println("Address:"+hallarr[i].getAddress());
-					System.out.println("Number:"+hallarr[i].getNumber());
-					System.out.println("Description:"+hallarr[i].getDescription());
-					System.out.println("Email:"+hallarr[i].getEmail());
-					System.out.println("Event:"+hallarr[i].getEvent());
-					System.out.println("Price:"+hallarr[i].getPrice());
-					
-					System.out.println("Do you want create a booking?([y/n])");
-					String choice = input.next();
-					if(choice.toLowerCase().equals("y")) {
-						createBooking();
-						
-					}
-					count ++;
-				}else {
-					System.out.println("There is no availible Halls, please try again");
-					
-					ui.displayHomePage(currentUser.getType());
-				}
-			}
-			else if(size.length() != 0 && name.length() != 0 && price.length() == 0) {
-				if(hallarr[i].getSize().equals(size) &&hallarr[i].getName().equals(name) ) {
-					System.out.println("Display hall infomation");
-					System.out.println("Name:"+hallarr[i].getName());
-					System.out.println("Owner:"+hallarr[i].getOwner());
-					System.out.println("Address:"+hallarr[i].getAddress());
-					System.out.println("Number:"+hallarr[i].getNumber());
-					System.out.println("Description:"+hallarr[i].getDescription());
-					System.out.println("Email:"+hallarr[i].getEmail());
-					System.out.println("Event:"+hallarr[i].getEvent());
-					System.out.println("Price:"+hallarr[i].getPrice());
-					
-					System.out.println("Do you want create a booking?([y/n])");
-					String choice = input.next();
-					if(choice.toLowerCase().equals("y")) {
-						createBooking();
-						
-					}
-					count ++;
-				}else {
-					System.out.println("There is no availible Halls, please try again");
-					
-					ui.displayHomePage(currentUser.getType());
-				}
-			}
-			i++;
 		}
-		if(count == 0) {
-			System.out.println("There is no availible Halls, please try again");
-			ui.displayHomePage(currentUser.getType());
-		}
-		
-}
+		return equalHall;
+	}
+	
 	
 	public void manageBooking() {
 		System.out.println();
