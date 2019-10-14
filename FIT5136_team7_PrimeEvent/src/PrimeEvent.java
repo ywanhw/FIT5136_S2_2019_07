@@ -238,10 +238,11 @@ public class PrimeEvent {
 		ui.displayHomePage(currentUser.getType());
 	}
 	
-	public void createBooking(Hall hall, User currentUser) {
+	public void createBooking(Hall hall) {
 		Booking newBook = new Booking();
 		Date stratTime;
 		Date endTime;
+		
 		//String create = "";
 		System.out.println("Please Enter the Booking Detail.");
 		System.out.println("Please Enter:");		
