@@ -181,112 +181,168 @@ public class PrimeEvent {
 //		
 //		
 //	}
+     
+     //search booking
 	
-    public ArrayList<Hall> searchHall(){
-    	if(currentUser.getType().toLowerCase().equals("owner")) {
-    		boolean next = false;
-    		String name = "";
+     public ArrayList<Hall> searchHall(){
+    		if(currentUser.getType().toLowerCase().equals("owner")) {
+    			boolean next = false;
+    			String name = "";
+    			
+    			while(!next) {
+    				System.out.println("What is the name of the hall? Leave blank to find all hall.");
+    				try {
+    					name = input.nextLine();
+    				}catch(Exception e) {
+    					System.out.println("Invalid input. Please try again.");
+    				}
+    			}
     		
-    		while(!next) {
-				System.out.println("What is the name of the hall? Leave blank to find all hall.");
-				try {
-					name = input.nextLine();
-				}catch(Exception e) {
-					System.out.println("Invalid input. Please try again.");
-				}
-			}
-    	
-			ArrayList<Hall> equalHall = new ArrayList<Hall>();
-			if(name.trim().length() == 0 ) {
-				for(Hall thisHall : listOfHall) {
-					if(thisHall.getOwner().getName().toLowerCase().trim().equals(currentUser.getName().toLowerCase().trim())){
-						equalHall.add(thisHall);
-					}
-				}
-			}else {
-				for(Hall thisHall : listOfHall) {
-					if(thisHall.getName().toLowerCase().equals(name.trim().toLowerCase())) {
-						equalHall.add(thisHall);
-					}
-				}
-				
-			}
-			return equalHall;
+    			ArrayList<Hall> equalHall = new ArrayList<Hall>();
+    			if(name.trim().length() == 0 ) {
+    				for(Hall thisHall : listOfHall) {
+    					if(thisHall.getOwner().getName().toLowerCase().trim().equals(currentUser.getName().toLowerCase().trim())){
+    						equalHall.add(thisHall);
+    					}
+    				}
+    			}else {
+    				for(Hall thisHall : listOfHall) {
+    					if(thisHall.getName().toLowerCase().equals(name.trim().toLowerCase())) {
+    						equalHall.add(thisHall);
+    					}
+    				}
+    				
+    			}
+    			return equalHall;
+    			
+    			
+    			
+    		} else {
+    			boolean next = false;
+    			float budget_low = 0;
+    			float budget_high = 0;
+    			int size_low = 0;
+    			int size_high = 0;
+    			String address = "";
+    			String name = "";
+    			
+    			//budget
+    			while(!next) {
+    				System.out.println("What is your budget range?");
+    				System.out.println("Lowest:");
+    				try {
+    					budget_low = input.nextFloat();
+    					if(budget_low > 0) {
+    						next = true;
+    					}else {
+    						System.out.println("Invalid number. Please try again");
+    					}
+    				}catch(Exception e) {
+    					System.out.println("Number only. Please try again.");
+    				}
+    			}
+    			
+    			System.out.println("Highest:");
+    			try {
+    				budget_high = input.nextFloat();
+    				if(budget_high >= budget_low) {
+    					next = true;
+    				}else {
+    					System.out.println("Invalid number. Please try again");
+    				}
+    			}catch(Exception e) {
+    				System.out.println("Number only. Please try again.");
+    			}
     		
+    			
+    			//size
+    			next = false;
+    			while(!next) {
+    				System.out.println("How many people do you have?");
+    				System.out.println("Lowest:");
+    				try {
+    					size_low = input.nextInt();
+    					if(size_low > 0) {
+    						next = true;
+    					}else {
+    						System.out.println("Invalid number. Please try again");
+    					}
+    				}catch(Exception e) {
+    					System.out.println("Number only. Please try again.");
+    				}
+    				
+    				System.out.println("Highest:");
+    				try {
+    					size_high = input.nextInt();
+    					if(size_high >= size_low) {
+    						next = true;
+    					}else {
+    						System.out.println("Invalid number. Please try again");
+    					}
+    				}catch(Exception e) {
+    					System.out.println("Number only. Please try again.");
+    				}
+    				
+    			}
+    			
+    			//Address
+    			next = false;
+    			while(!next) {
+    				System.out.println("Where do you want to hold the event?");
+    				try {
+    					address = input.nextLine();
+    					if(address.trim().length() != 0) {
+    						next = true;
+    					}else {
+    						System.out.println("Can not be blank. Please try again");
+    					}
+    				}catch(Exception e) {
+    					System.out.println("Invalid input. Please try again.");
+    				}
+    				
+    			}
+    			
+    			//Name
+    			next = false;
+    			while(!next) {
+    				System.out.println("Have you got a keyword for name?");
+    				try {
+    					name = input.nextLine();
+    					if(address.trim().length() != 0) {
+    						next = true;
+    						System.out.println("With keyword:"+name);
+    					}else {
+    						next = true;
+    						System.out.println("No keyword:");
+    					}
+    				}catch(Exception e) {
+    					System.out.println("Invalid input. Please try again.");
+    				}
+    				
+    			}
+    			
+    			ArrayList<Hall> equalHall = new ArrayList<Hall>();
+    			if(listOfHall == null ) {
+    				return null;
+    			}else {
+    				for(Hall thisHall : listOfHall) {
+    					if(address.trim().length() != 0) {
+    						if(thisHall.getCapacity() >= size_low && thisHall.getCapacity() <= size_high && thisHall.getPrice() <= budget_high && thisHall.getPrice() >= budget_low && thisHall.getAddress().toLowerCase().trim().contains(address.toLowerCase().trim()) && thisHall.getName().toLowerCase().trim().contains(name.toLowerCase().trim())) {
+    							equalHall.add(thisHall);
+    						}
+    					}else {
+    						if(thisHall.getCapacity() >= size_low && thisHall.getCapacity() <= size_high && thisHall.getPrice() <= budget_high && thisHall.getPrice() >= budget_low && thisHall.getAddress().toLowerCase().trim().contains(address.toLowerCase().trim())) {
+    							equalHall.add(thisHall);
+    						}
+    					}
+    				}
+    				
+    			}
+    			return equalHall;
+    			
+    		}// end else if
     		
-    		
-    	} else {
-    		boolean next = false;
-			float budget = 0;
-			int size = 0;
-			String address = "";
-    		
-			//budget
-			while(!next) {
-				System.out.println("What is your budget?");
-				try {
-					budget = input.nextFloat();
-					if(budget > 0) {
-						next = true;
-					}else {
-						System.out.println("Invalid number. Please try again");
-					}
-				}catch(Exception e) {
-					System.out.println("Number only. Please try again.");
-				}
-			}
-			
-			//size
-			next = false;
-			while(!next) {
-				System.out.println("How many people do you have?");
-				try {
-					size = input.nextInt();
-					if(size > 0) {
-						next = true;
-					}else {
-						System.out.println("Invalid number. Please try again");
-					}
-				}catch(Exception e) {
-					System.out.println("Number only. Please try again.");
-				}
-				
-			}
-			
-			//Address
-			next = false;
-			while(!next) {
-				System.out.println("Where do you want to hold the event?");
-				try {
-					address = input.nextLine();
-					if(address.trim().length() != 0) {
-						next = true;
-					}else {
-						System.out.println("Can not be blank. Please try again");
-					}
-				}catch(Exception e) {
-					System.out.println("Invalid input. Please try again.");
-				}
-				
-			}
-			
-			ArrayList<Hall> equalHall = new ArrayList<Hall>();
-			if(listOfHall == null ) {
-				return null;
-			}else {
-				for(Hall thisHall : listOfHall) {
-					if(thisHall.getCapacity() >= size && thisHall.getPrice() <= budget && thisHall.getAddress().toLowerCase().trim().equals(address.toLowerCase().trim())) {
-						equalHall.add(thisHall);
-					}
-				}
-				
-			}
-			return equalHall;
-    		
-    	}// end else if
-    	
-    }
-	
+    	}
 	
 	public void createBooking(Hall hall) throws ParseException {
 		int j = 0;
