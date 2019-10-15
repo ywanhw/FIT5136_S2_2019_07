@@ -82,6 +82,28 @@ public class PrimeEvent {
 		System.out.println("Hall " + hallData[0] + " created.");
 		System.out.println("Redirecting to home page.\n");
     }
+     
+     public void editHall() {
+    	 int ed = 0;
+    	 
+    	 for(int i = 0; i<=listOfHall.size();i++) {
+    		 System.out.println(i+1 +"."+ listOfHall.get(i).getName());
+    	 }
+    	 ed = input.nextInt();
+    	 System.out.println("name: " + listOfHall.get(ed-1).getName());
+    	 System.out.println("change: ");
+    	 String edname = input.nextLine();
+    	 if (edname != null) {
+    		 listOfHall.get(ed-1).setName(edname);
+ 		}
+    	System.out.println("Address: "+ listOfHall.get(ed-1).getAddress());
+ 		System.out.println("change: ");
+ 		String edaddress = input.nextLine();
+ 		if (edaddress != null) {
+ 			listOfHall.get(ed-1).setAddress(edaddress);
+ 		}
+    	 
+     }
 //	public void editHall() {
 //		int ed =0;
 //		System.out.println("Please choose Hall number:");
