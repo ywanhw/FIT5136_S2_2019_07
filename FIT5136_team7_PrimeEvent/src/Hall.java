@@ -10,7 +10,7 @@ public class Hall {
 	private double price;
 	//Availability time, save as: (string type) start time, end time
 	private ArrayList<String> availability; 
-	private String capacity;
+	private int capacity;
 	private ArrayList<String> function;
 	private Quotation quotation;
 	
@@ -21,7 +21,7 @@ public class Hall {
 		this.address = address;
 		this.description = description;
 		this.price = Double.parseDouble(price);
-		this.capacity = capacity;
+		this.capacity = Integer.parseInt(capacity);
 		availability = new ArrayList<String>();
 		function = new ArrayList<String>();
 		quotation = new Quotation();
@@ -39,7 +39,7 @@ public class Hall {
 		this.owner = owner;
 	}
 	
-	public void setCapacity(String capacity){
+	public void setCapacity(int capacity){
 	    this.capacity = capacity;
 	}
 	
@@ -81,7 +81,7 @@ public class Hall {
 		return function;
 	}
 	
-	public String getCapacity() {
+	public int getCapacity() {
 		return capacity;
 	}
 	

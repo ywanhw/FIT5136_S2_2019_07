@@ -326,7 +326,7 @@ public class UserInterface {
 							exit = true;
 						}	
 						else if(choice == 2) {
-							//controller.editHall();
+							controller.editHall();
 							exit = true;
 						}
 //						else if (choice == 3) {

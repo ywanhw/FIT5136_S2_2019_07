@@ -95,14 +95,20 @@ public class PrimeEvent {
     	 String edname = input.nextLine();
     	 if (edname != null) {
     		 listOfHall.get(ed-1).setName(edname);
- 		}
-    	System.out.println("Address: "+ listOfHall.get(ed-1).getAddress());
- 		System.out.println("change: ");
- 		String edaddress = input.nextLine();
- 		if (edaddress != null) {
+ 		 }
+    	 System.out.println("Address: "+ listOfHall.get(ed-1).getAddress());
+ 		 System.out.println("change: ");
+ 		 String edaddress = input.nextLine();
+ 		 if (edaddress != null) {
  			listOfHall.get(ed-1).setAddress(edaddress);
- 		}
-    	 
+ 		 }
+ 		 System.out.println("Description: "+ listOfHall.get(ed-1).getDescription());
+		 System.out.println("change: ");
+		 String eddescription = input.nextLine();
+		 if (eddescription != null) {
+			listOfHall.get(ed-1).setDescription(eddescription);
+		 }
+		 	 
      }
 //	public void editHall() {
 //		int ed =0;
