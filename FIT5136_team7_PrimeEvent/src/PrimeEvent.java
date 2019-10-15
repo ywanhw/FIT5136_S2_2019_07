@@ -288,74 +288,112 @@ public class PrimeEvent {
     }
 	
 	
-	public void createBooking(Hall hall) {
-		Booking newBook = new Booking();
-		Date stratTime;
-		Date endTime;
-		
-		//String create = "";
-		System.out.println("Please Enter the Booking Detail.");
-		System.out.println("Please Enter:");		
-		System.out.println("Start Date: ");
-		System.out.println("In format:dd-mm-yyyy");
-		String STime=input.nextLine();
-		SimpleDateFormat format=new SimpleDateFormat("dd-mm-yyyy");
-		int i = 0;
-		while (i == 0 && STime.trim() != "")
+	public void createBooking(Hall hall) throws ParseException {
+		int j = 0;
+		while(j == 0) {
+			Booking newBook = new Booking();
+			SimpleDateFormat DateFormat=new SimpleDateFormat("dd-mm-yyyy");
+			String dateString = "01-01-2000";
+			Date stratTime = DateFormat.parse(dateString);
+			Date endTime = DateFormat.parse(dateString);
+	
+	
+			System.out.println("Please Enter the Booking Detail.");
+			//Enter the start time
+			System.out.println("Please Enter:");		
+			System.out.println("Start Date: ");
+			System.out.println("In format:dd-mm-yyyy");
+			String STime=input.nextLine();
+			int i = 0;
+			while (i == 0 && !(STime.trim().equals("")))
 			{
-			try {
-					STime=input.nextLine();
-					stratTime = format.parse(STime);
-					newBook.setStratTime(stratTime);
+			try {					
+					stratTime = DateFormat.parse(STime);	
 					i = 1;
 				} catch (Exception e) {
 					System.out.println("Please Enter the Right Date Type");
+					STime = input.nextLine();
 				}
 			}
-		String ETime=input.nextLine();
-		while (i == 0 && ETime.trim() != "")
-		{
-		try {
-				ETime=input.nextLine();
-				endTime = format.parse(ETime);
-				newBook.setStratTime(endTime);
-				i = 1;
-			} catch (Exception e) {
-				System.out.println("Please Enter the Right Date Type");
-			}
-		}
-
-		newBook.setHall(hall);
-		newBook.setBookingID(bookIDCount);
-		System.out.println("Press Enter to see the Deatil of Booking");
-		input.nextLine();
-		System.out.println("Do you want create the booking?(Y/N)");
-		int a = 0;
-		while ( a == 0) {
+			//Enter the end date
+			System.out.println("Please Enter:");		
+			System.out.println("End Date: ");
+			System.out.println("In format:dd-mm-yyyy");
+			String ETime=input.nextLine();
+			while (i == 0 && !(ETime.trim().equals("")));
+			{
 			try {
-				String YorN=input.nextLine();
-				if (YorN.toString().toLowerCase() == "y") {
-					listOfBooking.add(newBook);
-					System.out.println("\nHall Booking successful.");
-					System.out.println("\nRedirecting to home page");
-					a = 1;
-					ui.displayHomePage(currentUser.getType());
+					endTime = DateFormat.parse(ETime);
+					newBook.setStratTime(endTime);
+					i = 1;
+				} catch (Exception e) {
+					System.out.println("Please Enter the Right Date Type");
+					ETime=input.nextLine();
 				}
-				else if(YorN.toString().toLowerCase() == "n") {
-					System.out.println("\nHall Booking canceled.");
-					System.out.println("Press enter to back to homepage.");
-					input.nextLine();
-					ui.displayHomePage(currentUser.getType());
-					a = 1;
+			}
+			System.out.println("Press Enter to Continue");
+			input.nextLine();
+			//check the time availability
+			for(Hall thisHall : listOfHall) {
+				if(thisHall.getName().equals(hall.getName())){
+					for(String time:thisHall.getDateArray()) {
+						String[] buffer = time.split("," , 2);
+						if ((stratTime.after(DateFormat.parse(buffer[0])) && stratTime.before(DateFormat.parse(buffer[1])))
+								|| (endTime.after(DateFormat.parse(buffer[0])) && endTime.before(DateFormat.parse(buffer[1])))) {
+							System.out.println("The hall is unavailable between" +  buffer[0] + "and" + buffer[1]);							
+							System.out.println("Press enter to re-enter the time.");
+							input.nextLine();
+						}
+						else {
+							System.out.println("Press Enter to see the Deatil of Booking");
+							input.nextLine();
+							System.out.println("Hall: " + hall.getName());
+							System.out.println("Booking Phone: " + currentUser.getPhone());
+							System.out.println("Booking Name: " + currentUser.getName());
+							System.out.println("Booking Email: " + currentUser.getEmail());
+							System.out.println("Booking Time: " + "from" + DateFormat.format(stratTime) + "to" + DateFormat.format(endTime));
+							System.out.println("Price: " + hall.getQuotation().getCost());
+							System.out.println("Owner Name: " + hall.getOwner().getName());
+							System.out.println("Owner Phone: " + hall.getOwner().getPhone());
+							System.out.println("Owner Email: " + hall.getOwner().getEmail());
+							System.out.println("Do you want create the booking?(Y/N)");
+							String YorN=input.nextLine();
+							int b = 0;
+							while(b == 0) {
+								try {									
+									if (YorN.toString().toLowerCase().equals("y")) {
+										b = 1;
+										j = 1;
+										newBook.setBookingID(bookIDCount);
+										bookIDCount += 1;
+										newBook.setStratTime(stratTime);
+										newBook.setStratTime(endTime);
+										newBook.setHall(hall);
+										String addDate = DateFormat.format(stratTime) + "," + DateFormat.format(endTime);
+										thisHall.setDate(addDate);
+										listOfBooking.add(newBook);
+										System.out.println("\nHall Booking successful.");
+										System.out.println("\nRedirecting to home page");
+										ui.displayHomePage(currentUser.getType());
+										}
+									else if(YorN.toString().toLowerCase().equals("n")) {
+										b = 1;
+										j = 1;
+										System.out.println("\nHall Booking canceled.");
+										System.out.println("Press enter to back to homepage.");
+										input.nextLine();										
+										ui.displayHomePage(currentUser.getType());
+									}
+								}catch(Exception e) {
+									System.out.println("Please press Y or N.");
+								}
+							}
+						}
+					}
 				}
-			}catch(Exception e) {
-				System.out.println("Please press Y or N.");
 			}
 		}
-		
-
-		
-		
+			
 	}
 	
 
@@ -404,6 +442,7 @@ public class PrimeEvent {
 		
 		PrimeEvent primeEvent = new PrimeEvent();
 		primeEvent.start();
+		
 					
 
 	}

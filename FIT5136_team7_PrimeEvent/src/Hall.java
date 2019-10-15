@@ -8,7 +8,8 @@ public class Hall {
 	private User owner;
 	private String description;
 	private double price;
-	private ArrayList<Date> availability;
+	//Availability time, save as: (string type) start time, end time
+	private ArrayList<String> availability; 
 	private int capacity;
 	private ArrayList<String> function;
 	private Quotation quotation;
@@ -21,7 +22,7 @@ public class Hall {
 		this.description = description;
 		this.price = Double.parseDouble(price);
 		this.capacity = Integer.parseInt(capacity);
-		availability = new ArrayList<Date>();
+		availability = new ArrayList<String>();
 		function = new ArrayList<String>();
 		quotation = new Quotation();
 	}
@@ -53,8 +54,14 @@ public class Hall {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
 	
+	public void setDate(String date) {
+		availability.add(date);
+	}
+
+	public ArrayList<String> getDateArray(){
+		return availability;
+	}
 	public String getName() {
 		return name;
 	}
@@ -80,6 +87,9 @@ public class Hall {
 	
 	public double getPrice() {
 		return price;
+	}
+	public Quotation getQuotation() {
+		return quotation;
 	}
 
 }
