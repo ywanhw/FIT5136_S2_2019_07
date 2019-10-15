@@ -2,13 +2,12 @@ import java.util.ArrayList;
 
 public class Customer extends User{
 	
-	private static String type = "customer";
 	private boolean concession = false;
 	private ArrayList<Booking> listOfBooking = new ArrayList<Booking>();
 
 	public Customer(String name, String adress, String phone, String email, String username, String password, boolean concession) {
 		// TODO Auto-generated constructor stub
-		super(type, name, adress, phone, email, username, password);
+		super(userType.customer, name, adress, phone, email, username, password);
 		this.concession = concession;
 	}
 	

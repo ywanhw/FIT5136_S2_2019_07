@@ -1,15 +1,18 @@
+enum userType{
+	customer, owner, admin
+}
 
 public class User {
-	private String name;
-	private String adress;
-	private String phone;
-	private String email;
-	private String username;
-	private String password;
-	private String type;
+	protected String name;
+	protected String adress;
+	protected String phone;
+	protected String email;
+	protected String username;
+	protected String password;
+	protected userType type;
 	
 	
-	public User(String type, String name, String adress, String phone, String email, String username, String password)
+	public User(userType type, String name, String adress, String phone, String email, String username, String password)
     {
         // initialise instance variables
 		this.type = type;
@@ -21,7 +24,7 @@ public class User {
 		this.password = password;
     }
 	
-	public String getType() {
+	public userType getType() {
 		return type;
 	}
 	

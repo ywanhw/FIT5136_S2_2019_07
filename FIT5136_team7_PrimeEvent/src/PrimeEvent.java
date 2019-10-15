@@ -11,18 +11,16 @@ public class PrimeEvent {
 	private ArrayList<Hall> listOfHall = new ArrayList<Hall>();
 	private ArrayList<User> listOfUsers = new ArrayList<User>();
 	int bookIDCount = 20000;
-	Scanner input;
-	Scanner sc = new Scanner(System.in);
-	UserInterface ui = new UserInterface();
+	Scanner input = new Scanner(System.in);;
 	User currentUser;
 	
 	public PrimeEvent() {
-		input = new Scanner(System.in);
+
 	}
 
 		
 	//Login
-	public void login(String userName, String password) {		
+	public User login(String userName, String password) {		
 		//Verify details
 		boolean found = false;
 		for(User thisUser : listOfUsers) {
@@ -32,11 +30,12 @@ public class PrimeEvent {
 					System.out.println("\nLogin successful." + "\nWelcome " + userName);
 					System.out.println("\nRedirecting to home page\n");
 					System.out.println();
-					ui.displayHomePage(thisUser.getType());
 					currentUser = thisUser;
+					return currentUser;
 				}
 			}
 		}
+		return null;
 	}
 	
 	//Logout
@@ -48,12 +47,11 @@ public class PrimeEvent {
 		System.out.println("\nRedirecting to home page");
 		System.out.println();
 		
-		//return to home
-		ui.displayHomePage("home");;
+		currentUser = null;
 	}
 	
 	//Register
-	public void register(String[] userData) {			
+	public User register(String[] userData) {			
 		//create the corresponding user object
 		User newUser;
 		if(userData[0] == "1") {
@@ -70,7 +68,7 @@ public class PrimeEvent {
 		System.out.println();
 		
 		//display based on user
-		ui.displayHomePage(newUser.getType());
+		return currentUser;
 		
 	}
 	
@@ -83,7 +81,6 @@ public class PrimeEvent {
 		listOfHall.add(h);
 		System.out.println("Hall " + hallData[0] + " created.");
 		System.out.println("Redirecting to home page.\n");
-		ui.displayHomePage(currentUser.getType());
     }
 //	public void editHall() {
 //		int ed =0;
@@ -185,7 +182,8 @@ public class PrimeEvent {
      //search booking
 	
      public ArrayList<Hall> searchHall(){
-    		if(currentUser.getType().toLowerCase().equals("owner")) {
+    	 ArrayList<Hall> equalHall = new ArrayList<Hall>();
+    		if(currentUser.getType() == userType.owner) {
     			boolean next = false;
     			String name = "";
     			
@@ -198,7 +196,6 @@ public class PrimeEvent {
     				}
     			}
     		
-    			ArrayList<Hall> equalHall = new ArrayList<Hall>();
     			if(name.trim().length() == 0 ) {
     				for(Hall thisHall : listOfHall) {
     					if(thisHall.getOwner().getName().toLowerCase().trim().equals(currentUser.getName().toLowerCase().trim())){
@@ -213,7 +210,6 @@ public class PrimeEvent {
     				}
     				
     			}
-    			return equalHall;
     			
     			
     			
@@ -321,7 +317,7 @@ public class PrimeEvent {
     				
     			}
     			
-    			ArrayList<Hall> equalHall = new ArrayList<Hall>();
+    			
     			if(listOfHall == null ) {
     				return null;
     			}else {
@@ -338,119 +334,152 @@ public class PrimeEvent {
     				}
     				
     			}
-    			return equalHall;
-    			
+    				
     		}// end else if
+    		
+    		for(Hall thisHall : equalHall) {
+    			System.out.print("Hall " + thisHall.getName() + " is at " + thisHall.getAddress() 
+    			+ ". Can hold " + thisHall.getCapacity() + " people.");
+    		}
+    		return equalHall;
     		
     	}
 	
-	public void createBooking(Hall hall) throws ParseException {
-		int j = 0;
-		while(j == 0) {
-			Booking newBook = new Booking();
-			SimpleDateFormat DateFormat=new SimpleDateFormat("dd-mm-yyyy");
-			String dateString = "01-01-2000";
-			Date stratTime = DateFormat.parse(dateString);
-			Date endTime = DateFormat.parse(dateString);
-	
-	
-			System.out.println("Please Enter the Booking Detail.");
-			//Enter the start time
-			System.out.println("Please Enter:");		
-			System.out.println("Start Date: ");
-			System.out.println("In format:dd-mm-yyyy");
-			String STime=input.nextLine();
-			int i = 0;
-			while (i == 0 && !(STime.trim().equals("")))
-			{
-			try {					
-					stratTime = DateFormat.parse(STime);	
-					i = 1;
-				} catch (Exception e) {
-					System.out.println("Please Enter the Right Date Type");
-					STime = input.nextLine();
+	public void createBooking() throws ParseException {		
+		Hall hall = null;
+		boolean found = false;
+		String likeThis = "";
+		int times = 0;
+		ArrayList<Hall> result = new ArrayList<Hall>();
+		System.out.println("Please look for the hall you would like to book.");
+		result = searchHall();
+		while(!found) {
+			System.out.println("Please enter the name of the hall that you like.");
+			likeThis = input.next();
+			for(Hall thisHall : result){
+				if(likeThis.toLowerCase().trim().equals(thisHall.getName().toLowerCase().trim())) {
+					hall = thisHall;
+					found = true;
 				}
 			}
-			//Enter the end date
-			System.out.println("Please Enter:");		
-			System.out.println("End Date: ");
-			System.out.println("In format:dd-mm-yyyy");
-			String ETime=input.nextLine();
-			while (i == 0 && !(ETime.trim().equals("")));
-			{
-			try {
-					endTime = DateFormat.parse(ETime);
-					newBook.setStratTime(endTime);
-					i = 1;
-				} catch (Exception e) {
-					System.out.println("Please Enter the Right Date Type");
-					ETime=input.nextLine();
-				}
+			if(!found && times <= 3) {
+				System.out.println("Please check your typing.");
+				times += 1;
 			}
-			System.out.println("Press Enter to Continue");
-			input.nextLine();
-			//check the time availability
-			for(Hall thisHall : listOfHall) {
-				if(thisHall.getName().equals(hall.getName())){
-					for(String time:thisHall.getDateArray()) {
-						String[] buffer = time.split("," , 2);
-						if ((stratTime.after(DateFormat.parse(buffer[0])) && stratTime.before(DateFormat.parse(buffer[1])))
-								|| (endTime.after(DateFormat.parse(buffer[0])) && endTime.before(DateFormat.parse(buffer[1])))) {
-							System.out.println("The hall is unavailable between" +  buffer[0] + "and" + buffer[1]);							
-							System.out.println("Press enter to re-enter the time.");
-							input.nextLine();
-						}
-						else {
-							System.out.println("Press Enter to see the Deatil of Booking");
-							input.nextLine();
-							System.out.println("Hall: " + hall.getName());
-							System.out.println("Booking Phone: " + currentUser.getPhone());
-							System.out.println("Booking Name: " + currentUser.getName());
-							System.out.println("Booking Email: " + currentUser.getEmail());
-							System.out.println("Booking Time: " + "from" + DateFormat.format(stratTime) + "to" + DateFormat.format(endTime));
-							System.out.println("Price: " + hall.getQuotation().getCost());
-							System.out.println("Owner Name: " + hall.getOwner().getName());
-							System.out.println("Owner Phone: " + hall.getOwner().getPhone());
-							System.out.println("Owner Email: " + hall.getOwner().getEmail());
-							System.out.println("Do you want create the booking?(Y/N)");
-							String YorN=input.nextLine();
-							int b = 0;
-							while(b == 0) {
-								try {									
-									if (YorN.toString().toLowerCase().equals("y")) {
-										b = 1;
-										j = 1;
-										newBook.setBookingID(bookIDCount);
-										bookIDCount += 1;
-										newBook.setStratTime(stratTime);
-										newBook.setStratTime(endTime);
-										newBook.setHall(hall);
-										String addDate = DateFormat.format(stratTime) + "," + DateFormat.format(endTime);
-										thisHall.setDate(addDate);
-										listOfBooking.add(newBook);
-										System.out.println("\nHall Booking successful.");
-										System.out.println("\nRedirecting to home page");
-										ui.displayHomePage(currentUser.getType());
+		}
+		
+		if(!found) {
+			System.out.println("Failed too many times. Redirecting to home....");
+		} else {
+			int j = 0;
+			while(j == 0) {
+				Booking newBook = new Booking();
+				SimpleDateFormat DateFormat=new SimpleDateFormat("dd-mm-yyyy");
+				String dateString = "01-01-2000";
+				Date stratTime = DateFormat.parse(dateString);
+				Date endTime = DateFormat.parse(dateString);
+		
+		
+				System.out.println("Please Enter the Booking Detail.");
+				//Enter the start time
+				System.out.println("Please Enter:");		
+				System.out.println("Start Date: ");
+				System.out.println("In format:dd-mm-yyyy");
+				String STime=input.nextLine();
+				int i = 0;
+				while (i == 0 && !(STime.trim().equals("")))
+				{
+				try {					
+						stratTime = DateFormat.parse(STime);	
+						i = 1;
+					} catch (Exception e) {
+						System.out.println("Please Enter the Right Date Type");
+						STime = input.nextLine();
+					}
+				}
+				//Enter the end date
+				System.out.println("Please Enter:");		
+				System.out.println("End Date: ");
+				System.out.println("In format:dd-mm-yyyy");
+				String ETime=input.nextLine();
+				while (i == 0 && !(ETime.trim().equals("")));
+				{
+				try {
+						endTime = DateFormat.parse(ETime);
+						newBook.setStratTime(endTime);
+						i = 1;
+					} catch (Exception e) {
+						System.out.println("Please Enter the Right Date Type");
+						ETime=input.nextLine();
+					}
+				}
+				System.out.println("Press Enter to Continue");
+				input.nextLine();
+				//check the time availability
+				for(Hall thisHall : listOfHall) {
+					if(thisHall.getName().equals(hall.getName())){
+						for(String time:thisHall.getDateArray()) {
+							String[] buffer = time.split("," , 2);
+							if ((stratTime.after(DateFormat.parse(buffer[0])) && stratTime.before(DateFormat.parse(buffer[1])))
+									|| (endTime.after(DateFormat.parse(buffer[0])) && endTime.before(DateFormat.parse(buffer[1])))) {
+								System.out.println("The hall is unavailable between" +  buffer[0] + "and" + buffer[1]);							
+								System.out.println("Press enter to re-enter the time.");
+								input.nextLine();
+							}
+							else {
+								System.out.println("Press Enter to see the Deatil of Booking");
+								input.nextLine();
+								System.out.println("Hall: " + hall.getName());
+								System.out.println("Booking Phone: " + currentUser.getPhone());
+								System.out.println("Booking Name: " + currentUser.getName());
+								System.out.println("Booking Email: " + currentUser.getEmail());
+								System.out.println("Booking Time: " + "from" + DateFormat.format(stratTime) + "to" + DateFormat.format(endTime));
+								System.out.println("Price: " + hall.getQuotation().getCost());
+								System.out.println("Owner Name: " + hall.getOwner().getName());
+								System.out.println("Owner Phone: " + hall.getOwner().getPhone());
+								System.out.println("Owner Email: " + hall.getOwner().getEmail());
+								System.out.println("Do you want create the booking?(Y/N)");
+								String YorN=input.nextLine();
+								int b = 0;
+								while(b == 0) {
+									try {									
+										if (YorN.toString().toLowerCase().equals("y")) {
+											b = 1;
+											j = 1;
+											newBook.setBookingID(bookIDCount);
+											bookIDCount += 1;
+											newBook.setStratTime(stratTime);
+											newBook.setStratTime(endTime);
+											newBook.setHall(hall);
+											String addDate = DateFormat.format(stratTime) + "," + DateFormat.format(endTime);
+											thisHall.setDate(addDate);
+											listOfBooking.add(newBook);
+											System.out.println("\nHall Booking successful.");
+											System.out.println("\nRedirecting to home page");
+											}
+										else if(YorN.toString().toLowerCase().equals("n")) {
+											b = 1;
+											j = 1;
+											System.out.println("\nHall Booking canceled.");
+											System.out.println("Press enter to back to homepage.");
+											input.nextLine();										
 										}
-									else if(YorN.toString().toLowerCase().equals("n")) {
-										b = 1;
-										j = 1;
-										System.out.println("\nHall Booking canceled.");
-										System.out.println("Press enter to back to homepage.");
-										input.nextLine();										
-										ui.displayHomePage(currentUser.getType());
+									}catch(Exception e) {
+										System.out.println("Please press Y or N.");
 									}
-								}catch(Exception e) {
-									System.out.println("Please press Y or N.");
 								}
 							}
 						}
+					
+				
+				
 					}
 				}
 			}
 		}
-			
-	}
+	}//end create booking
+
+	
 	
 
 	//Quotation page
@@ -477,9 +506,7 @@ public class PrimeEvent {
 		
 		System.out.println("A request has been sent.");
 		System.out.println("\nRedirecting to home page\n");
-		System.out.println();
-		ui.displayHomePage("customer");
-		
+		System.out.println();		
 	}
 	
 	public void header() {
@@ -490,14 +517,14 @@ public class PrimeEvent {
 			System.out.print("=");
 	}
 	
-	public void start() {
-		ui.displayHomePage("home");
-	}
-	
-	public static void main(String[] args) {
-		
-		PrimeEvent primeEvent = new PrimeEvent();
-		primeEvent.start();
+//	public void start() {
+//		ui.displayHomePage("home");
+//	}
+//	
+//	public static void main(String[] args) {
+//		
+//		PrimeEvent primeEvent = new PrimeEvent();
+//		primeEvent.start();
 		
 					
 
@@ -507,7 +534,7 @@ public class PrimeEvent {
 	
 	
 
-}
+
 
 
 
