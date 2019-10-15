@@ -11,7 +11,6 @@ public class UserInterface {
 	
 	public void displayHomePage(String page) {
 		 Scanner input = new Scanner(System.in);
-		 Scanner sc = new Scanner(System.in);
 		 PrimeEvent controller = new PrimeEvent();
          int choice = 0;
          boolean exit = false;
@@ -32,33 +31,33 @@ public class UserInterface {
 					if(choice == 1) {
 						header("Login");
 						System.out.println("UserID:");
-						String userName = input.nextLine();
+						String userName = input.next();
 						System.out.println("Password:");
-						String password = input.nextLine();	
+						String password = input.next();	
+						controller.login(userName, password);
 						exit = true;
 					}
 					else if(choice == 2) {
 						header("Register");
 						String [] userData = new String[8];
 						System.out.println("Are you a 1.Customer or a 2.Hall owner? [1/2]");
-						input.nextLine();
-						userData[0] = input.nextLine();
+						userData[0] = input.next();
 						System.out.println("Name:");
-						userData[1] = input.nextLine();
+						userData[1] = input.next();
 						System.out.println("Adress:");
-						userData[2] = input.nextLine();
+						userData[2] = input.next();
 						System.out.println("Phone Number:");
-						userData[3] = input.nextLine();
+						userData[3] = input.next();
 						System.out.println("Email:");
-						userData[4] = input.nextLine();
+						userData[4] = input.next();
 						System.out.println("User Name:");
-						userData[5] = input.nextLine();
+						userData[5] = input.next();
 						System.out.println("Password:");
-						userData[6] = input.nextLine();
+						userData[6] = input.next();
 						
 						if (userData[0].equals("1")){
 							System.out.println("Do you have concession? [y/n]");
-							if(input.nextLine().equals("y")) {
+							if(input.next().equals("y")) {
 								userData[7] = "true";
 							}else {
 								userData[7] = "false";
@@ -74,7 +73,7 @@ public class UserInterface {
 					}
 					else if(choice == 3) {
 						System.out.println("You sure you want to exit? [y/n]");
-						if(input.nextLine().toLowerCase().trim().equals("y")) {
+						if(input.next().toLowerCase().trim().equals("y")) {
 							System.out.println("Thank you for using Prime Event Booking System. Good bye!");
 							exit = true;
 						}
@@ -114,7 +113,7 @@ public class UserInterface {
 					}
 					else if (choice == 4) {
 						System.out.println("You sure you want to exit? [y/n]");
-						if(input.nextLine().toLowerCase().trim().equals("y")) {
+						if(input.next().toLowerCase().trim().equals("y")) {
 							System.out.println("Logout Successful. Redirecting to home page");
 							controller.logout();
 							exit = true;
@@ -154,7 +153,7 @@ public class UserInterface {
 					}
 					else if (choice == 4) {
 						System.out.println("You sure you want to exit? [y/n]");
-						if(input.nextLine().toLowerCase().trim().equals("y")) {
+						if(input.next().toLowerCase().trim().equals("y")) {
 							System.out.println("Logout Successful. Redirecting to home page");
 							controller.logout();
 							exit = true;
@@ -188,7 +187,7 @@ public class UserInterface {
 					}
 					else if (choice == 3) {
 						System.out.println("You sure you want to exit? [y/n]");
-						if(input.nextLine().toLowerCase().trim().equals("y")) {
+						if(input.next().toLowerCase().trim().equals("y")) {
 							System.out.println("Logout Successful. Redirecting to home page");
 							controller.logout();
 							exit = true;
@@ -275,21 +274,21 @@ public class UserInterface {
 					if(choice == 1) {
 						String[] hallData = new String[8];
 						System.out.println("Hall Name: ");
-						hallData[0] = input.nextLine();
+						hallData[0] = input.next();
 						System.out.println("Address: ");
-						hallData[1] = input.nextLine();
+						hallData[1] = input.next();
 						System.out.println("Email: ");
-						hallData[2] = input.nextLine();
+						hallData[2] = input.next();
 						System.out.println("Phone Number:");
-						hallData[3] = input.nextLine();
+						hallData[3] = input.next();
 						System.out.println("Description");
-						hallData[4] = input.nextLine();
+						hallData[4] = input.next();
 						System.out.println("Event: ");
-						hallData[5] = input.nextLine();
+						hallData[5] = input.next();
 						System.out.println("Size: ");
-						hallData[6] = input.nextLine();
+						hallData[6] = input.next();
 						System.out.println("Price: ");
-						hallData[7] = input.nextLine();
+						hallData[7] = input.next();
 						
 						controller.createHall(hallData);
 						exit = true;
@@ -348,5 +347,14 @@ public class UserInterface {
 		System.out.println();
 		
 	}
+	
+//	private void start() {
+//		displayHomePage("home");
+//	}
+//	
+//	public static void main(String[] args) {
+//		UserInterface ui = new UserInterface();
+//		ui.start();
+//	}
 
 }
