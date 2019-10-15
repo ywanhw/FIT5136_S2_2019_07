@@ -307,23 +307,19 @@ public class UserInterface {
 					try {
 						choice = input.nextInt();
 						if(choice == 1) {
-							String[] hallData = new String[8];
+							String[] hallData = new String[5];
 							System.out.println("Hall Name: ");
 							hallData[0] = input.next();
 							System.out.println("Address: ");
-							hallData[1] = input.next();
-							System.out.println("Email: ");
-							hallData[2] = input.next();
-							System.out.println("Phone Number:");
-							hallData[3] = input.next();
+							hallData[1] = input.next();							
 							System.out.println("Description");
-							hallData[4] = input.next();
-							System.out.println("Event: ");
-							hallData[5] = input.next();
-							System.out.println("Size: ");
-							hallData[6] = input.next();
+							hallData[2] = input.next();		
 							System.out.println("Price: ");
-							hallData[7] = input.next();
+							
+							hallData[3] = input.next();
+							System.out.println("Capacity: ");
+							hallData[4] = input.next();
+							
 							
 							controller.createHall(hallData);
 							displayUserHome(currentUser.getType());

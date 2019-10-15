@@ -76,7 +76,7 @@ public class PrimeEvent {
 
      public void createHall(String[] hallData) {
     	
-    	Hall h = new Hall(currentUser, hallData[0], hallData[1], hallData[3], hallData[5], hallData[4]); 	
+    	Hall h = new Hall(currentUser, hallData[0], hallData[1], hallData[2], hallData[3], hallData[4]); 	
 		
 		listOfHall.add(h);
 		System.out.println("Hall " + hallData[0] + " created.");
