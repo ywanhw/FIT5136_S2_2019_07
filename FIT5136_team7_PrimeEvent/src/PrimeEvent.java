@@ -23,7 +23,7 @@ public class PrimeEvent {
 
 		
 	//Login
-	public User login(String userName, String password) {		
+	public userType login(String userName, String password) {		
 		//Verify details
 		boolean found = false;	
 		
@@ -35,7 +35,7 @@ public class PrimeEvent {
 					System.out.println("\nRedirecting to home page\n");
 					System.out.println();
 					currentUser = thisUser;
-					return currentUser;
+					return currentUser.getType();
 				}
 			}
 		}
@@ -56,7 +56,7 @@ public class PrimeEvent {
 	}
 	
 	//Register
-	public User register(String[] userData) {			
+	public userType register(String[] userData) {			
 		//create the corresponding user object
 		User newUser;
 		if(userData[0].equals("1")) {
@@ -75,7 +75,7 @@ public class PrimeEvent {
 		System.out.println();
 		
 		//display based on user
-		return currentUser;
+		return currentUser.getType();
 		
 	}
 	
