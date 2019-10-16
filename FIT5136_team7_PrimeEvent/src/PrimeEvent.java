@@ -373,11 +373,12 @@ public class PrimeEvent {
     			}
     				
     		}// end else if
-    		if(equalHall != null) {
-    			for(Hall thisHall : equalHall) {
-    				System.out.print("Hall " + thisHall.getName() + " is at " + thisHall.getAddress() 
-    				+ ". Can hold " + thisHall.getCapacity() + " people.");
-    			}
+
+    		
+    		for(Hall thisHall : equalHall) {
+    			System.out.print(equalHall.indexOf(thisHall) + "Hall " + thisHall.getName() + " is at " + thisHall.getAddress() 
+    			+ ". Can hold " + thisHall.getCapacity() + " people.");
+
     		}
     		
     		
@@ -385,32 +386,7 @@ public class PrimeEvent {
     		
     	}
 	
-	public void createBooking() throws ParseException {		
-		Hall hall = null;
-		boolean found = false;
-		String likeThis = "";
-		int times = 0;
-		ArrayList<Hall> result = new ArrayList<Hall>();
-		System.out.println("Please look for the hall you would like to book.");
-		result = searchHall();
-		while(!found) {
-			System.out.println("Please enter the name of the hall that you like.");
-			likeThis = input.next();
-			for(Hall thisHall : result){
-				if(likeThis.toLowerCase().trim().equals(thisHall.getName().toLowerCase().trim())) {
-					hall = thisHall;
-					found = true;
-				}
-			}
-			if(!found && times <= 3) {
-				System.out.println("Please check your typing.");
-				times += 1;
-			}
-		}
-		
-		if(!found) {
-			System.out.println("Failed too many times. Redirecting to home....");
-		} else {
+	public void createBooking(Hall hall) throws ParseException {		
 			int j = 0;
 			while(j == 0) {
 				Booking newBook = new Booking();
@@ -509,11 +485,7 @@ public class PrimeEvent {
 									}
 								}
 							}
-						}
-					
-				
-				
-					}
+						}																		
 				}
 			}
 		}
@@ -523,31 +495,39 @@ public class PrimeEvent {
 	
 
 	//Quotation page
-	public void requestQuotation() {
-		String name = "";
-		String dateTime = "";
-		String event = "";
-		
-		System.out.println();
-		for(int i = 0; i < 30; i ++)
-			System.out.print("=");
-		
-		System.out.println("\nRequest Quotation\n");
-		
-		System.out.println("Hall Name: ");
-		input.nextLine();
-		name = input.nextLine();
-		
-		System.out.println("Date and Time: ");
-		dateTime = input.nextLine();
-		
-		System.out.println("Event: ");
-		event = input.nextLine();
-		
-		System.out.println("A request has been sent.");
-		System.out.println("\nRedirecting to home page\n");
-		System.out.println();		
-	}
+	public void requestQuotation(Hall hall) throws ParseException{
+		System.out.println("Press enter to show the detail of the hall");
+		System.out.println("Hall: " + hall.getName());
+		System.out.println("Booking Phone: " + currentUser.getPhone());
+		System.out.println("Booking Name: " + currentUser.getName());
+		System.out.println("Booking Email: " + currentUser.getEmail());		
+		System.out.println("Price: " + hall.getQuotation().getCost());
+		System.out.println("Owner Name: " + hall.getOwner().getName());
+		System.out.println("Owner Phone: " + hall.getOwner().getPhone());
+		System.out.println("Owner Email: " + hall.getOwner().getEmail());
+		System.out.println("Do you want create the booking?(Y/N)");
+		String YorN=input.nextLine();
+		int b = 0;
+		while(b == 0) {
+			try {									
+				if (YorN.toString().toLowerCase().equals("y")) {
+					b = 1;
+
+					
+					System.out.println("\nRequest send successfully.");
+					System.out.println("\nRedirecting to home page");
+					}
+				else if(YorN.toString().toLowerCase().equals("n")) {
+					b = 1;
+					System.out.println("\nRequest canceled.");
+					System.out.println("Press enter to back to homepage.");
+					input.nextLine();										
+				}
+			}catch(Exception e) {
+				System.out.println("Please press Y or N.");
+			}
+		}		
+	}//end request quotation
 	
 	public void header() {
 		for(int i = 0; i < 30; i ++)

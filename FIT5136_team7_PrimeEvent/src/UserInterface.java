@@ -133,11 +133,7 @@ public class UserInterface {
 							displayPage(page.manageBooking);
 						}	
 						else if(choice == 2) {
-							displayPage(page.searchHall);
-							ArrayList<Hall> search = controller.searchHall();
-							if(search == null) {
-								System.out.println("Not Found");
-							}
+							displayPage(page.searchHall);;
 						}
 						else if(choice == 3) {
 							displayPage(page.requestQuotation);
@@ -261,6 +257,14 @@ public class UserInterface {
 					try {
 						choice = input.nextInt();
 						if(choice == 1) {
+							System.out.println("Press enter to find the hall you want to book:");
+							input.nextLine();
+							ArrayList<Hall> searchResult = controller.searchHall();
+							while(searchResult.size() == 0) {
+								System.out.println("No result find, please re-search.");
+								searchResult = controller.searchHall();
+							}						
+							System.out.println("Choice the hall from 0 to " + (searchResult.size()- 1));
 							
 							controller.createBooking();
 							exit = true;
@@ -292,14 +296,14 @@ public class UserInterface {
 			case searchHall:{
 				controller.searchHall();
 				System.out.println("Press enter to return to home.");
-				input.nextLine();
+				input.next();
 				System.out.println("Redirecting to home page");
 				displayUserHome(currentUser.getType());
 				break;
 			}//end case search hall
 			
 			case requestQuotation:{
-				controller.requestQuotation();
+				//controller.requestQuotation();
 				break;
 			}// end request quotation
 			
