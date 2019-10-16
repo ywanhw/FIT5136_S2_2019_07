@@ -123,9 +123,9 @@ public class PrimeEvent {
 		 }
 		 System.out.println("Price: "+ listOfHall.get(ed-1).getPrice());
 		 System.out.println("change: ");
-		 String edprice = input.next();
+		 String edprice = input.nextLine();
 		 
-		 if (!edprice.equals(null)) {
+		 if (edprice.trim().length()!= 0) {
 			 double dprice = Double.parseDouble(edprice);
 			 listOfHall.get(ed-1).setPrice(dprice);
 		 }
