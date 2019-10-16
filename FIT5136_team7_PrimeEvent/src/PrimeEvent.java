@@ -220,9 +220,11 @@ public class PrimeEvent {
     						next = false;
     					}
     				}catch(Exception e) {
+
     					System.out.println("Number only. ");
     					input.nextLine();
     					next = false;
+
     				}
     			
     			
