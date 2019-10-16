@@ -300,7 +300,8 @@ public class UserInterface {
 						while(true) {
 							ifReturn = input.nextInt();
 							if (ifReturn == 1) {
-								System.out.println("Press enter to re-search");
+								System.out.println("Search:");
+								searchresult = controller.searchHall();
 								break;								
 							}
 							else if (ifReturn == 2) {
@@ -318,7 +319,7 @@ public class UserInterface {
 					System.out.println("Invalid input. Please enter number only.\n");	
 				}
 				System.out.println("Press enter to return to home.");
-				input.next();
+				input.nextLine();
 				System.out.println("Redirecting to home page");
 				displayUserHome(thisType);
 				break;
