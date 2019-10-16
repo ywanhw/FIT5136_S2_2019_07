@@ -90,9 +90,10 @@ public class PrimeEvent {
      public void editHall() {
     	 int ed = 0;
     	 
-    	 for(int i = 0; i<=listOfHall.size();i++) {
-    		 System.out.println(i+1 +"."+ listOfHall.get(i).getName());
+    	 for (Hall thisHall : listOfHall) {
+    		 System.out.println("."+ thisHall.getName());
     	 }
+    	 
     	 ed = input.nextInt();
     	 System.out.println("name: " + listOfHall.get(ed-1).getName());
     	 System.out.println("change: ");
