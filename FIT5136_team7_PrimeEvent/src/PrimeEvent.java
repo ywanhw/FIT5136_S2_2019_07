@@ -322,11 +322,32 @@ public class PrimeEvent {
     			+ ". Can hold " + thisHall.getCapacity() + " people.");
 
     		}
+
     		
     		
     		return equalHall;
     		
     	}
+    public Hall viewHall(ArrayList<Hall> hallList) {
+    	Hall chooseHall = null;
+    	System.out.println("Please choose the hall you want.");
+    	boolean exit = false;
+    	while (!exit) {
+    		try {
+	    		int index = input.nextInt();
+	    		if (index <= (hallList.size() - 1) && index >= 0) {
+	    			chooseHall = hallList.get(index);
+	    			exit = true;
+	    		}
+	    		else {
+	    			System.out.println("Choice the hall from 0 to " + (hallList.size()- 1));
+	    		}
+    		}catch(Exception e) {
+    			System.out.println("Invalid input. Please enter number only.\\n");
+    		}
+    	}
+    	return chooseHall;
+    }
 	
 	public void createBooking(Hall hall) throws ParseException {		
 			int j = 0;
@@ -437,7 +458,7 @@ public class PrimeEvent {
 	
 
 	//Quotation page
-	public void requestQuotation(Hall hall) throws ParseException{
+	public Hall requestQuotation(Hall hall) throws ParseException{
 		System.out.println("Press enter to show the detail of the hall");
 		System.out.println("Hall: " + hall.getName());
 		System.out.println("Booking Phone: " + currentUser.getPhone());
@@ -468,7 +489,8 @@ public class PrimeEvent {
 			}catch(Exception e) {
 				System.out.println("Please press Y or N.");
 			}
-		}		
+		}	
+		return hall;
 	}//end request quotation
 	
 	public void header() {

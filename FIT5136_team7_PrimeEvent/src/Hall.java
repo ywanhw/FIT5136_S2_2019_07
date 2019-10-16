@@ -14,6 +14,7 @@ public class Hall {
 	private ArrayList<String> function;
 	private Quotation quotation;
 	
+	
 	public Hall(User owner, String name, String address, String description, String price, String capacity) {
 		
 		this.owner = owner;

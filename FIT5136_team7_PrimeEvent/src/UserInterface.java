@@ -257,24 +257,18 @@ public class UserInterface {
 					try {
 						choice = input.nextInt();
 						if(choice == 1) {
-							
-							controller.createBooking();
+							System.out.println("Press enter to find the hall you want to book:");
+							input.nextLine();
+							ArrayList<Hall> searchResult = controller.searchHall();
+							while(searchResult.size() == 0) {
+								System.out.println("No result find, please re-search.");
+								searchResult = controller.searchHall();
+							}		
+							controller.createBooking(controller.requestQuotation(controller.viewHall(searchResult)));
 							exit = true;
+
 							displayUserHome(thisType);
 						}	
-	//					else if(choice == 2) {
-	//						controller.editBooking();
-	//						exit = true;
-	//					}
-	//					else if (choice == 3) {
-	//						controller.cancelBooking();
-	//						exit = true;
-	//					}
-						else {
-							System.out.println("Invalid input. Please enter number between 1-4.\n");
-						}
-							
-						
 					}catch(Exception e) {
 						System.out.println("Invalid input. Please enter number only.\n");					
 					}
@@ -295,7 +289,25 @@ public class UserInterface {
 			}//end case search hall
 			
 			case requestQuotation:{
-				controller.requestQuotation();
+				try {
+					choice = input.nextInt();
+					if(choice == 1) {
+						System.out.println("Press enter to find the hall you want to book:");
+						input.nextLine();
+						ArrayList<Hall> searchResult = controller.searchHall();
+						while(searchResult.size() == 0) {
+							System.out.println("No result find, please re-search.");
+							searchResult = controller.searchHall();
+						}		
+						controller.requestQuotation(controller.viewHall(searchResult));
+						exit = true;
+
+						displayUserHome(thisType);
+					}	
+				}catch(Exception e) {
+					System.out.println("Invalid input. Please enter number only.\n");					
+				}
+				
 				break;
 			}// end request quotation
 			
