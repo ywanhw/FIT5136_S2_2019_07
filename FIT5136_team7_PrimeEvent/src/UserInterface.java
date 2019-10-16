@@ -304,7 +304,8 @@ public class UserInterface {
 					System.out.println("1. Add Hall");
 					System.out.println("2. Edit Hall");
 					System.out.println("3. Delete Hall");
-					System.out.println("Your choice? [1/2/3]");
+					System.out.println("4. Exit");
+					System.out.println("Your choice? [1/2/3/4]");
 					
 					try {
 						choice = input.nextInt();
@@ -324,17 +325,25 @@ public class UserInterface {
 							
 							
 							controller.createHall(hallData);
-							displayUserHome(thisType);
+							displayUserHome(userType.owner);
 							exit = true;
 						}	
 						else if(choice == 2) {
 							controller.editHall();
 							exit = true;
 						}
-//						else if (choice == 3) {
-//							controller.cancelBooking();
-//							exit = true;
-//						}
+						else if (choice == 3) {
+							controller.deleteHall();
+							exit = true;
+						}
+						else if (choice == 4) {
+							System.out.println("You sure you want to exit? [y/n]");
+							if(input.next().toLowerCase().trim().equals("y")) {
+								System.out.println("Exit Successful. Redirecting to previous page");
+								displayUserHome(userType.owner);
+								
+							}
+						}
 						else {
 							System.out.println("Invalid input. Please enter number between 1-4.\n");
 						}						
@@ -343,9 +352,9 @@ public class UserInterface {
 					}			
 				}//end while			
 			}//end case manage Hall
-		
-		
-		}//end switch
+
+
+			}//end switch
 
 		
 	}
