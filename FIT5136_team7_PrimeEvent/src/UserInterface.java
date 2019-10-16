@@ -273,7 +273,7 @@ public class UserInterface {
 							System.out.println("You sure you want to exit? [y/n]");
 							if(input.next().toLowerCase().trim().equals("y")) {
 								System.out.println("Exit Successful. Redirecting to previous page");
-								displayUserHome(userType.customer);
+								displayUserHome(thisType);
 							}						
 						}
 						else {

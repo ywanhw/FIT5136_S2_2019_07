@@ -59,7 +59,9 @@ public class Hall {
 	public void setDate(String date) {
 		availability.add(date);
 	}
-
+	public void setQuotationCost() {
+		quotation.setCost(1000);
+	}
 	public ArrayList<String> getDateArray(){
 		return availability;
 	}
