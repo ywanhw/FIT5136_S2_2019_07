@@ -25,7 +25,7 @@ enum bookingPage{
 public class UserInterface {
 	
 	User currentUser;
-	 PrimeEvent controller = new PrimeEvent();
+	PrimeEvent controller = new PrimeEvent();
 	
 	public UserInterface() {
 		

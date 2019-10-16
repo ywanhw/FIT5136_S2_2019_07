@@ -54,7 +54,7 @@ public class PrimeEvent {
 	public User register(String[] userData) {			
 		//create the corresponding user object
 		User newUser;
-		if(userData[0] == "1") {
+		if(userData[0].equals("1")) {
 			newUser = new Customer(userData[1], userData[2], userData[3], userData[4], userData[5], userData[6], Boolean.parseBoolean(userData[7]));
 			currentUser = newUser;
 		}else {
