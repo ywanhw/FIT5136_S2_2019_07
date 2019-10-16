@@ -1,5 +1,5 @@
 enum userType{
-	customer, owner, admin, nan
+	customer, owner, admin
 }
 
 public class User {

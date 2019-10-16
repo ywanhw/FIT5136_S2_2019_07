@@ -24,6 +24,7 @@ enum bookingPage{
 
 public class UserInterface {
 	
+	User currentUser;
 	PrimeEvent controller = new PrimeEvent();
 	
 	public UserInterface() {
@@ -34,7 +35,6 @@ public class UserInterface {
 		 Scanner input = new Scanner(System.in);
          int choice = 0;
          boolean exit = false;
-         userType thisType = userType.nan;
 		
 		//header
 		header("Welcome to PrimeEvent");
@@ -52,10 +52,10 @@ public class UserInterface {
 						System.out.println("UserID:");
 						String userName = input.next();
 						System.out.println("Password:");
-						String password = input.next();					
-						thisType = controller.login(userName, password);
-						if(thisType != userType.nan) {
-							displayUserHome(thisType);
+						String password = input.next();	
+						currentUser = controller.login(userName, password);
+						if(currentUser != null) {
+							displayUserHome(currentUser.getType());
 							exit = true;					
 						}else {
 							System.out.println("Invalid information. Try agian.");	
@@ -87,12 +87,12 @@ public class UserInterface {
 							}else {
 								userData[7] = "false";
 							}
-							thisType = controller.register(userData);
-							displayUserHome(thisType);
+							currentUser = controller.register(userData);
+							displayUserHome(currentUser.getType());
 						}
 						else if(userData[0].equals("2")) {
-							thisType = controller.register(userData);
-							displayUserHome(thisType);
+							currentUser = controller.register(userData);
+							displayUserHome(currentUser.getType());
 						}
 						exit = true;
 					}
@@ -130,13 +130,17 @@ public class UserInterface {
 					try {
 						choice = input.nextInt();
 						if(choice == 1) {
-							displayPage(page.manageBooking, type);
+							displayPage(page.manageBooking);
 						}	
 						else if(choice == 2) {
-							displayPage(page.searchHall, type);
+							displayPage(page.searchHall);
+							ArrayList<Hall> search = controller.searchHall();
+							if(search == null) {
+								System.out.println("Not Found");
+							}
 						}
 						else if(choice == 3) {
-							displayPage(page.requestQuotation, type);
+							displayPage(page.requestQuotation);
 							
 						}
 						else if (choice == 4) {
@@ -173,13 +177,13 @@ public class UserInterface {
 					try {
 						choice = input.nextInt();
 						if(choice == 1) {
-							displayPage(page.manageBooking, type);
+							displayPage(page.manageBooking);
 						}	
 						else if(choice == 2) {
-							displayPage(page.manageHall, type);
+							displayPage(page.manageHall);;
 						}
 						else if(choice == 3) {
-							displayPage(page.manageDiscount, type);	
+							displayPage(page.manageDiscount);	
 						}
 						else if (choice == 4) {
 							System.out.println("You sure you want to exit? [y/n]");
@@ -211,10 +215,10 @@ public class UserInterface {
 					try {
 						choice = input.nextInt();
 						if(choice == 1) {
-							displayPage(page.manageUser, type);
+							displayPage(page.manageUser);
 						}	
 						else if(choice == 2) {
-							displayPage(page.manageDiscount, type);	
+							displayPage(page.manageDiscount);	
 						}
 						else if (choice == 3) {
 							System.out.println("You sure you want to exit? [y/n]");
@@ -240,7 +244,7 @@ public class UserInterface {
 		}
 	}
 	
-	public void displayPage(page pageName, userType thisType) {
+	public void displayPage(page pageName) {
 		int choice = 0;
 		Scanner input  = new Scanner(System.in);
 		boolean exit = false;
@@ -260,7 +264,7 @@ public class UserInterface {
 							
 							controller.createBooking();
 							exit = true;
-							displayUserHome(thisType);
+							displayUserHome(currentUser.getType());
 						}	
 	//					else if(choice == 2) {
 	//						controller.editBooking();
@@ -288,9 +292,9 @@ public class UserInterface {
 			case searchHall:{
 				controller.searchHall();
 				System.out.println("Press enter to return to home.");
-				input.next();
+				input.nextLine();
 				System.out.println("Redirecting to home page");
-				displayUserHome(thisType);
+				displayUserHome(currentUser.getType());
 				break;
 			}//end case search hall
 			
@@ -324,7 +328,7 @@ public class UserInterface {
 							
 							
 							controller.createHall(hallData);
-							displayUserHome(thisType);
+							displayUserHome(currentUser.getType());
 							exit = true;
 						}	
 						else if(choice == 2) {
