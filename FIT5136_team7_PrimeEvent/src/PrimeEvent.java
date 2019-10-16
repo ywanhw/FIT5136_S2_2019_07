@@ -22,7 +22,8 @@ public class PrimeEvent {
 	//Login
 	public User login(String userName, String password) {		
 		//Verify details
-		boolean found = false;
+		boolean found = false;	
+		
 		for(User thisUser : listOfUsers) {
 			if(thisUser.getUsername().equals(userName)) {
 				if(thisUser.getPassword().equals(password)) {
@@ -41,8 +42,9 @@ public class PrimeEvent {
 	//Logout
 	public void logout() {
 		System.out.println();
-		for(int i = 0; i < 30; i ++)
+		for(int i = 0; i < 30; i ++) {
 			System.out.print("=");
+		}
 		System.out.println("\n\nLogout successful.");
 		System.out.println("\nRedirecting to home page");
 		System.out.println();
@@ -61,6 +63,8 @@ public class PrimeEvent {
 			newUser = new Owner(userData[1], userData[2], userData[3], userData[4], userData[5], userData[6]);
 			currentUser = newUser;
 		}
+		
+		listOfUsers.add(newUser);
 		
 		//return to home
 		System.out.println("\nRegister successful.");
@@ -110,6 +114,7 @@ public class PrimeEvent {
 		 }
 		 	 
      }
+     
 //	public void editHall() {
 //		int ed =0;
 //		System.out.println("Please choose Hall number:");

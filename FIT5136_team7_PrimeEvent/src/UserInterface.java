@@ -54,11 +54,11 @@ public class UserInterface {
 						System.out.println("Password:");
 						String password = input.next();	
 						currentUser = controller.login(userName, password);
-						if(currentUser.equals(null)) {
-							System.out.println("Invalid information. Try agian.");
-						}else {
+						if(currentUser != null) {
 							displayUserHome(currentUser.getType());
-							exit = true;						
+							exit = true;					
+						}else {
+							System.out.println("Invalid information. Try agian.");	
 						}
 						
 					}
@@ -144,6 +144,7 @@ public class UserInterface {
 							if(input.next().toLowerCase().trim().equals("y")) {
 								System.out.println("Logout Successful. Redirecting to home page");
 								controller.logout();
+								displayHomePage();
 								exit = true;
 							}
 						}
@@ -185,6 +186,7 @@ public class UserInterface {
 							if(input.next().toLowerCase().trim().equals("y")) {
 								System.out.println("Logout Successful. Redirecting to home page");
 								controller.logout();
+								displayHomePage();
 								exit = true;
 							}
 						}
