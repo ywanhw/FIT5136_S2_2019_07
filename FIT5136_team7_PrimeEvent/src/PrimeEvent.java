@@ -17,7 +17,12 @@ public class PrimeEvent {
 	
 	public PrimeEvent() {
 		User newOwner = new Owner("James", "Clayton", "12345678", "thisEmail", "james", "james");
+		listOfUsers.add(newOwner);
 		User newCustomer = new Customer("Jack", "Clayton", "12345678", "thisEmail", "jack", "jack", true);
+		listOfUsers.add(newCustomer);
+		Quotation newQuote = new Quotation("12345", 0, "Birthday");
+		Hall newHall = new Hall(newOwner,"Testing", "Clayton",  "Testing", "0", "999");
+		listOfHall.add(newHall);
 
 	}
 
