@@ -92,16 +92,21 @@ public class PrimeEvent {
     	 int ed = 0;
     	 
     	 for (Hall thisHall : listOfHall) {
-    		 System.out.println("."+ thisHall.getName());
+    		 System.out.println(listOfHall.indexOf(thisHall)+1 +"."+ thisHall.getName());
     	 }
+    	 
+    	 System.out.println("Please choose a Hall: ");
     	 
     	 ed = input.nextInt();
     	 System.out.println("name: " + listOfHall.get(ed-1).getName());
     	 System.out.println("change: ");
-    	 String edname = input.nextLine();
-    	 if (edname != null) {
+    	 
+    	 String edname = input.next();
+    	 if (!edname.equals(null)) {
     		 listOfHall.get(ed-1).setName(edname);
  		 }
+    	 
+    	 input.nextLine();
     	 System.out.println("Address: "+ listOfHall.get(ed-1).getAddress());
  		 System.out.println("change: ");
  		 String edaddress = input.nextLine();
@@ -114,105 +119,26 @@ public class PrimeEvent {
 		 if (eddescription != null) {
 			listOfHall.get(ed-1).setDescription(eddescription);
 		 }
-		 	 
+		 System.out.println("Price: "+ listOfHall.get(ed-1).getPrice());
+		 System.out.println("change: ");
+		 String edprice = input.nextLine();
+		 
+		 if (!edprice.equals(null)) {
+			 double dprice = Double.parseDouble(edprice);
+			 listOfHall.get(ed-1).setPrice(dprice);
+		 }
+		 
+		 System.out.println("Capacity: "+ listOfHall.get(ed-1).getCapacity());
+		 System.out.println("change: ");
+		 String edcapacity = input.nextLine();
+		 if (!edcapacity.equals(null)) {
+			 int icapa = Integer.parseInt(edcapacity);
+			 listOfHall.get(ed-1).setCapacity(icapa);
+		 }
+		 
      }
      
-//	public void editHall() {
-//		int ed =0;
-//		System.out.println("Please choose Hall number:");
-//		int x = 0;
-//		index: for(int j=0; j<hallarr.length;j++) {
-//			if(hallarr[j] != null) {
-//				x = j;
-//			}
-//			else {
-//				break index;
-//			}
-//		}
-//		for(int i=0; i<=x;i++) {
-//			System.out.println(i+1 + "."+ hallarr[i].getName());
-//		}
-//		ed = input.nextInt();
-//		// modify name
-//		System.out.println("Name: "+ hallarr[ed-1].getName());
-//		System.out.println("change: ");
-//		String edname = input.nextLine();
-//		edname = input.nextLine();
-//		if (edname != null) {
-//			hallarr[ed-1].setName(edname);
-//		}
-//		sc.nextLine();
-//		
-//		// modify address;
-//		System.out.println("Address: "+ hallarr[ed-1].getAddress());
-//		System.out.println("change: ");
-//		String edaddress = input.nextLine();
-//		if (edaddress != null) {
-//			hallarr[ed-1].setAddress(edaddress);
-//		}
-//
-//		// modify phoneNumber
-//		System.out.println("Phone Number: "+ hallarr[ed-1].getNumber());
-//		System.out.println("change: ");
-//		String ednumber = input.nextLine();
-//		if (ednumber != null) {
-//			hallarr[ed-1].setNumber(ednumber);
-//		}
-//
-//		// modify Email
-//		System.out.println("Email: "+ hallarr[ed-1].getEmail());
-//		System.out.println("change: ");
-//		String edemail = input.nextLine();
-//		if (edemail != null) {
-//			hallarr[ed-1].setEmail(edemail);
-//		}
-//
-//		// modify description
-//		System.out.println("Description: "+ hallarr[ed-1].getDescription());
-//		System.out.println("change: ");
-//		String eddes = input.nextLine();
-//		if (eddes != null) {
-//			hallarr[ed-1].setDescription(eddes);
-//		}
-//
-//		// modify Event
-//		System.out.println("Event: "+ hallarr[ed-1].getEvent());
-//		System.out.println("change: ");
-//		String edevent = input.nextLine();
-//		if (edevent != null) {
-//			hallarr[ed-1].setEvent(edevent);
-//		};
-//
-//		// modify Size
-//		System.out.println("Size: "+ hallarr[ed-1].getSize());
-//		System.out.println("change: ");
-//		String edsize = input.nextLine();
-//		if (edsize != null) {
-//			hallarr[ed-1].setSize(edsize);
-//		};
-//		
-//		// modify price
-//		System.out.println("Price: "+ hallarr[ed-1].getPrice());
-//		System.out.println("change: ");
-//		String edprice = input.nextLine();
-//		if (edprice != null) {
-//			hallarr[ed-1].setPrice(edprice);
-//		};
-//		
-//		
-//
-//		
-//		System.out.println("\nChange saved.");
-//		System.out.println("\nRedirecting to home page\n");
-//		System.out.println();
-//		
-//		sc.nextLine();
-//		
-//		//display based on user
-//		ui.displayHomePage("owner");
-//		
-//		
-//	}
+
      
      //search booking
 	
