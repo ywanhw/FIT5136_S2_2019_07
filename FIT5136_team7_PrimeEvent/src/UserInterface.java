@@ -252,7 +252,8 @@ public class UserInterface {
 					System.out.println("1. Create Booking");
 					System.out.println("2. Edit Booking");
 					System.out.println("3. Cancel Booking");
-					System.out.println("Your choice? [1/2/3]");
+					System.out.println("4. Exit");
+					System.out.println("Your choice? [1/2/3/4]");
 					
 					try {
 						choice = input.nextInt();
@@ -266,9 +267,18 @@ public class UserInterface {
 							}		
 							controller.createBooking(controller.requestQuotation(controller.viewHall(searchResult)));
 							exit = true;
-
 							displayUserHome(thisType);
-						}	
+						}
+						else if(choice == 4) {
+							System.out.println("You sure you want to exit? [y/n]");
+							if(input.next().toLowerCase().trim().equals("y")) {
+								System.out.println("Exit Successful. Redirecting to previous page");
+								displayUserHome(userType.customer);
+							}						
+						}
+						else {
+							System.out.println("Invalid input. Please enter number between 1-4.\n");
+						}
 					}catch(Exception e) {
 						System.out.println("Invalid input. Please enter number only.\n");					
 					}
