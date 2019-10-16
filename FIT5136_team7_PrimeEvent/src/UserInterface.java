@@ -290,7 +290,33 @@ public class UserInterface {
 			}//end case Manage Booking
 			
 			case searchHall:{
-				controller.searchHall();
+				ArrayList<Hall> searchresult = controller.searchHall();
+				try {
+					int ifReturn = 0;
+					while (searchresult.size() == 0) {
+						System.out.println("No result find.");
+						System.out.println("Press:");
+						System.out.println("1.Re-search;2.Redirecting to home page");
+						while(true) {
+							ifReturn = input.nextInt();
+							if (ifReturn == 1) {
+								System.out.println("Press enter to re-search");
+								break;								
+							}
+							else if (ifReturn == 2) {
+								break;
+							}	
+							else {
+								System.out.println("Invalid input. Please enter number between 1-2.\n");
+							}
+						}
+						if (ifReturn == 2) {
+							break;
+						}	
+					}
+				}catch(Exception e) {
+					System.out.println("Invalid input. Please enter number only.\n");	
+				}
 				System.out.println("Press enter to return to home.");
 				input.next();
 				System.out.println("Redirecting to home page");
