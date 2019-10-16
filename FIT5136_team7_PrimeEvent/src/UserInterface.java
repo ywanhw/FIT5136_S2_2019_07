@@ -59,6 +59,8 @@ public class UserInterface {
 							exit = true;					
 						}else {
 							System.out.println("Invalid information. Try agian.");	
+							input.nextLine();
+							exit = false;
 						}
 						
 					}
@@ -106,9 +108,12 @@ public class UserInterface {
 					}
 					else {
 						System.out.println("Invalid input. Please enter number between 1-3.\n");
+						exit = false;
 					}							
 				}catch(Exception e) {
-					System.out.println("Invalid input. Please enter number only.\n");					
+					System.out.println("Invalid input. Please enter number only.\n");
+					input.nextLine();
+					exit = false;
 				}
 			}//End while
 	}//End displayHomePage
@@ -150,11 +155,14 @@ public class UserInterface {
 						}
 						else {
 							System.out.println("Invalid input. Please enter number between 1-4.\n");
+							exit = false;
 						}
 							
 						
 					}catch(Exception e) {
-						System.out.println("Invalid input. Please enter number only.\n");					
+						System.out.println("Invalid input. Please enter number only.\n");
+						input.nextLine();
+						exit = false;
 					}
 				}//End while
 			
@@ -196,7 +204,9 @@ public class UserInterface {
 							
 						
 					}catch(Exception e) {
-						System.out.println("Invalid input. Please enter number only.\n");					
+						System.out.println("Invalid input. Please enter number only.\n");
+						input.nextLine();
+						exit = false;
 					}
 				}//End while
 			
@@ -226,6 +236,7 @@ public class UserInterface {
 						}
 						else {
 							System.out.println("Invalid input. Please enter number between 1-4.\n");
+							exit = false;
 						}
 							
 						
@@ -278,9 +289,12 @@ public class UserInterface {
 						}
 						else {
 							System.out.println("Invalid input. Please enter number between 1-4.\n");
+							exit = false;
 						}
 					}catch(Exception e) {
-						System.out.println("Invalid input. Please enter number only.\n");					
+						System.out.println("Invalid input. Please enter number only.\n");	
+						input.nextLine();
+						exit = false;
 					}
 					
 					
@@ -309,6 +323,7 @@ public class UserInterface {
 							}	
 							else {
 								System.out.println("Invalid input. Please enter number between 1-2.\n");
+								exit = false;
 							}
 						}
 						if (ifReturn == 2) {
@@ -326,12 +341,9 @@ public class UserInterface {
 			}//end case search hall
 			
 			case requestQuotation:{
+				ArrayList<Hall> searchResult = controller.searchHall();
 				try {
-					choice = input.nextInt();
-					if(choice == 1) {
-						System.out.println("Press enter to find the hall you want to book:");
-						input.nextLine();
-						ArrayList<Hall> searchResult = controller.searchHall();
+					
 						while(searchResult.size() == 0) {
 							System.out.println("No result find, please re-search.");
 							searchResult = controller.searchHall();
@@ -340,9 +352,10 @@ public class UserInterface {
 						exit = true;
 
 						displayUserHome(thisType);
-					}	
 				}catch(Exception e) {
-					System.out.println("Invalid input. Please enter number only.\n");					
+					System.out.println("Invalid input. Please enter number only.\n");
+					input.nextLine();
+					exit = false;
 				}
 				
 				break;
@@ -395,9 +408,12 @@ public class UserInterface {
 						}
 						else {
 							System.out.println("Invalid input. Please enter number between 1-4.\n");
+							exit = false;
 						}						
 					}catch(Exception e) {
-						System.out.println("Invalid input. Please enter number only.\n");					
+						System.out.println("Invalid input. Please enter number only.\n");
+						input.nextLine();
+						exit = false;
 					}			
 				}//end while			
 			}//end case manage Hall

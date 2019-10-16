@@ -217,11 +217,14 @@ public class PrimeEvent {
     						next = true;
     					}else {
     						System.out.println("Invalid number. Please try again");
+    						next = false;
     					}
     				}catch(Exception e) {
-    					System.out.println("Number only. Please try again.");
+    					System.out.println("Number only. ");
+    					input.nextLine();
+    					next = false;
     				}
-    			}
+    			
     			
     			System.out.println("Highest:");
     			try {
@@ -230,12 +233,15 @@ public class PrimeEvent {
     					next = true;
     				}else {
     					System.out.println("Invalid number. Please try again");
+    					next = false;
     				}
     			}catch(Exception e) {
-    				System.out.println("Number only. Please try again.");
+    				System.out.println("Number only. ");
+    				input.nextLine();
+    				next = false;
     			}
     		
-    			
+    			}		
     			//size
     			next = false;
     			while(!next) {
@@ -247,9 +253,12 @@ public class PrimeEvent {
     						next = true;
     					}else {
     						System.out.println("Invalid number. Please try again");
+    						next = false;
     					}
     				}catch(Exception e) {
-    					System.out.println("Number only. Please try again.");
+    					System.out.println("Number only. ");
+    					input.nextLine();
+    					next = false;
     				}
     				
     				System.out.println("Highest:");
@@ -259,9 +268,12 @@ public class PrimeEvent {
     						next = true;
     					}else {
     						System.out.println("Invalid number. Please try again");
+    						next = false;
     					}
     				}catch(Exception e) {
-    					System.out.println("Number only. Please try again.");
+    					System.out.println("Number only. ");
+    					input.nextLine();
+    					next = false;
     				}
     				
     			}
@@ -277,9 +289,12 @@ public class PrimeEvent {
     						next = true;
     					}else {
     						System.out.println("Can not be blank. Please try again");
+    						next = false;
     					}
     				}catch(Exception e) {
     					System.out.println("Invalid input. Please try again.");
+    					input.nextLine();
+    					next = false;
     				}
     				
     			}
@@ -299,6 +314,8 @@ public class PrimeEvent {
     					}
     				}catch(Exception e) {
     					System.out.println("Invalid input. Please try again.");
+    					input.nextLine();
+    					next = false;
     				}
     				
     			}
