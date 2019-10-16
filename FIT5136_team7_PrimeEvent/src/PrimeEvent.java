@@ -15,6 +15,8 @@ public class PrimeEvent {
 	User currentUser;
 	
 	public PrimeEvent() {
+		User newOwner = new Owner("James", "Clayton", "12345678", "thisEmail", "james", "james");
+		User newCustomer = new Customer("Jack", "Clayton", "12345678", "thisEmail", "jack", "jack", true);
 
 	}
 
