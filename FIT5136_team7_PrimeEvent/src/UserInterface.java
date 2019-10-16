@@ -266,7 +266,7 @@ public class UserInterface {
 							}						
 							System.out.println("Choice the hall from 0 to " + (searchResult.size()- 1));
 							
-							controller.createBooking();
+//							controller.createBooking();
 							exit = true;
 							displayUserHome(currentUser.getType());
 						}	
@@ -339,10 +339,10 @@ public class UserInterface {
 							controller.editHall();
 							exit = true;
 						}
-//						else if (choice == 3) {
-//							controller.cancelBooking();
-//							exit = true;
-//						}
+						else if (choice == 3) {
+							controller.deleteHall();
+							exit = true;
+						}
 						else {
 							System.out.println("Invalid input. Please enter number between 1-4.\n");
 						}						
