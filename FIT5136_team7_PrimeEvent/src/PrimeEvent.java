@@ -93,7 +93,7 @@ public class PrimeEvent {
 		
 		listOfHall.add(h);
 		System.out.println("Hall " + hallData[0] + " created.");
-		System.out.println("Redirecting to home page.\n");
+		System.out.println("Press [Enter] to redirecting to home page.\n");
 		sc.nextLine();
     }
      
@@ -106,26 +106,27 @@ public class PrimeEvent {
     	 
     	 System.out.println("Please choose a Hall: ");
     	 
-    	 ed = input.nextInt();
+    	 ed = Integer.parseInt(input.nextLine());
+    	 
     	 System.out.println("name: " + listOfHall.get(ed-1).getName());
     	 System.out.println("change: ");
     	 
-    	 String edname = input.next();
-    	 if (!edname.equals(null)) {
+    	 String edname = input.nextLine();
+    	 if (edname.trim().length()!= 0) {
     		 listOfHall.get(ed-1).setName(edname);
  		 }
     	 
-    	 input.nextLine();
+
     	 System.out.println("Address: "+ listOfHall.get(ed-1).getAddress());
  		 System.out.println("change: ");
  		 String edaddress = input.nextLine();
- 		 if (edaddress != null) {
+ 		 if (edaddress.trim().length()!= 0) {
  			listOfHall.get(ed-1).setAddress(edaddress);
  		 }
  		 System.out.println("Description: "+ listOfHall.get(ed-1).getDescription());
 		 System.out.println("change: ");
 		 String eddescription = input.nextLine();
-		 if (eddescription != null) {
+		 if (eddescription.trim().length()!= 0) {
 			listOfHall.get(ed-1).setDescription(eddescription);
 		 }
 		 System.out.println("Price: "+ listOfHall.get(ed-1).getPrice());
@@ -139,14 +140,14 @@ public class PrimeEvent {
 		 
 		 System.out.println("Capacity: "+ listOfHall.get(ed-1).getCapacity());
 		 System.out.println("change: ");
-		 String edcapacity = input.next();
-		 if (!edcapacity.equals(null)) {
+		 String edcapacity = input.nextLine();
+		 if (edcapacity.trim().length()!= 0) {
 			 int icapa = Integer.parseInt(edcapacity);
 			 listOfHall.get(ed-1).setCapacity(icapa);
 		 }
 		 
 		 System.out.println("Change saved.\n");
-		 System.out.println("Redirecting to home page.\n");
+		 System.out.println("Press [Enter] to redirect to home page.\n");
 		 sc.nextLine();
 		 
      }
@@ -161,7 +162,7 @@ public class PrimeEvent {
     	 listOfHall.remove(delete-1);
     	 
     	 System.out.println("Delete successfully.\n");
-    	 System.out.println("Redirecting to home page.\n");
+    	 System.out.println("Press [Enter] to redirecting to home page.\n");
 		 
 		 sc.nextLine();
     	 
