@@ -373,18 +373,57 @@ public class UserInterface {
 						choice = input.nextInt();
 						if(choice == 1) {
 							String[] hallData = new String[5];
-							System.out.println("Hall Name: ");
-							hallData[0] = input.next();
-							System.out.println("Address: ");
-							hallData[1] = input.next();							
-							System.out.println("Description");
-							hallData[2] = input.next();		
-							System.out.println("Price: ");
 							
-							hallData[3] = input.next();
-							System.out.println("Capacity: ");
-							hallData[4] = input.next();
+//							enter hall name:
+//							validation: hall name maximum 15 alphabets
+							input.nextLine();
+							while(hallData[0] == null || hallData[0].length() >15) {
+								System.out.println("Hall Name: (Maximum 15 alphabets)");
+								hallData[0] = input.nextLine();
+								if(hallData[0].length() >10) {
+									System.out.println("Please try again: ");
+								}
+							}
 							
+//							enter hall address
+//							validation: address maximum 50 alphabets
+							while(hallData[1] == null || hallData[1].length() >50) {
+								System.out.println("Address: (Maximum 50 alphabets)");
+								hallData[1] = input.nextLine();
+								if(hallData[1].length() >50) {
+									System.out.println("Please try again: ");
+								}
+							}
+							
+//							enter hall description
+//							validation: description	
+							while(hallData[2] == null || hallData[2].length() >200) {
+								System.out.println("Description: ");
+								hallData[2] = input.nextLine();
+								if(hallData[2].length() >200) {
+									System.out.println("Please try again: ");
+								}
+							}
+
+//							enter hall price
+//							validation: price numbers only
+							while(hallData[3] == null || hallData[3].length() >10 || isNumeric(hallData[3]) == false) {
+								System.out.println("Price: (Numbers only)");
+								hallData[3] = input.nextLine();
+								if(hallData[3].length() >10 || isNumeric(hallData[3]) == false) {
+									System.out.println("Please try again: ");
+								}
+							}
+
+//							enter hall capacity 
+//							validation: capacity numbers only
+							while(hallData[4] == null || hallData[4].length() >10 || isNumeric(hallData[4]) == false) {
+								System.out.println("Capacity: (Numbers only)");
+								hallData[4] = input.nextLine();
+								if(hallData[4].length() >10 || isNumeric(hallData[4]) == false) {
+									System.out.println("Please try again: ");
+								}
+							}
 							
 							controller.createHall(hallData);
 							displayUserHome(userType.owner);
@@ -424,6 +463,15 @@ public class UserInterface {
 		
 	}
 	
+	public static boolean isNumeric(String str){
+		for (int i = str.length();--i>=0;){ 
+			if (!Character.isDigit(str.charAt(i))){
+				return false;
+				}
+			}
+		return true;
+		}
+
 	public void displayManageHall(hallPage page) {
 		
 	}

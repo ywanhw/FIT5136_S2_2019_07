@@ -94,6 +94,7 @@ public class PrimeEvent {
 		listOfHall.add(h);
 		System.out.println("Hall " + hallData[0] + " created.");
 		System.out.println("Redirecting to home page.\n");
+		sc.nextLine();
     }
      
      public void editHall() {
@@ -145,6 +146,7 @@ public class PrimeEvent {
 		 }
 		 
 		 System.out.println("Change saved.\n");
+		 System.out.println("Redirecting to home page.\n");
 		 sc.nextLine();
 		 
      }
@@ -159,6 +161,8 @@ public class PrimeEvent {
     	 listOfHall.remove(delete-1);
     	 
     	 System.out.println("Delete successfully.\n");
+    	 System.out.println("Redirecting to home page.\n");
+		 
 		 sc.nextLine();
     	 
      }
