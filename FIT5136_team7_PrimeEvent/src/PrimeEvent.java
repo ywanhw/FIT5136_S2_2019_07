@@ -172,8 +172,9 @@ public class PrimeEvent {
     			String name = "";
     			
     			while(!next) {
-    				System.out.println("What is the name of the hall? Leave blank to find all hall.");
+    				System.out.println("What is the name of the hall? Leave blank to find all hall.\n");
     				try {
+
     					name = input.nextLine();
     					next = true;
     				}catch(Exception e) {
@@ -226,7 +227,9 @@ public class PrimeEvent {
     					next = false;
 
     				}
-    			
+    			}
+    			next = false;
+    			while(!next) {
     			
     			System.out.println("Highest:");
     			try {
@@ -263,6 +266,9 @@ public class PrimeEvent {
     					next = false;
     				}
     				
+    			}
+    			next = false;
+    			while(!next) {
     				System.out.println("Highest:");
     				try {
     					size_high = input.nextInt();
@@ -283,10 +289,11 @@ public class PrimeEvent {
     			//Address
     			next = false;
     			while(!next) {
-    				System.out.println("Where do you want to hold the event?");
+    				System.out.println("Where do you want to hold the event?\n");
     				try {
     					input.nextLine();
     					address = input.nextLine();
+
     					if(address.trim().length() != 0) {
     						next = true;
     					}else {
