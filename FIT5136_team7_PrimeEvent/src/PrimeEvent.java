@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+/**
+ * This class is the controller of the application. It is responsible to manage User, Booking, Hall, discount and quotation data
+ * @author Adrian, Hannah, Chris, 
+ *
+ */
 public class PrimeEvent {
 	
 	Hall hallarr[] = new Hall[100];
@@ -15,6 +20,9 @@ public class PrimeEvent {
 	Scanner sc = new Scanner(System.in);
 	User currentUser;
 	
+	/**
+	 * Constructor of the PrimeEvent Class
+	 */
 	public PrimeEvent() {
 		User newOwner = new Owner("James", "Clayton", "12345678", "thisEmail", "james", "james");
 		listOfUsers.add(newOwner);
@@ -28,7 +36,12 @@ public class PrimeEvent {
 	}
 
 		
-	//Login
+	/**
+	 * This method validate the username and password input by the user to see if the user exist and if the password is correct.
+	 * @param userName Inputed username
+	 * @param password Inputed password
+	 * @return An enum for the type of the user if a user is found. Otherwise, return null
+	 */
 	public userType login(String userName, String password) {		
 		//Verify details
 		boolean found = false;	
@@ -48,7 +61,9 @@ public class PrimeEvent {
 		return null;
 	}
 	
-	//Logout
+	/**
+	 * This method clear the user from current login status
+	 */
 	public void logout() {
 		System.out.println();
 		for(int i = 0; i < 30; i ++) {
@@ -61,7 +76,11 @@ public class PrimeEvent {
 		currentUser = null;
 	}
 	
-	//Register
+	/**
+	 * This method register new user into the system
+	 * @param userData A String array that store the userData inputed by the user. The order should be Name, Address, Phone number, Email, Username, Password, for customer also include y/n for concession
+	 * @return An enum for the type of the user that was registered
+	 */
 	public userType register(String[] userData) {			
 		//create the corresponding user object
 		User newUser;
@@ -87,6 +106,10 @@ public class PrimeEvent {
 	
 	
 
+    /**
+     * This method create a new hall as request
+     * @param hallData a String array of hall data in an order of Hall name, Hall address, description, initial price, capacity of the hall
+     */
     public void createHall(String[] hallData) {
     	
     	Hall h = new Hall(currentUser, hallData[0], hallData[1], hallData[2], hallData[3], hallData[4]); 	
@@ -97,7 +120,10 @@ public class PrimeEvent {
 		sc.nextLine();
     }
      
-     public void editHall() {
+     /**
+     * This method edit the detail of the hall
+     */
+    public void editHall() {
     	 int ed = 0;    	 
     	 for (Hall thisHall : listOfHall) {
     		 System.out.println(listOfHall.indexOf(thisHall)+1 +"."+ thisHall.getName());
@@ -192,7 +218,10 @@ public class PrimeEvent {
 		 
      }
      
-     public void deleteHall() {
+     /**
+     * This method remove the hall from record
+     */
+    public void deleteHall() {
     	 int delete = 0;
     	 for (Hall thisHall : listOfHall) {
     		 System.out.println(listOfHall.indexOf(thisHall)+1 +"."+ thisHall.getName());
@@ -208,9 +237,12 @@ public class PrimeEvent {
     	 
      }
      
-     //search booking
 	
-     public ArrayList<Hall> searchHall(){
+     /**
+      * This method search for hall(s) that matches the criteria
+     * @return An ArrayList of hall matches the search criteria
+     */
+    public ArrayList<Hall> searchHall(){
     	 ArrayList<Hall> equalHall = new ArrayList<Hall>();
     		if(currentUser.getType() == userType.owner) {
     			boolean next = false;
@@ -406,6 +438,12 @@ public class PrimeEvent {
     		return equalHall;
     		
     	}
+    
+    /**
+     * This method extract the details of the hall and let the user pick one hall
+     * @param hallList An ArrayList of hall
+     * @return An Hall object of user's choice
+     */
     public Hall viewHall(ArrayList<Hall> hallList) {
     	Hall chooseHall = null;
     	System.out.println("Please choose the hall you want.");
@@ -427,6 +465,11 @@ public class PrimeEvent {
     	return chooseHall;
     }
 	
+	/**
+	 * This method create a booking record and add the record to the list Of Booking
+	 * @param hall An hall object that the user wants to book
+	 * @throws ParseException This exception is thrown when formating of the Simple Date Format is unacceptable
+	 */
 	public void createBooking(Hall hall) throws ParseException {		
 			int j = 0;
 			hall.setQuotationCost();
@@ -550,12 +593,15 @@ public class PrimeEvent {
 			}catch (Exception e) {
 				System.out.println("Please press Y or N.");
 			}
-	}//end create booking
+	}//end create booking	
 
-	
-	
 
-	//Quotation page
+	/**
+	 * This method search for the quotation for the specific hall and return the result.
+	 * @param hall The Hall object that the quotation is requested
+	 * @return A Hall object for further action 
+	 * @throws ParseException This exception is thrown when the formatting of Simple Date Format is unacceptable 
+	 */
 	public Hall requestQuotation(Hall hall) throws ParseException{
 		System.out.println("Press enter to show the detail of the hall");
 		System.out.println("Hall: " + hall.getName());
@@ -588,17 +634,13 @@ public class PrimeEvent {
 			}
 		}	
 		return hall;
-	}//end request quotation
+	}//end request quotation	
 	
-	public void header() {
-		for(int i = 0; i < 30; i ++)
-			System.out.print("=");
-		System.out.println("\nPrime Event Booking System");
-		for(int i = 0; i < 30; i ++)
-			System.out.print("=");
-	}
-	
-	
+	/**
+	 * This method check if the input is numeric
+	 * @param str A string that required checking
+	 * @return Boolean, True of the string is numeric and false if it is not numeric 
+	 */
 	public static boolean isNumeric(String str){
 		for (int i = str.length();--i>=0;){ 
 			if (!Character.isDigit(str.charAt(i))){
@@ -607,18 +649,6 @@ public class PrimeEvent {
 			}
 		return true;
 	}
-	
-//	public void start() {
-//		ui.displayHomePage("home");
-//	}
-//	
-//	public static void main(String[] args) {
-//		
-//		PrimeEvent primeEvent = new PrimeEvent();
-//		primeEvent.start();
-		
-					
-
-	}
+}
 	
 	

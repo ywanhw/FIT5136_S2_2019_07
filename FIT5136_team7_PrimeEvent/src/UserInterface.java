@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
+ * THis Class is responsible for the interaction between the user and the application.
+ * The class is responsible for user interface and accept input from the user.
  * @author Adrian
  *
  */
@@ -26,10 +28,16 @@ public class UserInterface {
 	
 	PrimeEvent controller = new PrimeEvent();
 	
+	/**
+	 * Constructor of the UserInterface class
+	 */
 	public UserInterface() {
 		
 	}
 	
+	/**
+	 * Display the homepage of the application before logging in
+	 */
 	public void displayHomePage() {
 		 Scanner input = new Scanner(System.in);
          int choice = 0;
@@ -118,6 +126,10 @@ public class UserInterface {
 			}//End while
 	}//End displayHomePage
 	
+	/**
+	 * Display the home page depending on the type of user
+	 * @param type Enum of the user type, customer, owner and admin.
+	 */
 	public void displayUserHome(userType type) {
 		boolean exit = false;
 		int choice = 0;
@@ -251,6 +263,11 @@ public class UserInterface {
 		}
 	}
 	
+	/**
+	 * This method display pages under the hierarchy of o the user home page and accept input from the user.
+	 * @param pageName Enum of the name of the page
+	 * @param thisType Enum of the type of the user
+	 */
 	public void displayPage(page pageName, userType thisType) {
 		int choice = 0;
 		Scanner input  = new Scanner(System.in);
@@ -463,6 +480,11 @@ public class UserInterface {
 		
 	}
 	
+	/**
+	 * This method check if the input is numeric.
+	 * @param str A string of data that needed to be checked.
+	 * @return Boolean, True if it is numeric and false if it is not numeric
+	 */
 	public static boolean isNumeric(String str){
 		for (int i = str.length();--i>=0;){ 
 			if (!Character.isDigit(str.charAt(i))){
@@ -471,15 +493,11 @@ public class UserInterface {
 			}
 		return true;
 	}
-
-	public void displayManageHall(hallPage page) {
-		
-	}
 	
-	public void displayConfirmPage(String page) {
-		
-	}
-	
+	/**
+	 * The method is responsible for the formatting of the header of each page
+	 * @param message A string of message to print out at the header
+	 */
 	private void header(String message) {
 		for(int i = 0; i < 35; i++) {
 			System.out.print("=");
@@ -493,10 +511,17 @@ public class UserInterface {
 		
 	}
 	
+	/**
+	 * This method start the application
+	 */
 	private void start() {
 		displayHomePage();
 	}
 	
+	/**
+	 * The main method that drive the java compiler
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		UserInterface ui = new UserInterface();
 		ui.start();
