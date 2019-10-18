@@ -377,50 +377,50 @@ public class UserInterface {
 //							enter hall name:
 //							validation: hall name maximum 15 alphabets
 							input.nextLine();
-							while(hallData[0] == null || hallData[0].length() >15) {
-								System.out.println("Hall Name: (Maximum 15 alphabets)");
+							while(hallData[0] == null || hallData[0].length() >15 ||hallData[0].trim().length()== 0) {
+								System.out.println("Hall Name: (Maximum 15 alphabets,)");
 								hallData[0] = input.nextLine();
-								if(hallData[0].length() >10) {
+								if(hallData[0].length() >10 ||hallData[0].trim().length()== 0) {
 									System.out.println("Please try again: ");
 								}
 							}
 							
 //							enter hall address
 //							validation: address maximum 50 alphabets
-							while(hallData[1] == null || hallData[1].length() >50) {
-								System.out.println("Address: (Maximum 50 alphabets)");
+							while(hallData[1] == null || hallData[1].length() >150 ||hallData[1].trim().length()== 0) {
+								System.out.println("Address: (Maximum 150 alphabets)");
 								hallData[1] = input.nextLine();
-								if(hallData[1].length() >50) {
+								if(hallData[1].length() >150  ||hallData[1].trim().length()== 0) {
 									System.out.println("Please try again: ");
 								}
 							}
 							
 //							enter hall description
 //							validation: description	
-							while(hallData[2] == null || hallData[2].length() >200) {
+							while(hallData[2] == null || hallData[2].length() >500 ||hallData[2].trim().length()== 0) {
 								System.out.println("Description: ");
 								hallData[2] = input.nextLine();
-								if(hallData[2].length() >200) {
+								if(hallData[2].length() >500 ||hallData[2].trim().length()== 0) {
 									System.out.println("Please try again: ");
 								}
 							}
 
 //							enter hall price
 //							validation: price numbers only
-							while(hallData[3] == null || hallData[3].length() >10 || isNumeric(hallData[3]) == false) {
+							while(hallData[3] == null || hallData[3].length() >10 || isNumeric(hallData[3]) == false ||hallData[3].trim().length()== 0) {
 								System.out.println("Price: (Numbers only)");
 								hallData[3] = input.nextLine();
-								if(hallData[3].length() >10 || isNumeric(hallData[3]) == false) {
+								if(hallData[3].length() >10 || isNumeric(hallData[3]) == false  ||hallData[3].trim().length()== 0) {
 									System.out.println("Please try again: ");
 								}
 							}
 
 //							enter hall capacity 
 //							validation: capacity numbers only
-							while(hallData[4] == null || hallData[4].length() >10 || isNumeric(hallData[4]) == false) {
+							while(hallData[4] == null || hallData[4].length() >10 || isNumeric(hallData[4]) == false ||hallData[4].trim().length()== 0) {
 								System.out.println("Capacity: (Numbers only)");
 								hallData[4] = input.nextLine();
-								if(hallData[4].length() >10 || isNumeric(hallData[4]) == false) {
+								if(hallData[4].length() >10 || isNumeric(hallData[4]) == false ||hallData[4].trim().length()== 0) {
 									System.out.println("Please try again: ");
 								}
 							}
@@ -470,7 +470,7 @@ public class UserInterface {
 				}
 			}
 		return true;
-		}
+	}
 
 	public void displayManageHall(hallPage page) {
 		

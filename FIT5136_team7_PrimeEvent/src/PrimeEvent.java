@@ -98,50 +98,88 @@ public class PrimeEvent {
     }
      
      public void editHall() {
-    	 int ed = 0;
-    	 
+    	 int ed = 0;    	 
     	 for (Hall thisHall : listOfHall) {
     		 System.out.println(listOfHall.indexOf(thisHall)+1 +"."+ thisHall.getName());
     	 }
-    	 
     	 System.out.println("Please choose a Hall: ");
-    	 
     	 ed = Integer.parseInt(input.nextLine());
     	 
-    	 System.out.println("name: " + listOfHall.get(ed-1).getName());
-    	 System.out.println("change: ");
-    	 
+//    	 edit hall name
+    	 System.out.println("Name: " + listOfHall.get(ed-1).getName());
+    	 System.out.println("Change: (Maximum 15 alphabets)");
     	 String edname = input.nextLine();
+//       validation hall name
     	 if (edname.trim().length()!= 0) {
     		 listOfHall.get(ed-1).setName(edname);
+    		 while(edname.length() >15) {
+ 				System.out.println("Change: (Maximum 15 alphabets)");
+ 				edname = input.nextLine();
+ 				listOfHall.get(ed-1).setName(edname);
+ 				if(edname.length() >15) {
+ 					System.out.println("Please try again: ");
+ 				}
+ 			}
  		 }
-    	 
 
+//       edit hall address
     	 System.out.println("Address: "+ listOfHall.get(ed-1).getAddress());
- 		 System.out.println("change: ");
+ 		 System.out.println("change: (Maximum 150 alphabets)");
  		 String edaddress = input.nextLine();
+// 		 validation hall address
  		 if (edaddress.trim().length()!= 0) {
  			listOfHall.get(ed-1).setAddress(edaddress);
+ 			while(edaddress.length() >150) {
+ 				System.out.println("Change: (Maximum 150 alphabets)");
+ 				edaddress = input.nextLine();
+ 				listOfHall.get(ed-1).setAddress(edaddress);
+ 				
+ 			}
  		 }
+ 		 
+// 		 edit description
  		 System.out.println("Description: "+ listOfHall.get(ed-1).getDescription());
 		 System.out.println("change: ");
 		 String eddescription = input.nextLine();
+//       validation description		 
 		 if (eddescription.trim().length()!= 0) {
 			listOfHall.get(ed-1).setDescription(eddescription);
+			while(eddescription.length() >50) {
+ 				System.out.println("Change: (Maximum 50 alphabets)");
+ 				eddescription = input.nextLine();
+ 				listOfHall.get(ed-1).setDescription(eddescription);
+ 			}
 		 }
-		 System.out.println("Price: "+ listOfHall.get(ed-1).getPrice());
-		 System.out.println("change: ");
-		 String edprice = input.nextLine();
 		 
+//		 edit price
+		 System.out.println("Price: "+ listOfHall.get(ed-1).getPrice());
+		 System.out.println("change: (Numbers only)");
+		 String edprice = input.nextLine();
+//		 validation Hall price
 		 if (edprice.trim().length()!= 0) {
+			 
+			 while(edprice.length() >10 || isNumeric(edprice) == false) {
+	 				System.out.println("Change: (Numbers only)");
+	 				edprice = input.nextLine();
+	 				double dprice = Double.parseDouble(edprice);
+	 				listOfHall.get(ed-1).setPrice(dprice);
+	 			}
 			 double dprice = Double.parseDouble(edprice);
 			 listOfHall.get(ed-1).setPrice(dprice);
 		 }
 		 
+//		 edit capacity
 		 System.out.println("Capacity: "+ listOfHall.get(ed-1).getCapacity());
-		 System.out.println("change: ");
+		 System.out.println("change: (Numbers only)");
 		 String edcapacity = input.nextLine();
+//		 validation hall capacity
 		 if (edcapacity.trim().length()!= 0) {
+			 while(edprice.length() >10 || isNumeric(edcapacity) == false) {
+	 				System.out.println("Change: (Numbers only)");
+	 				edcapacity = input.nextLine();
+	 				int icapa = Integer.parseInt(edcapacity);
+	 				listOfHall.get(ed-1).setCapacity(icapa);
+	 			}
 			 int icapa = Integer.parseInt(edcapacity);
 			 listOfHall.get(ed-1).setCapacity(icapa);
 		 }
@@ -558,6 +596,16 @@ public class PrimeEvent {
 			System.out.print("=");
 	}
 	
+	
+	public static boolean isNumeric(String str){
+		for (int i = str.length();--i>=0;){ 
+			if (!Character.isDigit(str.charAt(i))){
+				return false;
+				}
+			}
+		return true;
+	}
+	
 //	public void start() {
 //		ui.displayHomePage("home");
 //	}
@@ -572,23 +620,3 @@ public class PrimeEvent {
 	}
 	
 	
-	
-	
-
-
-
-
-
-
-
-//String arr[] = {"p0","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10"};
-//
-//check: for (int i=0; i<hallarr.length;i++) {
-//	if(hallarr[i] != null) {
-//		i = i+1;
-//	}
-//	else {
-//		Hall arr[i] = new Hall();
-//		break check;
-//	}
-//}
