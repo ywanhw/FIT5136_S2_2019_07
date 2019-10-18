@@ -116,9 +116,7 @@ public class PrimeEvent {
  				System.out.println("Change: (Maximum 15 alphabets)");
  				edname = input.nextLine();
  				listOfHall.get(ed-1).setName(edname);
- 				if(edname.length() >15) {
- 					System.out.println("Please try again: ");
- 				}
+ 				
  			}
  		 }
 
@@ -144,8 +142,8 @@ public class PrimeEvent {
 //       validation description		 
 		 if (eddescription.trim().length()!= 0) {
 			listOfHall.get(ed-1).setDescription(eddescription);
-			while(eddescription.length() >50) {
- 				System.out.println("Change: (Maximum 50 alphabets)");
+			while(eddescription.length() >500) {
+ 				System.out.println("Change: (Maximum 500 alphabets)");
  				eddescription = input.nextLine();
  				listOfHall.get(ed-1).setDescription(eddescription);
  			}
@@ -161,8 +159,10 @@ public class PrimeEvent {
 			 while(edprice.length() >10 || isNumeric(edprice) == false) {
 	 				System.out.println("Change: (Numbers only)");
 	 				edprice = input.nextLine();
-	 				double dprice = Double.parseDouble(edprice);
-	 				listOfHall.get(ed-1).setPrice(dprice);
+	 				if(isNumeric(edprice)) {
+	 					double dprice = Double.parseDouble(edprice);
+		 				listOfHall.get(ed-1).setPrice(dprice);
+	 				}
 	 			}
 			 double dprice = Double.parseDouble(edprice);
 			 listOfHall.get(ed-1).setPrice(dprice);
@@ -177,8 +177,10 @@ public class PrimeEvent {
 			 while(edprice.length() >10 || isNumeric(edcapacity) == false) {
 	 				System.out.println("Change: (Numbers only)");
 	 				edcapacity = input.nextLine();
-	 				int icapa = Integer.parseInt(edcapacity);
-	 				listOfHall.get(ed-1).setCapacity(icapa);
+	 				if(isNumeric(edcapacity)) {
+	 					int icapa = Integer.parseInt(edcapacity);
+		 				listOfHall.get(ed-1).setCapacity(icapa);
+	 				}
 	 			}
 			 int icapa = Integer.parseInt(edcapacity);
 			 listOfHall.get(ed-1).setCapacity(icapa);
