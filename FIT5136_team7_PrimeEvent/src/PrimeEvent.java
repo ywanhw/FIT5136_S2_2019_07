@@ -475,21 +475,23 @@ public class PrimeEvent {
 			hall.setQuotationCost();
 			System.out.println("Quotation:" + 1000);
 			System.out.println("Do you accept the quotation? Y/N");
+			boolean ifCreate = true;
 			try {
+				while (ifCreate) {
 				String ifAccept = input.next();
 				if (ifAccept.toLowerCase().equals("y"))
 				{
 					System.out.println("Please Enter the Booking Detail.");
 					while(j == 0) {
 						Booking newBook = new Booking();
-						SimpleDateFormat DateFormat=new SimpleDateFormat("dd-mm-yyyy");
+						SimpleDateFormat DateFormat=new SimpleDateFormat("yyyy-MM-dd");
 						String dateString = "01-01-2000";
 						Date stratTime = DateFormat.parse(dateString);
 						Date endTime = DateFormat.parse(dateString);
 						//Enter the start time
 						System.out.println("Please Enter:");		
 						System.out.println("Start Date: ");
-						System.out.println("In format:dd-mm-yyyy");
+						System.out.println("In format:yyyy-MM-dd");
 						String STime=input.next();
 						int i = 0;
 						while (i == 0 && !(STime.trim().equals("")))
@@ -499,13 +501,16 @@ public class PrimeEvent {
 								i = 1;
 							} catch (Exception e) {
 								System.out.println("Please Enter the Right Date Type");
+								System.out.println("Start Date: ");
+								System.out.println("In format:yyyy-MM-dd");
 								STime = input.next();
 							}
 						}
 						//Enter the end date
+
 						System.out.println("Please Enter:");		
 						System.out.println("End Date: ");
-						System.out.println("In format:dd-mm-yyyy");
+						System.out.println("In format:yyyy-MM-dd");
 						String ETime=input.next();
 						while (i == 0 && !(ETime.trim().equals("")));
 						{
@@ -513,16 +518,22 @@ public class PrimeEvent {
 								endTime = DateFormat.parse(ETime);
 								if (endTime.before(stratTime)){
 									System.out.println("End date cannot be early than start date.");
+									System.out.println("End Date: ");
+									System.out.println("In format:yyyy-MM-dd");
+									ETime=input.next();
 								}
 								else{
 									i = 1;
 								}
 							} catch (Exception e) {
 								System.out.println("Please Enter the Right Date Type");
+								System.out.println("End Date: ");
+								System.out.println("In format:yyyy-MM-dd");
 								ETime=input.next();
 							}
 						}
 						System.out.println("Press Enter to Continue");
+						input.nextLine();
 						input.nextLine();
 						boolean ifBook = true;
 						//check the time availability
@@ -555,10 +566,10 @@ public class PrimeEvent {
 									System.out.println("Owner Phone: " + hall.getOwner().getPhone());
 									System.out.println("Owner Email: " + hall.getOwner().getEmail());
 									System.out.println("Do you want create the booking?(Y/N)");
-									String YorN=input.next();
 									int b = 0;
 									while(b == 0) {
-										try {									
+										try {	
+											String YorN=input.next();
 											if (YorN.toLowerCase().equals("y")) {
 												b = 1;
 												j = 1;
@@ -571,13 +582,17 @@ public class PrimeEvent {
 												thisHall.setDate(addDate);
 												listOfBooking.add(newBook);
 												System.out.println("\nHall Booking successful.");
-												System.out.println("\nRedirecting to home page");											}
+												System.out.println("\nRedirecting to home page");	
+												input.nextLine();
+												}
 											else if(YorN.toLowerCase().equals("n")) {
 												b = 1;
 												j = 1;
 												System.out.println("\nHall Booking canceled.");
-												System.out.println("Press enter to back to homepage.");
 												input.nextLine();										
+											}
+											else {
+												System.out.println("Please enter Y or N.");
 											}
 										}catch(Exception e) {
 											System.out.println("Please press Y or N.");
@@ -587,11 +602,23 @@ public class PrimeEvent {
 							}																		
 						}
 					}
+					ifCreate = false;
+					System.out.println("Press enter to back to homepage.");
+					input.nextLine();
 				}
-				System.out.println("Press enter to back to homepage.");
-				input.nextLine();
+				else if (ifAccept.toLowerCase().equals("n")) {
+					System.out.println("Back to the Customer homepage.");
+					ifCreate = false;
+					System.out.println("Press enter to back to homepage.");
+					input.nextLine();
+				}
+				else {
+					System.out.println("Please enter Y or N..");
+				}
+				}
 			}catch (Exception e) {
 				System.out.println("Please press Y or N.");
+				input.nextLine();
 			}
 	}//end create booking	
 
@@ -603,36 +630,37 @@ public class PrimeEvent {
 	 * @throws ParseException This exception is thrown when the formatting of Simple Date Format is unacceptable 
 	 */
 	public Hall requestQuotation(Hall hall) throws ParseException{
-		System.out.println("Press enter to show the detail of the hall");
-		System.out.println("Hall: " + hall.getName());
-		System.out.println("Booking Phone: " + currentUser.getPhone());
-		System.out.println("Booking Name: " + currentUser.getName());
-		System.out.println("Booking Email: " + currentUser.getEmail());		
-		System.out.println("Owner Name: " + hall.getOwner().getName());
-		System.out.println("Owner Phone: " + hall.getOwner().getPhone());
-		System.out.println("Owner Email: " + hall.getOwner().getEmail());
-		System.out.println("Do you want send request?(Y/N)");
-		String YorN=input.next();
-		int b = 0;
-		while(b == 0) {
-			try {									
+		try {
+			System.out.println("Press enter to show the detail of the hall");
+			input.nextLine();
+			System.out.println("Hall: " + hall.getName());
+			System.out.println("Booking Phone: " + currentUser.getPhone());
+			System.out.println("Booking Name: " + currentUser.getName());
+			System.out.println("Booking Email: " + currentUser.getEmail());		
+			System.out.println("Owner Name: " + hall.getOwner().getName());
+			System.out.println("Owner Phone: " + hall.getOwner().getPhone());
+			System.out.println("Owner Email: " + hall.getOwner().getEmail());
+			System.out.println("Do you want send request?(Y/N)");
+
+			int b = 0;
+			while(b == 0) {	
+				String YorN=input.next();
 				if (YorN.toString().toLowerCase().equals("y")) {
 					b = 1;
-
-					
 					System.out.println("\nRequest send successfully.");
-					System.out.println("\nRedirecting to home page");
 					}
 				else if(YorN.toString().toLowerCase().equals("n")) {
 					b = 1;
 					System.out.println("\nRequest canceled.");
-					System.out.println("Press enter to back to homepage.");
-					input.nextLine();										
+					input.nextLine();	
 				}
-			}catch(Exception e) {
-				System.out.println("Please press Y or N.");
+				else {					
+					System.out.println("Please enter Y or N");
+				}
 			}
-		}	
+		}catch(Exception e) {
+			System.out.println("Please press Y or N.");
+		}
 		return hall;
 	}//end request quotation	
 	
