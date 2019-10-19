@@ -215,80 +215,111 @@ public class PrimeEvent {
      * This method remove the hall from record
      */
     public void deleteHall() {
-    	 int delete = 0;
-    	 for (Hall thisHall : listOfHall) {
-    		 System.out.println(listOfHall.indexOf(thisHall)+1 +"."+ thisHall.getName());
-    	 }
-    	 System.out.println("Please delete a Hall: ");
-    	 delete = input.nextInt();
-    	 listOfHall.remove(delete-1);
-    	 
-    	 System.out.println("Delete successfully.\n");
-    	 System.out.println("Press [Enter] to redirecting to home page.\n");
+   	 int delete = 0;
+   	 int ds = 0;
+   	 
+   	 System.out.println("Press enter to find the hall you want to book:");
+		 input.nextLine();
+		 ArrayList<Hall> searchResult = searchHall();
+		 while(searchResult.size() == 0) {
+			System.out.println("No result find, please re-search.");
+			searchResult = searchHall();
+		}
+		 
+		 
+   	 System.out.println("Please delete a Hall: ");
+   	 delete = input.nextInt();
+   	 
+   	 String checkName  = searchResult.get(delete).getName();
+   	 for (Hall thisHall : listOfHall) {
+   		 if (thisHall.getName() == checkName) {
+   			 ds = listOfHall.indexOf(thisHall);
+   		 }
+   	 } 
+   	 listOfHall.remove(ds);
+   	 
+   	 System.out.println("Delete successfully.\n");
+   	 System.out.println("Press [Enter] to redirecting to home page.\n");
 		 
 		 sc.nextLine();
-    	 
-     }
+   	 
+    }
 	
 	
 
-    /**
-     * This method edit the detail of the hall
-     */
-    public void editHall() {
-    	 int ed = 0;    	 
-    	 for (Hall thisHall : listOfHall) {
-    		 System.out.println(listOfHall.indexOf(thisHall)+1 +"."+ thisHall.getName());
-    	 }
-    	 System.out.println("Please choose a Hall: ");
-    	 ed = Integer.parseInt(input.nextLine());
-    	 
-//    	 edit hall name
-    	 System.out.println("Name: " + listOfHall.get(ed-1).getName());
-    	 System.out.println("Change: (Maximum 15 alphabets)");
-    	 String edname = input.nextLine();
-//       validation hall name
-    	 if (edname.trim().length()!= 0) {
-    		 listOfHall.get(ed-1).setName(edname);
-    		 while(edname.length() >15) {
- 				System.out.println("Change: (Maximum 15 alphabets)");
- 				edname = input.nextLine();
- 				listOfHall.get(ed-1).setName(edname);
- 				
- 			}
- 		 }
+   /**
+    * This method edit the detail of the hall
+    */
+   public void editHall() {
+   	 int ed = 0;
+   	 int ec = 0;
+   	 
+   	 System.out.println("Press enter to find the hall you want to book:");
+		 input.nextLine();
+		 ArrayList<Hall> searchResult = searchHall();
+		 while(searchResult.size() == 0) {
+			System.out.println("No result find, please re-search.");
+			searchResult = searchHall();
+		}
+			
+   	 
+		 
+   	 System.out.println("Please choose a Hall: ");
+   	 ed = Integer.parseInt(input.nextLine());
+   	 
+   	 String checkName  = searchResult.get(ed).getName();
+   	 for (Hall thisHall : listOfHall) {
+   		 if (thisHall.getName() == checkName) {
+   			 ec = listOfHall.indexOf(thisHall);
+   		 }
+   	 } 
+   	 
+//   	 edit hall name
+   	 System.out.println("Name: " + listOfHall.get(ec).getName());
+   	 System.out.println("Change: (Maximum 15 alphabets)");
+   	 String edname = input.nextLine();
+//      validation hall name
+   	 if (edname.trim().length()!= 0) {
+   		 listOfHall.get(ec).setName(edname);
+   		 while(edname.length() >15) {
+				System.out.println("Change: (Maximum 15 alphabets)");
+				edname = input.nextLine();
+				listOfHall.get(ec).setName(edname);
+				
+			}
+		 }
 
-//       edit hall address
-    	 System.out.println("Address: "+ listOfHall.get(ed-1).getAddress());
- 		 System.out.println("change: (Maximum 150 alphabets)");
- 		 String edaddress = input.nextLine();
-// 		 validation hall address
- 		 if (edaddress.trim().length()!= 0) {
- 			listOfHall.get(ed-1).setAddress(edaddress);
- 			while(edaddress.length() >150) {
- 				System.out.println("Change: (Maximum 150 alphabets)");
- 				edaddress = input.nextLine();
- 				listOfHall.get(ed-1).setAddress(edaddress);
- 				
- 			}
- 		 }
- 		 
-// 		 edit description
- 		 System.out.println("Description: "+ listOfHall.get(ed-1).getDescription());
+//      edit hall address
+   	 System.out.println("Address: "+ listOfHall.get(ec).getAddress());
+		 System.out.println("change: (Maximum 150 alphabets)");
+		 String edaddress = input.nextLine();
+//		 validation hall address
+		 if (edaddress.trim().length()!= 0) {
+			listOfHall.get(ec).setAddress(edaddress);
+			while(edaddress.length() >150) {
+				System.out.println("Change: (Maximum 150 alphabets)");
+				edaddress = input.nextLine();
+				listOfHall.get(ec).setAddress(edaddress);
+				
+			}
+		 }
+		 
+//		 edit description
+		 System.out.println("Description: "+ listOfHall.get(ec).getDescription());
 		 System.out.println("change: ");
 		 String eddescription = input.nextLine();
-//       validation description		 
+//      validation description		 
 		 if (eddescription.trim().length()!= 0) {
-			listOfHall.get(ed-1).setDescription(eddescription);
+			listOfHall.get(ec).setDescription(eddescription);
 			while(eddescription.length() >500) {
- 				System.out.println("Change: (Maximum 500 alphabets)");
- 				eddescription = input.nextLine();
- 				listOfHall.get(ed-1).setDescription(eddescription);
- 			}
+				System.out.println("Change: (Maximum 500 alphabets)");
+				eddescription = input.nextLine();
+				listOfHall.get(ec).setDescription(eddescription);
+			}
 		 }
 		 
 //		 edit price
-		 System.out.println("Price: "+ listOfHall.get(ed-1).getPrice());
+		 System.out.println("Price: "+ listOfHall.get(ec).getPrice());
 		 System.out.println("change: (Numbers only)");
 		 String edprice = input.nextLine();
 //		 validation Hall price
@@ -299,15 +330,15 @@ public class PrimeEvent {
 	 				edprice = input.nextLine();
 	 				if(isNumeric(edprice)) {
 	 					double dprice = Double.parseDouble(edprice);
-		 				listOfHall.get(ed-1).setPrice(dprice);
+		 				listOfHall.get(ec).setPrice(dprice);
 	 				}
 	 			}
 			 double dprice = Double.parseDouble(edprice);
-			 listOfHall.get(ed-1).setPrice(dprice);
+			 listOfHall.get(ec).setPrice(dprice);
 		 }
 		 
 //		 edit capacity
-		 System.out.println("Capacity: "+ listOfHall.get(ed-1).getCapacity());
+		 System.out.println("Capacity: "+ listOfHall.get(ec).getCapacity());
 		 System.out.println("change: (Numbers only)");
 		 String edcapacity = input.nextLine();
 //		 validation hall capacity
@@ -317,18 +348,18 @@ public class PrimeEvent {
 	 				edcapacity = input.nextLine();
 	 				if(isNumeric(edcapacity)) {
 	 					int icapa = Integer.parseInt(edcapacity);
-		 				listOfHall.get(ed-1).setCapacity(icapa);
+		 				listOfHall.get(ec).setCapacity(icapa);
 	 				}
 	 			}
 			 int icapa = Integer.parseInt(edcapacity);
-			 listOfHall.get(ed-1).setCapacity(icapa);
+			 listOfHall.get(ec).setCapacity(icapa);
 		 }
 		 
 		 System.out.println("Change saved.\n");
 		 System.out.println("Press [Enter] to redirect to home page.\n");
 		 sc.nextLine();
 		 
-     }
+    }
      
      /**
 	 * This method check if the input is numeric
