@@ -77,18 +77,61 @@ public class UserInterface {
 						String [] userData = new String[8];
 						System.out.println("Are you a 1.Customer or a 2.Hall owner? [1/2]");
 						userData[0] = input.next();
-						System.out.println("Name:");
-						userData[1] = input.next();
-						System.out.println("Adress:");
-						userData[2] = input.next();
-						System.out.println("Phone Number:");
-						userData[3] = input.next();
-						System.out.println("Email:");
-						userData[4] = input.next();
-						System.out.println("User Name:");
-						userData[5] = input.next();
-						System.out.println("Password:");
-						userData[6] = input.next();
+						userData[1] = input.nextLine();
+//						user name, validation max 20 characters
+						while(userData[1] == null || userData[1].length() > 20||userData[1].trim().length()== 0 ) {
+							System.out.println("Name: (Maximum 20 characters)");
+							userData[1] = input.nextLine();
+							if(userData[1].length() >20||userData[1].trim().length()== 0) {
+								System.out.println("Please try again: ");
+							}
+						}
+						
+//						user address, validation max 150 characters
+						while(userData[2] == null || userData[2].length() > 150 ||userData[2].trim().length()== 0) {
+							System.out.println("Address: (Maximum 150 characters)");
+							userData[2] = input.nextLine();
+							if(userData[2].length() >150 ||userData[2].trim().length()== 0) {
+								System.out.println("Please try again: ");
+							}
+						}
+
+//						phone number validation max 11 numbers numbers only
+						while(userData[3] == null || userData[3].length() > 11 || isNumeric(userData[3]) == false || userData[3].trim().length()== 0) {
+							System.out.println("Phone number: (Maximum 11 numbers, numbers only)");
+							userData[3] = input.nextLine();
+							if(userData[3].length() >11|| isNumeric(userData[3]) == false || userData[3].trim().length()== 0) {
+								System.out.println("Please try again: ");
+							}
+						}
+
+//						email validation max 50 characters
+						while(userData[4] == null || userData[4].length() > 50 || userData[4].trim().length()== 0) {
+							System.out.println("Email: (Maximum 50 characters)");
+							userData[4] = input.nextLine();
+							if(userData[4].length() > 50 || userData[4].trim().length()== 0) {
+								System.out.println("Please try again: ");
+							}
+						}
+
+//						userName validation 50 characters
+						while(userData[5] == null || userData[5].length() > 50 || userData[5].trim().length()== 0) {
+							System.out.println("User name: (Maximum 50 characters)");
+							userData[5] = input.nextLine();
+							if(userData[5].length() >50 || userData[5].trim().length()== 0) {
+								System.out.println("Please try again: ");
+							}
+						}
+
+//						password validation 50 characters
+						while(userData[6] == null || userData[6].length() > 50 || userData[6].trim().length()== 0) {
+							System.out.println("Password: (Maximum 50 characters)");
+							userData[6] = input.nextLine();
+							if(userData[6].length() >50 || userData[6].trim().length()== 0) {
+								System.out.println("Please try again: ");
+							}
+						}
+
 						
 						if (userData[0].equals("1")){
 							System.out.println("Do you have concession? [y/n]");
@@ -394,18 +437,18 @@ public class UserInterface {
 //							enter hall name:
 //							validation: hall name maximum 15 alphabets
 							input.nextLine();
-							while(hallData[0] == null || hallData[0].length() >15 ||hallData[0].trim().length()== 0) {
-								System.out.println("Hall Name: (Maximum 15 alphabets,)");
+							while(hallData[0] == null || hallData[0].length() >15 ||hallData[0].trim().length()== 0 || isNumeric(hallData[0])) {
+								System.out.println("Hall Name: (Maximum 15 alphabets)");
 								hallData[0] = input.nextLine();
-								if(hallData[0].length() >10 ||hallData[0].trim().length()== 0) {
+								if(hallData[0].length() >10 ||hallData[0].trim().length()== 0 || isNumeric(hallData[0])) {
 									System.out.println("Please try again: ");
 								}
 							}
 							
 //							enter hall address
-//							validation: address maximum 50 alphabets
+//							validation: address maximum 150 characters
 							while(hallData[1] == null || hallData[1].length() >150 ||hallData[1].trim().length()== 0) {
-								System.out.println("Address: (Maximum 150 alphabets)");
+								System.out.println("Address: (Maximum 150 characters)");
 								hallData[1] = input.nextLine();
 								if(hallData[1].length() >150  ||hallData[1].trim().length()== 0) {
 									System.out.println("Please try again: ");
