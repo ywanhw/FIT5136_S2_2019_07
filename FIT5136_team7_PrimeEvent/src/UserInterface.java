@@ -4,6 +4,9 @@ import java.util.Scanner;
  * THis Class is responsible for the interaction between the user and the application.
  * The class is responsible for user interface and accept input from the user.
  * @author Adrian
+ * @author Zixiao Guo
+ * @author Yisu Huang
+ * @author Yifan Wang
  *
  */
 
