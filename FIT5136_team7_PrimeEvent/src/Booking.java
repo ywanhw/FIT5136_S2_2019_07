@@ -7,12 +7,12 @@ import java.util.Date;
  *
  */
 public class Booking {
-	private int bookingID;
-	private boolean payDeposit;
-	private Hall hall;
-	private Date stratTime;
-	private Date endTime;
 	private double balance;
+	private int bookingID;
+	private Date endTime;
+	private Hall hall;
+	private boolean payDeposit;
+	private Date stratTime;
 	
 	/**
 	 * Default constructor of the Booking class
@@ -22,42 +22,49 @@ public class Booking {
         // initialise instance variables
     }
 
-	/**
-	 * Set the Booking ID
-	 * @param bookingID The booking ID of the booking
+	/** Return the outstanding balancing of the booking
+	 * @return A double of the outstanding balancing of the booking
 	 */
-	public void setBookingID(int bookingID) {
-		this.bookingID = bookingID;
-	}
-	
-	/** 
-	 * Set if the deposit is paid
-	 * @param payDeposit A boolean True, if the deposit is paid; False if the deposit is not paid
-	 */
-	public void setPayDeposit(boolean payDeposit) {
-		this.payDeposit = payDeposit;
+	public double getBalance() {
+		return balance;
 	}
 	
 	/**
-	 * Set the hall for the booking
-	 * @param hall The hall object that is related to the booking
+	 * Return the booking ID
+	 * @return An integer of the booking ID
 	 */
-	public void setHall(Hall hall) {
-		this.hall = hall;
+	public int getBookingID() {
+		return bookingID;
 	}
 	
-	/** Set the starting time for the booking
-	 * @param stratTime The start time of the booking
+	/** Return the End time of the booking
+	 * @return A Date object for the end time
 	 */
-	public void setStratTime(Date stratTime) {
-		this.stratTime = stratTime;
+	public Date getEndTime() {
+		return endTime;
 	}
 	
-	/** Set the end time of the booking
-	 * @param endTime The end time of the booking
+	/**
+	 * Return the Hall for the booking
+	 * @return An Hall object for the booking
 	 */
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
+	public Hall getHall() {
+		return hall;
+	}
+	
+	/** Return if the deposit is paid
+	 * @return A boolean True, if the deposit is paid; False if the deposit is not paid
+	 */
+	public boolean getPayDeposit() {
+		return payDeposit;
+	}
+	
+	/**
+	 * Return the Starting Time of the booking
+	 * @return A Date object for the starting time
+	 */
+	public Date getStratTime() {
+		return stratTime;
 	}
 	
 	/**
@@ -69,48 +76,41 @@ public class Booking {
 	}
 	
 	/**
-	 * Return the booking ID
-	 * @return An integer of the booking ID
+	 * Set the Booking ID
+	 * @param bookingID The booking ID of the booking
 	 */
-	public int getBookingID() {
-		return bookingID;
+	public void setBookingID(int bookingID) {
+		this.bookingID = bookingID;
 	}
 	
-	/** Return if the deposit is paid
-	 * @return A boolean True, if the deposit is paid; False if the deposit is not paid
+	/** Set the end time of the booking
+	 * @param endTime The end time of the booking
 	 */
-	public boolean getPayDeposit() {
-		return payDeposit;
-	}
-	
-	/**
-	 * Return the Hall for the booking
-	 * @return An Hall object for the booking
-	 */
-	public Hall getHall() {
-		return hall;
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 	
 	/**
-	 * Return the Starting Time of the booking
-	 * @return A Date object for the starting time
+	 * Set the hall for the booking
+	 * @param hall The hall object that is related to the booking
 	 */
-	public Date getStratTime() {
-		return stratTime;
+	public void setHall(Hall hall) {
+		this.hall = hall;
 	}
 	
-	/** Return the End time of the booking
-	 * @return A Date object for the end time
+	/** 
+	 * Set if the deposit is paid
+	 * @param payDeposit A boolean True, if the deposit is paid; False if the deposit is not paid
 	 */
-	public Date getEndTime() {
-		return endTime;
+	public void setPayDeposit(boolean payDeposit) {
+		this.payDeposit = payDeposit;
 	}
 	
-	/** Return the outstanding balancing of the booking
-	 * @return A double of the outstanding balancing of the booking
+	/** Set the starting time for the booking
+	 * @param stratTime The start time of the booking
 	 */
-	public double getBalance() {
-		return balance;
+	public void setStratTime(Date stratTime) {
+		this.stratTime = stratTime;
 	}
 	
 

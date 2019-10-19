@@ -5,9 +5,9 @@
  *
  */
 public class Quotation {
-	private String quoteID;
 	private double cost;
 	private String eventType;
+	private String quoteID;
 	
 	/**
 	 * An empty default constructor of Quotation class
@@ -30,14 +30,6 @@ public class Quotation {
 		this.eventType = eventType;
 	}
 
-	/**
-	 * Return the quotation ID
-	 * @return A String of quotation ID
-	 */
-	public String getQuoteID() {
-		return quoteID;
-	}
-	
 	/** 
 	 * Return the price for the quotation
 	 * @return A double of the price
@@ -55,11 +47,11 @@ public class Quotation {
 	}
 	
 	/**
-	 * Set the quotation ID
-	 * @param quoteID The ID of the quotation
+	 * Return the quotation ID
+	 * @return A String of quotation ID
 	 */
-	public void setQuoteID(String quoteID) {
-		this.quoteID = 	quoteID;	
+	public String getQuoteID() {
+		return quoteID;
 	}
 	
 	/**
@@ -76,6 +68,14 @@ public class Quotation {
 	 */
 	public void setEvenType(String eventType) {
 		this.eventType = 	eventType;	
+	}
+	
+	/**
+	 * Set the quotation ID
+	 * @param quoteID The ID of the quotation
+	 */
+	public void setQuoteID(String quoteID) {
+		this.quoteID = 	quoteID;	
 	}
 
 }

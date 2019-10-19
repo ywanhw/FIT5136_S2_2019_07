@@ -1,5 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+enum bookingPage{
+	cancelBooking, createBooking, editBooking
+}
+
+enum hallPage{
+	createHall, deleteHall, editHall
+}
+
 /**
  * THis Class is responsible for the interaction between the user and the application.
  * The class is responsible for user interface and accept input from the user.
@@ -11,23 +19,24 @@ import java.util.Scanner;
  */
 
 enum homePage{
-	home, customer, owner, admin
+	admin, customer, home, owner
 }
 
 enum page{
-	manageBooking, searchHall, requestQuotation, manageHall, manageDiscount, manageUser
-}
-
-enum hallPage{
-	createHall, editHall, deleteHall
-}
-
-enum bookingPage{
-	createBooking, editBooking, cancelBooking
+	manageBooking, manageDiscount, manageHall, manageUser, requestQuotation, searchHall
 }
 
 
 public class UserInterface {
+	
+	/**
+	 * The main method that drive the java compiler
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		UserInterface ui = new UserInterface();
+		ui.start();
+	}
 	
 	PrimeEvent controller = new PrimeEvent();
 	
@@ -78,9 +87,31 @@ public class UserInterface {
 					else if(choice == 2) {
 						header("Register");
 						String [] userData = new String[8];
-						System.out.println("Are you a 1.Customer or a 2.Hall owner? [1/2]");
-						userData[0] = input.next();
-						userData[1] = input.nextLine();
+						Boolean valid = false;
+						do {
+							System.out.println("Are you a 1.Customer or a 2.Hall owner? [1/2]");
+							String type = input.next();
+							if(type.length() == 1) {
+								if(isNumeric(type)) {
+									if(Integer.parseInt(type) == 1 ||Integer.parseInt(type) == 2) {
+										userData[0] = type;
+										valid = true;
+									}else {
+										System.out.println("Please enter 1 or 2");
+									}
+																		
+								}else {
+									System.out.println("Not a number found. Please enter a number.");
+								}
+								
+							}else {
+								System.out.println("Please only enter one number, with no space before or after the number.");
+							}
+									
+						}while(!valid);
+						
+
+						input.nextLine();
 //						user name, validation max 20 characters
 						while(userData[1] == null || userData[1].length() > 20||userData[1].trim().length()== 0 ) {
 							System.out.println("Name: (Maximum 20 characters)");
@@ -137,15 +168,24 @@ public class UserInterface {
 
 						
 						if (userData[0].equals("1")){
-							System.out.println("Do you have concession? [y/n]");
-							if(input.next().equals("y")) {
-								userData[7] = "true";
-							}else {
-								userData[7] = "false";
-							}
+							valid = false;
+							do {
+								System.out.println("Do you have concession? [y/n]");
+								String concession = input.next().toLowerCase();
+								if(concession.equals("y")) {
+									userData[7] = "true";
+									valid = true;
+								}else if (concession.equals("n")){
+									userData[7] = "false";
+									valid = true;
+								}else {
+									System.out.println("Invalid input. Only enter y or n. Please try again");
+								}
+							}while(!valid);
+							//Register successful
 							thisType = controller.register(userData);
 							displayUserHome(thisType);
-						}
+						}//End if for asking for concession
 						else if(userData[0].equals("2")) {
 							thisType = controller.register(userData);
 							displayUserHome(thisType);
@@ -171,143 +211,6 @@ public class UserInterface {
 				}
 			}//End while
 	}//End displayHomePage
-	
-	/**
-	 * Display the home page depending on the type of user
-	 * @param type Enum of the user type, customer, owner and admin.
-	 */
-	public void displayUserHome(userType type) {
-		boolean exit = false;
-		int choice = 0;
-		Scanner input = new Scanner(System.in);
-		switch(type) {
-			case customer:{
-				//Customer home page : 1. Manage Booking, 2.Search Hall, 3.Request Quotation, 4. Logout
-				header("Welcome to Prime Event.");
-				while(!exit) {
-					System.out.println("1. Manage Booking");
-					System.out.println("2. Search Hall");
-					System.out.println("3. Request Quotation");
-					System.out.println("4. Logout");
-					System.out.println(" Your choice? [1/2/3/4]");
-					try {
-						choice = input.nextInt();
-						if(choice == 1) {
-							displayPage(page.manageBooking, type);
-						}	
-						else if(choice == 2) {
-							displayPage(page.searchHall, type);
-						}
-						else if(choice == 3) {
-							displayPage(page.requestQuotation, type);
-							
-						}
-						else if (choice == 4) {
-							System.out.println("You sure you want to exit? [y/n]");
-							if(input.next().toLowerCase().trim().equals("y")) {
-								System.out.println("Logout Successful. Redirecting to home page");
-								controller.logout();
-								displayHomePage();
-								exit = true;
-							}
-						}
-						else {
-							System.out.println("Invalid input. Please enter number between 1-4.\n");
-							exit = false;
-						}
-							
-						
-					}catch(Exception e) {
-						System.out.println("Invalid input. Please enter number only.\n");
-						input.nextLine();
-						exit = false;
-					}
-				}//End while
-			
-				break;
-			}//End case customer
-			
-			case owner:{
-				//Owner home page : 1. Manage Booking, 2. Manage Hall, 3. Manage Discount, 4. Logout
-				header("Welcome to Prime Event");
-				while(!exit) {
-					System.out.println("1. Manage Booking");
-					System.out.println("2. Manage Hall");
-					System.out.println("3. Manage Discount");
-					System.out.println("4. Logout");
-					System.out.println(" Your choice? [1/2/3/4]");
-					try {
-						choice = input.nextInt();
-						if(choice == 1) {
-							displayPage(page.manageBooking, type);
-						}	
-						else if(choice == 2) {
-							displayPage(page.manageHall, type);
-						}
-						else if(choice == 3) {
-							displayPage(page.manageDiscount, type);	
-						}
-						else if (choice == 4) {
-							System.out.println("You sure you want to exit? [y/n]");
-							if(input.next().toLowerCase().trim().equals("y")) {
-								System.out.println("Logout Successful. Redirecting to home page");
-								controller.logout();
-								displayHomePage();
-								exit = true;
-							}
-						}
-						else {
-							System.out.println("Invalid input. Please enter number between 1-4.\n");
-						}
-							
-						
-					}catch(Exception e) {
-						System.out.println("Invalid input. Please enter number only.\n");
-						input.nextLine();
-						exit = false;
-					}
-				}//End while
-			
-				break;
-			}
-			case admin:{
-				while(!exit) {
-					System.out.println("1. Manage User");
-					System.out.println("2. Manage Discount");
-					System.out.println("3. Logout");
-					System.out.println(" Your choice? [1/2/3]");
-					try {
-						choice = input.nextInt();
-						if(choice == 1) {
-							displayPage(page.manageUser, type);
-						}	
-						else if(choice == 2) {
-							displayPage(page.manageDiscount, type);	
-						}
-						else if (choice == 3) {
-							System.out.println("You sure you want to exit? [y/n]");
-							if(input.next().toLowerCase().trim().equals("y")) {
-								System.out.println("Logout Successful. Redirecting to home page");
-								controller.logout();
-								exit = true;
-							}
-						}
-						else {
-							System.out.println("Invalid input. Please enter number between 1-4.\n");
-							exit = false;
-						}
-							
-						
-					}catch(Exception e) {
-						System.out.println("Invalid input. Please enter number only.\n");					
-					}
-				}//End while
-				
-				break;
-			}
-		
-		}
-	}
 	
 	/**
 	 * This method display pages under the hierarchy of o the user home page and accept input from the user.
@@ -527,17 +430,140 @@ public class UserInterface {
 	}
 	
 	/**
-	 * This method check if the input is numeric.
-	 * @param str A string of data that needed to be checked.
-	 * @return Boolean, True if it is numeric and false if it is not numeric
+	 * Display the home page depending on the type of user
+	 * @param type Enum of the user type, customer, owner and admin.
 	 */
-	public static boolean isNumeric(String str){
-		for (int i = str.length();--i>=0;){ 
-			if (!Character.isDigit(str.charAt(i))){
-				return false;
-				}
+	public void displayUserHome(userType type) {
+		boolean exit = false;
+		int choice = 0;
+		Scanner input = new Scanner(System.in);
+		switch(type) {
+			case customer:{
+				//Customer home page : 1. Manage Booking, 2.Search Hall, 3.Request Quotation, 4. Logout
+				header("Welcome to Prime Event.");
+				while(!exit) {
+					System.out.println("1. Manage Booking");
+					System.out.println("2. Search Hall");
+					System.out.println("3. Request Quotation");
+					System.out.println("4. Logout");
+					System.out.println(" Your choice? [1/2/3/4]");
+					try {
+						choice = input.nextInt();
+						if(choice == 1) {
+							displayPage(page.manageBooking, type);
+						}	
+						else if(choice == 2) {
+							displayPage(page.searchHall, type);
+						}
+						else if(choice == 3) {
+							displayPage(page.requestQuotation, type);
+							
+						}
+						else if (choice == 4) {
+							System.out.println("You sure you want to exit? [y/n]");
+							if(input.next().toLowerCase().trim().equals("y")) {
+								System.out.println("Logout Successful. Redirecting to home page");
+								controller.logout();
+								displayHomePage();
+								exit = true;
+							}
+						}
+						else {
+							System.out.println("Invalid input. Please enter number between 1-4.\n");
+							exit = false;
+						}
+							
+						
+					}catch(Exception e) {
+						System.out.println("Invalid input. Please enter number only.\n");
+						input.nextLine();
+						exit = false;
+					}
+				}//End while
+			
+				break;
+			}//End case customer
+			
+			case owner:{
+				//Owner home page : 1. Manage Booking, 2. Manage Hall, 3. Manage Discount, 4. Logout
+				header("Welcome to Prime Event");
+				while(!exit) {
+					System.out.println("1. Manage Booking");
+					System.out.println("2. Manage Hall");
+					System.out.println("3. Manage Discount");
+					System.out.println("4. Logout");
+					System.out.println(" Your choice? [1/2/3/4]");
+					try {
+						choice = input.nextInt();
+						if(choice == 1) {
+							displayPage(page.manageBooking, type);
+						}	
+						else if(choice == 2) {
+							displayPage(page.manageHall, type);
+						}
+						else if(choice == 3) {
+							displayPage(page.manageDiscount, type);	
+						}
+						else if (choice == 4) {
+							System.out.println("You sure you want to exit? [y/n]");
+							if(input.next().toLowerCase().trim().equals("y")) {
+								System.out.println("Logout Successful. Redirecting to home page");
+								controller.logout();
+								displayHomePage();
+								exit = true;
+							}
+						}
+						else {
+							System.out.println("Invalid input. Please enter number between 1-4.\n");
+						}
+							
+						
+					}catch(Exception e) {
+						System.out.println("Invalid input. Please enter number only.\n");
+						input.nextLine();
+						exit = false;
+					}
+				}//End while
+			
+				break;
 			}
-		return true;
+			case admin:{
+				while(!exit) {
+					System.out.println("1. Manage User");
+					System.out.println("2. Manage Discount");
+					System.out.println("3. Logout");
+					System.out.println(" Your choice? [1/2/3]");
+					try {
+						choice = input.nextInt();
+						if(choice == 1) {
+							displayPage(page.manageUser, type);
+						}	
+						else if(choice == 2) {
+							displayPage(page.manageDiscount, type);	
+						}
+						else if (choice == 3) {
+							System.out.println("You sure you want to exit? [y/n]");
+							if(input.next().toLowerCase().trim().equals("y")) {
+								System.out.println("Logout Successful. Redirecting to home page");
+								controller.logout();
+								exit = true;
+							}
+						}
+						else {
+							System.out.println("Invalid input. Please enter number between 1-4.\n");
+							exit = false;
+						}
+							
+						
+					}catch(Exception e) {
+						System.out.println("Invalid input. Please enter number only.\n");					
+					}
+				}//End while
+				
+				break;
+			}
+		
+		}
 	}
 	
 	/**
@@ -558,19 +584,24 @@ public class UserInterface {
 	}
 	
 	/**
+	 * This method check if the input is numeric.
+	 * @param str A string of data that needed to be checked.
+	 * @return Boolean, True if it is numeric and false if it is not numeric
+	 */
+	public boolean isNumeric(String str){
+		for (int i = str.length();--i>=0;){ 
+			if (!Character.isDigit(str.charAt(i))){
+				return false;
+				}
+			}
+		return true;
+	}
+	
+	/**
 	 * This method start the application
 	 */
 	private void start() {
 		displayHomePage();
-	}
-	
-	/**
-	 * The main method that drive the java compiler
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		UserInterface ui = new UserInterface();
-		ui.start();
 	}
 
 }

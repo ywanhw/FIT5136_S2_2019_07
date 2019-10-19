@@ -27,22 +27,6 @@ public class Customer extends User{
 	}
 	
 	/**
-	 * Set the concession of the customer
-	 * @param concession The boolean if the customer has concession or not
-	 */
-	public void setConcession(boolean concession) {
-		this.concession = concession;
-	}
-	
-	/**
-	 * Return a boolean if the customer has concession
-	 * @return boolean of True for having concession and False for not having concession
-	 */
-	public boolean getConcession() {
-		return concession;
-	}
-	
-	/**
 	 * Add booking object related to the customer
 	 * @param newBooking A booking object for the customer 
 	 */
@@ -56,6 +40,22 @@ public class Customer extends User{
 	 */
 	public ArrayList<Booking> getBookingList(){
 		return listOfBooking;
+	}
+	
+	/**
+	 * Return a boolean if the customer has concession
+	 * @return boolean of True for having concession and False for not having concession
+	 */
+	public boolean getConcession() {
+		return concession;
+	}
+	
+	/**
+	 * Set the concession of the customer
+	 * @param concession The boolean if the customer has concession or not
+	 */
+	public void setConcession(boolean concession) {
+		this.concession = concession;
 	}
 
 }

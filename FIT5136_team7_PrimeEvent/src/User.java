@@ -1,21 +1,11 @@
-/**
- * The User class is responsible to hold user information. This include name, address, 
- * phone number, email, username and password
- * @author Adrian
- *
- */
-enum userType{
-	customer, owner, admin, nan
-}
-
 public class User {
-	protected String name;
 	protected String adress;
-	protected String phone;
 	protected String email;
-	protected String username;
+	protected String name;
 	protected String password;
+	protected String phone;
 	protected userType type;
+	protected String username;
 	
 	
 	/**
@@ -41,11 +31,19 @@ public class User {
     }
 	
 	/**
-	 * Return the type of the user
-	 * @return an enum representing the type of the user
+	 * Return the address of the user
+	 * @return a String of the user's address
 	 */
-	public userType getType() {
-		return type;
+	public String getAdress() {
+		return adress;
+	}
+	
+	/**
+	 * Return the email address of the user
+	 * @return a String of the user's email address
+	 */
+	public String getEmail() {
+		return email;
 	}
 	
 	/**
@@ -57,12 +55,13 @@ public class User {
 	}
 	
 	/**
-	 * Return the address of the user
-	 * @return a String of the user's address
+	 * Return the password
+	 * @return a String of the user's password
 	 */
-	public String getAdress() {
-		return adress;
+	public String getPassword() {
+		return password;
 	}
+	
 	
 	/**
 	 * Return the phone number of the user
@@ -72,13 +71,12 @@ public class User {
 		return phone;
 	}
 	
-	
 	/**
-	 * Return the email address of the user
-	 * @return a String of the user's email address
+	 * Return the type of the user
+	 * @return an enum representing the type of the user
 	 */
-	public String getEmail() {
-		return email;
+	public userType getType() {
+		return type;
 	}
 	
 	/**
@@ -89,33 +87,11 @@ public class User {
 		return username;
 	}
 	
-	/**
-	 * Return the password
-	 * @return a String of the user's password
-	 */
-	public String getPassword() {
-		return password;
-	}
-	
-	/** Set the actual name of the user
-	 * @param name Actual name of the user
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	/** Set the address of the user
 	 * @param adress The address of the user
 	 */
 	public void setAdress(String adress) {
 		this.adress = adress;
-	}
-	
-	/** Set the phone number of the user
-	 * @param phone The phone number of the user
-	 */
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 	
 	/** Set the email of the user
@@ -125,11 +101,11 @@ public class User {
 		this.email = email;
 	}
 	
-	/** Set the user name of the user
-	 * @param username The user name of the user
+	/** Set the actual name of the user
+	 * @param name Actual name of the user
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	/** Set the password of the user
@@ -138,5 +114,29 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	/** Set the phone number of the user
+	 * @param phone The phone number of the user
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	/** Set the user name of the user
+	 * @param username The user name of the user
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
+}
+
+/**
+ * The User class is responsible to hold user information. This include name, address, 
+ * phone number, email, username and password
+ * @author Adrian
+ *
+ */
+enum userType{
+	admin, customer, nan, owner
 }
