@@ -3,7 +3,8 @@ import java.util.ArrayList;
 /**
  * This class is a subclass of User class. This is responsible to handle the owner data
  * This include the list of booking related to the owner 
- * @author Adrian
+ * @author Adrian Yip
+ * @version 1
  *
  */
 public class Owner extends User{

@@ -11,10 +11,11 @@ enum hallPage{
 /**
  * THis Class is responsible for the interaction between the user and the application.
  * The class is responsible for user interface and accept input from the user.
- * @author Adrian
+ * @author Adrian Yip
  * @author Zixiao Guo
  * @author Yisu Huang
  * @author Yifan Wang
+ * @version 2.1.1
  *
  */
 

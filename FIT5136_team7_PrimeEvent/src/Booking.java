@@ -3,8 +3,8 @@ import java.util.Date;
 
 /**
  * This class handle and store individual booking data
- * @author Chris 
- *
+ * @author Yisu Huang
+ * @version 1
  */
 public class Booking {
 	private double balance;

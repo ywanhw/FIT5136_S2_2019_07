@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * This class is responsible to handle the customer data. This class extend the User class.
  * @author Adrian
- *
+ * @version 1
  */
 public class Customer extends User{
 	

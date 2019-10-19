@@ -1,3 +1,10 @@
+/**
+ *  The User class handle and stores user information
+ *  @author Yisu Huang
+ *  @author Adrian
+ *	@version 2.1
+ */
+
 public class User {
 	protected String adress;
 	protected String email;
@@ -17,6 +24,7 @@ public class User {
 	 * @param email Email of the user
 	 * @param username User name of the user
 	 * @param password Password of the user
+	 * 
 	 */
 	public User(userType type, String name, String adress, String phone, String email, String username, String password)
     {

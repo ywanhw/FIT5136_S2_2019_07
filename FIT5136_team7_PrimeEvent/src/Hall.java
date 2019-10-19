@@ -3,7 +3,8 @@ import java.util.Date;
 
 /**
  * This class handle the hall data
- * @author 
+ * @author Zixiao Guo
+ * @version 2.1
  *
  */
 public class Hall {

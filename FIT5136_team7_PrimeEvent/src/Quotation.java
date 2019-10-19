@@ -1,7 +1,8 @@
 
 /**
  * This class handle the data of quotation
- * @author
+ * @author Yisu Huang
+ * @version 1
  *
  */
 public class Quotation {

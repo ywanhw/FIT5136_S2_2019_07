@@ -6,8 +6,12 @@ import java.util.Scanner;
 
 /**
  * This class is the controller of the application. It is responsible to manage User, Booking, Hall, discount and quotation data
- * @author Adrian, Hannah, Chris, 
- *
+ * @author Adrian Yip
+ * @author Zixiao Guo
+ * @author Yisu Huang
+ * @author Yifan Wang
+ * @author Yisu Huang
+ * @version 2.1.1
  */
 public class PrimeEvent {
 	
